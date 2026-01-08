@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work | Robin Gautam</title>
+    <meta name="description" content="Sample projects showing how websites and pitch decks are usually structured.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav__inner">
+            <a href="index.html" class="nav__logo">Robin Gautam</a>
+            <button class="nav__toggle" aria-label="Toggle menu" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav__links" id="navLinks">
+                <li><a href="index.html" class="nav__link">Home</a></li>
+                <li><a href="services.html" class="nav__link">Services</a></li>
+                <li><a href="work.html" class="nav__link nav__link--active">Work</a></li>
+                <li><a href="about.html" class="nav__link">About</a></li>
+                <li><a href="index.html#contact" class="nav__link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="hero" style="padding: var(--space-xl) 0;">
+        <div class="hero__shapes">
+            <div class="hero__shape hero__shape--1"></div>
+            <div class="hero__shape hero__shape--2"></div>
+        </div>
+        <div class="container hero__content">
+            <h1>Sample Work</h1>
+            <p class="text-secondary" style="max-width: 500px; margin: 0 auto;">Examples to show how things are usually
+                structured. These are sample projects, not client work.</p>
+        </div>
+        <div class="hero__divider"></div>
+    </section>
+
+    <!-- Websites Section -->
+    <section class="section section--white">
+        <div class="container">
+            <h2>Websites</h2>
+            <div class="grid grid--2" style="margin-top: var(--space-lg);">
+                <div class="work-item work-item--website">
+                    <div class="work-item__image">
+                        <span>Website Preview</span>
+                        <div class="work-item__overlay">
+                            <span class="work-item__overlay-text">Portfolio • Single page</span>
+                        </div>
+                    </div>
+                    <div class="work-item__content">
+                        <span class="work-item__label">Sample project</span>
+                        <h3 class="work-item__title">Freelance Designer Portfolio</h3>
+                        <p class="work-item__desc">Single-page portfolio with work gallery, about section, and contact
+                            form. Clean layout with plenty of space to let the work stand out.</p>
+                    </div>
+                </div>
+                <div class="work-item work-item--website">
+                    <div class="work-item__image">
+                        <span>Website Preview</span>
+                        <div class="work-item__overlay">
+                            <span class="work-item__overlay-text">Portfolio • Minimal</span>
+                        </div>
+                    </div>
+                    <div class="work-item__content">
+                        <span class="work-item__label">Sample project</span>
+                        <h3 class="work-item__title">Photography Portfolio</h3>
+                        <p class="work-item__desc">Minimal site for a photographer. Grid-based gallery, categories, and
+                            a bio page. Focus on fast loading and image quality.</p>
+                    </div>
+                </div>
+                <div class="work-item work-item--website">
+                    <div class="work-item__image">
+                        <span>Website Preview</span>
+                        <div class="work-item__overlay">
+                            <span class="work-item__overlay-text">Startup • Multi-page</span>
+                        </div>
+                    </div>
+                    <div class="work-item__content">
+                        <span class="work-item__label">Sample project</span>
+                        <h3 class="work-item__title">Ed-Tech Startup</h3>
+                        <p class="work-item__desc">Multi-page site for an education startup. Includes landing page,
+                            features section, pricing, and team page. Built for clarity.</p>
+                    </div>
+                </div>
+                <div class="work-item work-item--website">
+                    <div class="work-item__image">
+                        <span>Website Preview</span>
+                        <div class="work-item__overlay">
+                            <span class="work-item__overlay-text">Brand • Mobile-first</span>
+                        </div>
+                    </div>
+                    <div class="work-item__content">
+                        <span class="work-item__label">Sample project</span>
+                        <h3 class="work-item__title">Local Bakery</h3>
+                        <p class="work-item__desc">Simple brand site for a local bakery. Menu, location, and WhatsApp
+                            order button. Mobile-first since most visitors check on their phones.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animated divider -->
+    <div class="divider--dots">
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- Pitch Decks Section -->
+    <section class="section section--grey">
+        <div class="container">
+            <h2>Pitch Decks</h2>
+            <div class="grid grid--2" style="margin-top: var(--space-lg);">
+                <div class="work-item work-item--deck">
+                    <div class="work-item__image">
+                        <span>Deck Preview</span>
+                        <div class="work-item__overlay">
+                            <span class="work-item__overlay-text">Investor • 12 slides</span>
+                        </div>
+                    </div>
+                    <div class="work-item__content">
+                        <span class="work-item__label">Sample project</span>
+                        <h3 class="work-item__title">Fintech Investor Deck</h3>
+                        <p class="work-item__desc">12-slide deck for a consumer fintech idea. Covers problem, solution,
+                            market size, traction, and ask. Clear structure, no fluff.</p>
+                    </div>
+                </div>
+                <div class="work-item work-item--deck">
+                    <div class="work-item__image">
+                        <span>Deck Preview</span>
+                        <div class="work-item__overlay">
+                            <span class="work-item__overlay-text">Customer • Intro</span>
+                        </div>
+                    </div>
+                    <div class="work-item__content">
+                        <span class="work-item__label">Sample project</span>
+                        <h3 class="work-item__title">SaaS Intro Deck</h3>
+                        <p class="work-item__desc">Customer-facing presentation for a B2B SaaS tool. Focuses on what it
+                            does, who it's for, and how to get started.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section contact-section">
+        <div class="container" style="text-align: center;">
+            <h2 style="display: block;">Want something similar?</h2>
+            <p
+                style="margin-top: var(--space-md); margin-bottom: var(--space-md); max-width: 400px; margin-left: auto; margin-right: auto;">
+                Let me know what you're working on. Happy to discuss.</p>
+            <a href="index.html#contact" class="btn btn--primary">Get in touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__cta">
+                <p>Have a project in mind?</p>
+                <a href="index.html#contact">Let's make it happen →</a>
+            </div>
+            <p class="footer__copy">© 2026 Robin Gautam</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('nav__links--open');
+        }
+    </script>
+</body>
+
+</html>

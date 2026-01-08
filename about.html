@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Robin Gautam</title>
+    <meta name="description" content="A bit about how I work and what I care about when building websites and decks.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav__inner">
+            <a href="index.html" class="nav__logo">Robin Gautam</a>
+            <button class="nav__toggle" aria-label="Toggle menu" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav__links" id="navLinks">
+                <li><a href="index.html" class="nav__link">Home</a></li>
+                <li><a href="services.html" class="nav__link">Services</a></li>
+                <li><a href="work.html" class="nav__link">Work</a></li>
+                <li><a href="about.html" class="nav__link nav__link--active">About</a></li>
+                <li><a href="index.html#contact" class="nav__link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="hero" style="padding: var(--space-xl) 0;">
+        <div class="hero__shapes">
+            <div class="hero__shape hero__shape--1"></div>
+            <div class="hero__shape hero__shape--2"></div>
+        </div>
+        <div class="container hero__content">
+            <h1>About</h1>
+        </div>
+        <div class="hero__divider"></div>
+    </section>
+
+    <section class="section section--white">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-section">
+                    <h2>Who I work with</h2>
+                    <p style="margin-top: var(--space-md);">Mostly students, early-stage founders, and small brand
+                        owners. People who need something built but don't want to deal with an agency or figure out
+                        everything themselves.</p>
+                    <p>I've worked on portfolio sites for freelancers, startup websites for first-time founders, and
+                        investor decks for people raising their first round. The common thread is that the people I work
+                        with are usually doing this for the first time and want it to go smoothly.</p>
+                </div>
+
+                <div class="about-section">
+                    <h2>How I approach work</h2>
+                    <p style="margin-top: var(--space-md);">I try to keep things simple and clear. Before building
+                        anything, I share a rough plan so you know what to expect. During the work, I send updates
+                        regularly so nothing feels like a surprise. If something needs changing, we change it; not a big
+                        deal.</p>
+                    <p>I don't overexplain or overwhelm with options. If you're not sure what you need, I'll help you
+                        figure that out too.</p>
+                </div>
+
+                <div class="about-section">
+                    <h2>What I care about</h2>
+                    <ul class="value-list" style="margin-top: var(--space-md);">
+                        <li class="value-item">
+                            <strong>Clarity</strong>
+                            <span class="text-secondary text-small">The site or deck should make sense to the person
+                                looking at it, not just to you.</span>
+                        </li>
+                        <li class="value-item">
+                            <strong>Structure</strong>
+                            <span class="text-secondary text-small">Messy projects create stress. I prefer things
+                                organized from the start.</span>
+                        </li>
+                        <li class="value-item">
+                            <strong>Timelines</strong>
+                            <span class="text-secondary text-small">I stick to deadlines. If something comes up, I'll
+                                tell you early.</span>
+                        </li>
+                        <li class="value-item">
+                            <strong>Communication</strong>
+                            <span class="text-secondary text-small">I respond quickly and keep you in the loop. No
+                                ghosting.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="divider--line"></div>
+
+                <p style="margin-top: var(--space-lg);">If that sounds like how you'd want to work, feel free to <a
+                        href="index.html#contact" class="link-arrow">reach out</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__cta">
+                <p>Have a project in mind?</p>
+                <a href="index.html#contact">Let's make it happen →</a>
+            </div>
+            <p class="footer__copy">© 2026 Robin Gautam</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('nav__links--open');
+        }
+    </script>
+</body>
+
+</html>
