@@ -8,15 +8,19 @@
     <meta name="description" content="Sample projects showing how websites and pitch decks are usually structured.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
 </head>
 
 <body>
     <!-- Navigation -->
     <nav class="nav">
         <div class="container nav__inner">
-            <a href="index.html" class="nav__logo">Robin Gautam</a>
+            <a href="index.html" class="nav__logo">RG.</a>
             <button class="nav__toggle" aria-label="Toggle menu" onclick="toggleNav()">
                 <span></span>
                 <span></span>
@@ -27,7 +31,7 @@
                 <li><a href="services.html" class="nav__link">Services</a></li>
                 <li><a href="work.html" class="nav__link nav__link--active">Work</a></li>
                 <li><a href="about.html" class="nav__link">About</a></li>
-                <li><a href="index.html#contact" class="nav__link">Contact</a></li>
+                <li><a href="index.html#contact" class="nav__link nav__link--cta">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -37,7 +41,14 @@
         <div class="hero__shapes">
             <div class="hero__shape hero__shape--1"></div>
             <div class="hero__shape hero__shape--2"></div>
+            <div class="hero__shape hero__shape--3"></div>
         </div>
+        <!-- Geometric accents -->
+        <div class="hero__decor hero__decor--1"></div>
+        <div class="hero__decor hero__decor--2"></div>
+        <div class="hero__decor hero__decor--3"></div>
+        <div class="hero__decor hero__decor--4"></div>
+        <div class="hero__decor hero__decor--5"></div>
         <div class="container hero__content">
             <h1>Sample Work</h1>
             <p class="text-secondary" style="max-width: 500px; margin: 0 auto;">Examples to show how things are usually
@@ -171,6 +182,7 @@
                 <p>Have a project in mind?</p>
                 <a href="index.html#contact">Let's make it happen →</a>
             </div>
+            <p class="footer__location">Based in India. Available for remote work.</p>
             <p class="footer__copy">© 2026 Robin Gautam</p>
         </div>
     </footer>

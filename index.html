@@ -9,15 +9,19 @@
     content="I build websites, pitch decks, and run practical AI sessions. Mostly for students, early founders, and small brands.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
 </head>
 
 <body>
   <!-- Navigation -->
   <nav class="nav">
     <div class="container nav__inner">
-      <a href="index.html" class="nav__logo">Robin Gautam</a>
+      <a href="index.html" class="nav__logo">RG.</a>
       <button class="nav__toggle" aria-label="Toggle menu" onclick="toggleNav()">
         <span></span>
         <span></span>
@@ -28,26 +32,32 @@
         <li><a href="services.html" class="nav__link">Services</a></li>
         <li><a href="work.html" class="nav__link">Work</a></li>
         <li><a href="about.html" class="nav__link">About</a></li>
-        <li><a href="#contact" class="nav__link">Contact</a></li>
+        <li><a href="#contact" class="nav__link nav__link--cta">Contact</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero">
-    <!-- Floating shapes -->
+    <!-- Floating shapes and decorations -->
     <div class="hero__shapes">
       <div class="hero__shape hero__shape--1"></div>
       <div class="hero__shape hero__shape--2"></div>
       <div class="hero__shape hero__shape--3"></div>
     </div>
+    <!-- Geometric accents -->
+    <div class="hero__decor hero__decor--1"></div>
+    <div class="hero__decor hero__decor--2"></div>
+    <div class="hero__decor hero__decor--3"></div>
+    <div class="hero__decor hero__decor--4"></div>
+    <div class="hero__decor hero__decor--5"></div>
 
     <div class="container hero__content">
       <h1 class="hero__headline">I build websites, pitch decks, and run practical AI sessions.</h1>
       <p class="hero__subtext">Mostly for students, early founders, and small brands.</p>
       <div class="btn-group">
-        <a href="work.html" class="btn btn--primary">View work</a>
-        <a href="#contact" class="btn btn--secondary">Contact</a>
+        <a href="#contact" class="btn btn--primary">Start a project</a>
+        <a href="work.html" class="btn btn--secondary">View work</a>
       </div>
     </div>
 
@@ -64,6 +74,10 @@
 
   <!-- Services Snapshot -->
   <section class="section section--white">
+    <!-- Decorative elements -->
+    <div class="decor-shape decor-shape--circle" style="top: -80px; right: -60px;"></div>
+    <div class="decor-shape decor-shape--grid" style="bottom: 40px; left: 20px;"></div>
+
     <div class="container">
       <h2>What I do</h2>
       <div class="grid grid--3" style="margin-top: var(--space-lg);">
@@ -101,13 +115,68 @@
   <section class="section section--grey">
     <div class="container">
       <h2>How the work usually goes</h2>
-      <ul class="bullet-list" style="margin-top: var(--space-lg); max-width: 600px;">
-        <li><strong>Discussion first.</strong> We start by understanding what you need and why.</li>
-        <li><strong>Structure before building.</strong> I share a rough outline so you know what to expect.</li>
-        <li><strong>Regular updates.</strong> You see progress as things move along, nothing happens in a black box.
-        </li>
-        <li><strong>Flexible on changes.</strong> If something needs adjusting, we adjust. No drama.</li>
-      </ul>
+
+      <div class="workflow">
+        <!-- Node 1: Discussion - Flowing lines pattern -->
+        <div class="workflow__node" tabindex="0" role="listitem">
+          <div class="workflow__pattern pattern--flow">
+            <div class="pattern__line"></div>
+            <div class="pattern__line"></div>
+            <div class="pattern__line"></div>
+          </div>
+          <span class="workflow__connector"></span>
+          <h3 class="workflow__title">Discussion first</h3>
+          <p class="workflow__desc">We start by understanding what you need and why.</p>
+        </div>
+
+        <!-- Node 2: Structure - Grid pattern -->
+        <div class="workflow__node" tabindex="0" role="listitem">
+          <div class="workflow__pattern pattern--grid">
+            <div class="pattern__cell"></div>
+            <div class="pattern__cell"></div>
+            <div class="pattern__cell"></div>
+            <div class="pattern__cell"></div>
+            <div class="pattern__cell"></div>
+            <div class="pattern__cell"></div>
+            <div class="pattern__cell"></div>
+            <div class="pattern__cell"></div>
+            <div class="pattern__cell"></div>
+          </div>
+          <span class="workflow__connector"></span>
+          <h3 class="workflow__title">Structure before building</h3>
+          <p class="workflow__desc">I share a rough outline so you know what to expect.</p>
+        </div>
+
+        <!-- Node 3: Updates - Stacked layers pattern -->
+        <div class="workflow__node" tabindex="0" role="listitem">
+          <div class="workflow__pattern pattern--layers">
+            <div class="pattern__layer"></div>
+            <div class="pattern__layer"></div>
+            <div class="pattern__layer"></div>
+          </div>
+          <span class="workflow__connector"></span>
+          <h3 class="workflow__title">Regular updates</h3>
+          <p class="workflow__desc">You see progress as things move along.</p>
+        </div>
+
+        <!-- Node 4: Flexibility - Branching nodes pattern -->
+        <div class="workflow__node" tabindex="0" role="listitem">
+          <div class="workflow__pattern pattern--branch">
+            <div class="pattern__node pattern__node--center"></div>
+            <div class="pattern__node"></div>
+            <div class="pattern__node"></div>
+            <div class="pattern__node"></div>
+            <div class="pattern__node"></div>
+            <div class="pattern__line"></div>
+            <div class="pattern__line"></div>
+            <div class="pattern__line"></div>
+            <div class="pattern__line"></div>
+          </div>
+          <h3 class="workflow__title">Flexible on changes</h3>
+          <p class="workflow__desc">If something needs adjusting, we adjust. No drama.</p>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -153,8 +222,8 @@
           <span class="float-block__title">Portfolio</span>
         </div>
 
-        <!-- Investor Deck -->
-        <div class="float-block float-block--deck float-block--investor">
+        <!-- Investor Deck - FEATURED -->
+        <div class="float-block float-block--deck float-block--investor float-block--featured">
           <div class="pattern">
             <div class="pattern__slides">
               <div class="pattern__slide">
@@ -172,8 +241,8 @@
           <span class="float-block__title">Investor Deck</span>
         </div>
 
-        <!-- Startup Site -->
-        <div class="float-block float-block--website float-block--startup">
+        <!-- Startup Site - FEATURED -->
+        <div class="float-block float-block--website float-block--startup float-block--featured">
           <div class="pattern">
             <div class="pattern__nav">
               <div class="pattern__nav-item"></div>
@@ -286,6 +355,8 @@
 
       </div>
     </div>
+    <!-- Bottom fade boundary -->
+    <div class="signature-fade-bottom"></div>
   </section>
 
   <!-- Sample Work Preview -->
@@ -342,18 +413,58 @@
   <!-- Diagonal divider -->
   <div class="divider--diagonal"></div>
 
-  <!-- Who This Is For -->
-  <section class="section section--white">
+  <!-- Who This Is For - Dynamic Design -->
+  <section class="section section--audience">
     <div class="container">
-      <h2>Who this is for</h2>
-      <ul class="bullet-list" style="margin-top: var(--space-lg); max-width: 600px;">
-        <li>Students or freelancers who need a portfolio to show their work.</li>
-        <li>Founders launching their first website or preparing to talk to investors.</li>
-        <li>Small brands that need something simple, clean, and usable.</li>
-      </ul>
-      <p style="margin-top: var(--space-md); padding: var(--space-sm); background-color: var(--color-secondary-light); border-radius: var(--border-radius-sm); display: inline-block;"
-        class="text-secondary text-small">If you're looking for something very complex or agency-style, this may not be
-        the right fit.</p>
+      <div class="audience-header">
+        <span class="audience-header__badge">Ideal Clients</span>
+        <h2 class="audience-header__title">Who this is for</h2>
+      </div>
+
+      <div class="audience-grid">
+        <!-- Card 1 -->
+        <div class="audience-card">
+          <div class="audience-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+            </svg>
+          </div>
+          <h3 class="audience-card__title">Students & Freelancers</h3>
+          <p class="audience-card__desc">Need a portfolio to show their work and land opportunities.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="audience-card audience-card--featured">
+          <div class="audience-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 20V10" />
+              <path d="M18 20V4" />
+              <path d="M6 20v-4" />
+            </svg>
+          </div>
+          <h3 class="audience-card__title">Startup Founders</h3>
+          <p class="audience-card__desc">Launching their first website or preparing to talk to investors.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="audience-card">
+          <div class="audience-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M2 12h20" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+          </div>
+          <h3 class="audience-card__title">Small Brands</h3>
+          <p class="audience-card__desc">Need something simple, clean, and usable that just works.</p>
+        </div>
+      </div>
+
+      <div class="audience-note">
+        <span class="audience-note__icon">💡</span>
+        <p>If you're looking for something very complex or agency-style, this may not be the right fit.</p>
+      </div>
     </div>
   </section>
 
@@ -434,6 +545,7 @@
         <p>Have a project in mind?</p>
         <a href="#contact">Let's make it happen →</a>
       </div>
+      <p class="footer__location">Based in India. Available for remote work.</p>
       <p class="footer__copy">© 2026 Robin Gautam</p>
     </div>
   </footer>
