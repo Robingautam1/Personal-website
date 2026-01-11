@@ -31,6 +31,7 @@
         <li><a href="index.html" class="nav__link nav__link--active">Home</a></li>
         <li><a href="services.html" class="nav__link">Services</a></li>
         <li><a href="work.html" class="nav__link">Work</a></li>
+        <li><a href="../Portfolio/index.html" class="nav__link">Portfolio</a></li>
         <li><a href="about.html" class="nav__link">About</a></li>
         <li><a href="#contact" class="nav__link nav__link--cta">Contact</a></li>
       </ul>
@@ -468,18 +469,52 @@
     </div>
   </section>
 
-  <!-- Skill tags as visual interest -->
-  <section class="section section--grey" style="padding: var(--space-lg) 0;">
-    <div class="container" style="text-align: center;">
-      <div class="skill-tags" style="justify-content: center;">
-        <span class="skill-tag">HTML</span>
-        <span class="skill-tag">CSS</span>
-        <span class="skill-tag">JavaScript</span>
-        <span class="skill-tag">Webflow</span>
-        <span class="skill-tag">Figma</span>
-        <span class="skill-tag">PowerPoint</span>
-        <span class="skill-tag">ChatGPT</span>
-        <span class="skill-tag">Notion</span>
+  <!-- Tools & Technologies -->
+  <section class="section section--grey">
+    <div class="container">
+      <div class="tools-section">
+        <h3 class="tools-section__title">Tools & Technologies</h3>
+        <div class="tools-grid">
+          <div class="tool-category">
+            <span class="tool-category__label">Development</span>
+            <div class="tool-category__tags">
+              <span class="skill-tag skill-tag--dev">HTML5</span>
+              <span class="skill-tag skill-tag--dev">CSS3</span>
+              <span class="skill-tag skill-tag--dev">JavaScript</span>
+              <span class="skill-tag skill-tag--dev">React</span>
+              <span class="skill-tag skill-tag--dev">Webflow</span>
+            </div>
+          </div>
+          <div class="tool-category">
+            <span class="tool-category__label">Design</span>
+            <div class="tool-category__tags">
+              <span class="skill-tag skill-tag--design">Figma</span>
+              <span class="skill-tag skill-tag--design">Canva</span>
+              <span class="skill-tag skill-tag--design">Framer</span>
+            </div>
+          </div>
+          <div class="tool-category">
+            <span class="tool-category__label">AI & Automation</span>
+            <div class="tool-category__tags">
+              <span class="skill-tag skill-tag--ai">Agentic AI</span>
+              <span class="skill-tag skill-tag--ai">Cursor IDE</span>
+              <span class="skill-tag skill-tag--ai">Claude</span>
+              <span class="skill-tag skill-tag--ai">GPT-4</span>
+              <span class="skill-tag skill-tag--ai">Perplexity</span>
+              <span class="skill-tag skill-tag--ai">RAG Systems</span>
+              <span class="skill-tag skill-tag--ai">Prompt Engineering</span>
+            </div>
+          </div>
+          <div class="tool-category">
+            <span class="tool-category__label">Productivity</span>
+            <div class="tool-category__tags">
+              <span class="skill-tag skill-tag--prod">Notion</span>
+              <span class="skill-tag skill-tag--prod">Gamma</span>
+              <span class="skill-tag skill-tag--prod">PowerPoint</span>
+              <span class="skill-tag skill-tag--prod">Google Sheets</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -487,29 +522,57 @@
   <!-- Pricing -->
   <section class="section section--white">
     <div class="container">
-      <h2>Starting prices</h2>
-      <ul class="pricing-list" style="margin-top: var(--space-lg); max-width: 500px;">
-        <li>
-          <span class="pricing-list__item">Portfolio websites</span>
-          <span class="pricing-list__price">from ₹1,500</span>
-        </li>
-        <li>
-          <span class="pricing-list__item">Startup websites</span>
-          <span class="pricing-list__price">from ₹3,999</span>
-        </li>
-        <li>
-          <span class="pricing-list__item">Pitch decks</span>
-          <span class="pricing-list__price">from ₹1,499</span>
-        </li>
-        <li>
-          <span class="pricing-list__item">AI sessions</span>
-          <span class="pricing-list__price">from ₹999</span>
-        </li>
-      </ul>
-      <p style="margin-top: var(--space-md);" class="text-secondary text-small">Final pricing depends on scope. This is
-        discussed before starting.</p>
-      <p style="margin-top: var(--space-sm);"><a href="#contact" class="link-arrow">Let's talk about your project</a>
-      </p>
+      <div class="pricing-header">
+        <h2>Transparent Pricing</h2>
+        <p class="pricing-header__sub">Simple, honest rates. No hidden fees.</p>
+      </div>
+      <div class="pricing-cards">
+        <div class="pricing-card">
+          <div class="pricing-card__icon">🤖</div>
+          <h3 class="pricing-card__title">AI Sessions</h3>
+          <p class="pricing-card__desc">1:1 practical AI training</p>
+          <div class="pricing-card__price">
+            <span class="pricing-card__currency">₹</span>
+            <span class="pricing-card__amount">999</span>
+            <span class="pricing-card__period">starting</span>
+          </div>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-card__icon">📊</div>
+          <h3 class="pricing-card__title">Pitch Decks</h3>
+          <p class="pricing-card__desc">Investor or customer decks</p>
+          <div class="pricing-card__price">
+            <span class="pricing-card__currency">₹</span>
+            <span class="pricing-card__amount">1,499</span>
+            <span class="pricing-card__period">starting</span>
+          </div>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-card__icon">🌐</div>
+          <h3 class="pricing-card__title">Portfolio Sites</h3>
+          <p class="pricing-card__desc">Single-page portfolios</p>
+          <div class="pricing-card__price">
+            <span class="pricing-card__currency">₹</span>
+            <span class="pricing-card__amount">1,500</span>
+            <span class="pricing-card__period">starting</span>
+          </div>
+        </div>
+        <div class="pricing-card pricing-card--featured">
+          <span class="pricing-card__badge">Most Popular</span>
+          <div class="pricing-card__icon">🚀</div>
+          <h3 class="pricing-card__title">Startup Sites</h3>
+          <p class="pricing-card__desc">Full multi-page websites</p>
+          <div class="pricing-card__price">
+            <span class="pricing-card__currency">₹</span>
+            <span class="pricing-card__amount">3,999</span>
+            <span class="pricing-card__period">starting</span>
+          </div>
+        </div>
+      </div>
+      <p class="pricing-note">Final pricing depends on scope. We'll discuss everything before starting.</p>
+      <div style="text-align: center; margin-top: var(--space-md);">
+        <a href="#contact" class="btn btn--primary">Get a Quote</a>
+      </div>
     </div>
   </section>
 
