@@ -4,719 +4,394 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Robin Gautam | Websites, Pitch Decks, AI Sessions</title>
+  <title>Robin Gautam | Premium Web Development & Design</title>
   <meta name="description"
-    content="I build websites, pitch decks, and run practical AI sessions. For students, founders, and growing teams.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Inter:wght@400;500&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    content="Making your work easy to find and trust. Professional web development plans starting at ₹249. Book a 15-minute consultation today.">
+  <meta name="keywords" content="Web Development India, Portfolio Design, MVP Builder, Startup Websites">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Robin Gautam | Premium Web Development & Design">
+  <meta property="og:description" content="Making your work easy to find and trust. Plans from ₹249.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://robingautam.in">
+
+  <link rel="stylesheet" href="antigravity.css">
   <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◯</text></svg>">
 </head>
 
 <body>
+
+  <!-- Animated Atmosphere Background -->
+  <div class="atmosphere">
+    <div class="atmosphere__gradient"></div>
+    <div class="atmosphere__clouds">
+      <div class="cloud cloud--1"></div>
+      <div class="cloud cloud--2"></div>
+      <div class="cloud cloud--3"></div>
+      <div class="cloud cloud--4"></div>
+    </div>
+    <div class="atmosphere__grain"></div>
+  </div>
+
   <!-- Navigation -->
-  <nav class="nav">
-    <div class="container nav__inner">
-      <a href="index.html" class="nav__logo">RG.</a>
-      <button class="nav__toggle" aria-label="Toggle menu" onclick="toggleNav()">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <ul class="nav__links" id="navLinks">
-        <li><a href="index.html" class="nav__link nav__link--active">Home</a></li>
-        <li><a href="services.html" class="nav__link">Services</a></li>
-        <li><a href="work.html" class="nav__link">Work</a></li>
-        <li><a href="/portfolio/" class="nav__link">Portfolio</a></li>
-        <li><a href="about.html" class="nav__link">About</a></li>
-        <li><a href="#contact" class="nav__link nav__link--cta">Contact</a></li>
-      </ul>
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">Robin Gautam</a>
+      <button class="nav__trigger" id="servicesBtn">Our Services</button>
     </div>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero">
-    <!-- Floating shapes and decorations -->
-    <div class="hero__shapes">
-      <div class="hero__shape hero__shape--1"></div>
-      <div class="hero__shape hero__shape--2"></div>
-      <div class="hero__shape hero__shape--3"></div>
-    </div>
-    <!-- Geometric accents -->
-    <div class="hero__decor hero__decor--1"></div>
-    <div class="hero__decor hero__decor--2"></div>
-    <div class="hero__decor hero__decor--3"></div>
-    <div class="hero__decor hero__decor--4"></div>
-    <div class="hero__decor hero__decor--5"></div>
+    <div class="antigravity-card">
+      <h1 class="hero__headline">
+        <span>Making</span> <span>your</span> <span>work</span> <span>easy</span> <span>to</span> <span>find</span>
+        <br>
+        <span class="hero__headline-fade">and</span> <span class="hero__headline-fade">easy</span> <span
+          class="hero__headline-fade">to</span> <span class="hero__headline-fade">trust.</span>
+      </h1>
 
-    <div class="container hero__content">
-      <h1 class="hero__headline">I build websites, pitch decks, and run practical AI sessions.</h1>
-      <p class="hero__subtext">For students, founders, and growing teams.</p>
-      <div class="btn-group">
-        <a href="#contact" class="btn btn--primary">Start a project</a>
-        <a href="work.html" class="btn btn--secondary">View work</a>
-      </div>
-    </div>
-
-    <!-- Scroll indicator -->
-    <div class="scroll-indicator">
-      <div class="scroll-indicator__mouse">
-        <div class="scroll-indicator__wheel"></div>
-      </div>
-      <span class="scroll-indicator__text">Scroll</span>
-    </div>
-
-    <div class="hero__divider"></div>
-  </section>
-
-  <!-- Services Snapshot -->
-  <section class="section section--white">
-    <!-- Decorative elements -->
-    <div class="decor-shape decor-shape--circle" style="top: -80px; right: -60px;"></div>
-    <div class="decor-shape decor-shape--grid" style="bottom: 40px; left: 20px;"></div>
-
-    <div class="container">
-      <h2>What I do</h2>
-      <div class="grid grid--3" style="margin-top: var(--space-lg);">
-        <div class="card">
-          <div class="card__icon">🌐</div>
-          <h3 class="card__title">Websites</h3>
-          <p class="card__text">Portfolio sites, startup pages, or simple brand websites. From single-page setups to
-            full multi-page sites.</p>
-          <a href="services.html#websites" class="card__link">More details</a>
-        </div>
-        <div class="card">
-          <div class="card__icon">📊</div>
-          <h3 class="card__title">Pitch Decks</h3>
-          <p class="card__text">Investor decks or customer-facing presentations. The focus is on making your idea clear
-            and easy to follow.</p>
-          <a href="services.html#pitchdecks" class="card__link">More details</a>
-        </div>
-        <div class="card">
-          <div class="card__icon">🤖</div>
-          <h3 class="card__title">1:1 AI Sessions</h3>
-          <p class="card__text">Practical sessions on using tools like ChatGPT for your actual work and projects.
-            One-on-one, not a course.</p>
-          <a href="services.html#ai" class="card__link">More details</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Animated divider -->
-  <div class="divider--dots">
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
-
-  <!-- How It Works -->
-  <section class="section section--grey">
-    <div class="container">
-      <h2>How the work usually goes</h2>
-
-      <div class="workflow">
-        <!-- Node 1: Discussion - Flowing lines pattern -->
-        <div class="workflow__node" tabindex="0" role="listitem">
-          <div class="workflow__pattern pattern--flow">
-            <div class="pattern__line"></div>
-            <div class="pattern__line"></div>
-            <div class="pattern__line"></div>
+      <!-- Trinity CTAs -->
+      <div class="trinity">
+        <a href="plans.html" class="trinity__item trinity__item--pricing">
+          <div>
+            <div class="trinity__title">Plans from ₹249</div>
+            <div class="trinity__subtitle">View pricing</div>
           </div>
-          <span class="workflow__connector"></span>
-          <h3 class="workflow__title">Discussion first</h3>
-          <p class="workflow__desc">We start by understanding what you need and why.</p>
-        </div>
-
-        <!-- Node 2: Structure - Grid pattern -->
-        <div class="workflow__node" tabindex="0" role="listitem">
-          <div class="workflow__pattern pattern--grid">
-            <div class="pattern__cell"></div>
-            <div class="pattern__cell"></div>
-            <div class="pattern__cell"></div>
-            <div class="pattern__cell"></div>
-            <div class="pattern__cell"></div>
-            <div class="pattern__cell"></div>
-            <div class="pattern__cell"></div>
-            <div class="pattern__cell"></div>
-            <div class="pattern__cell"></div>
-          </div>
-          <span class="workflow__connector"></span>
-          <h3 class="workflow__title">Structure before building</h3>
-          <p class="workflow__desc">I share a rough outline so you know what to expect.</p>
-        </div>
-
-        <!-- Node 3: Updates - Stacked layers pattern -->
-        <div class="workflow__node" tabindex="0" role="listitem">
-          <div class="workflow__pattern pattern--layers">
-            <div class="pattern__layer"></div>
-            <div class="pattern__layer"></div>
-            <div class="pattern__layer"></div>
-          </div>
-          <span class="workflow__connector"></span>
-          <h3 class="workflow__title">Regular updates</h3>
-          <p class="workflow__desc">You see progress as things move along.</p>
-        </div>
-
-        <!-- Node 4: Flexibility - Branching nodes pattern -->
-        <div class="workflow__node" tabindex="0" role="listitem">
-          <div class="workflow__pattern pattern--branch">
-            <div class="pattern__node pattern__node--center"></div>
-            <div class="pattern__node"></div>
-            <div class="pattern__node"></div>
-            <div class="pattern__node"></div>
-            <div class="pattern__node"></div>
-            <div class="pattern__line"></div>
-            <div class="pattern__line"></div>
-            <div class="pattern__line"></div>
-            <div class="pattern__line"></div>
-          </div>
-          <h3 class="workflow__title">Flexible on changes</h3>
-          <p class="workflow__desc">If something needs adjusting, we adjust. No drama.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Marquee strip -->
-  <div class="marquee">
-    <div class="marquee__content">
-      <span class="marquee__item">Websites</span>
-      <span class="marquee__item">Pitch Decks</span>
-      <span class="marquee__item">AI Sessions</span>
-      <span class="marquee__item">Portfolios</span>
-      <span class="marquee__item">Startups</span>
-      <span class="marquee__item">Growing Teams</span>
-      <span class="marquee__item">Websites</span>
-      <span class="marquee__item">Pitch Decks</span>
-      <span class="marquee__item">AI Sessions</span>
-      <span class="marquee__item">Portfolios</span>
-      <span class="marquee__item">Startups</span>
-      <span class="marquee__item">Growing Teams</span>
-    </div>
-  </div>
-
-  <!-- Signature Floating Blocks -->
-  <section class="signature-section">
-    <p class="signature-section__label">Things I usually build</p>
-    <div class="signature-strip" id="signatureStrip">
-      <div class="signature-strip__inner">
-
-        <!-- Portfolio Site -->
-        <div class="float-block float-block--website float-block--portfolio">
-          <div class="pattern">
-            <div class="pattern__header"></div>
-            <div class="pattern__line"></div>
-            <div class="pattern__line"></div>
-            <div class="pattern__line"></div>
-            <div class="pattern__line"></div>
-            <div class="pattern__grid">
-              <div class="pattern__square"></div>
-              <div class="pattern__square"></div>
-              <div class="pattern__square"></div>
-              <div class="pattern__square"></div>
-            </div>
-          </div>
-          <span class="float-block__title">Portfolio</span>
-        </div>
-
-        <!-- Investor Deck - FEATURED -->
-        <div class="float-block float-block--deck float-block--investor float-block--featured">
-          <div class="pattern">
-            <div class="pattern__slides">
-              <div class="pattern__slide">
-                <div class="pattern__slide-inner">
-                  <div class="pattern__slide-bar"></div>
-                  <div class="pattern__slide-bar"></div>
-                </div>
-              </div>
-              <div class="pattern__slide"></div>
-              <div class="pattern__slide"></div>
-              <div class="pattern__slide"></div>
-              <div class="pattern__slide"></div>
-            </div>
-          </div>
-          <span class="float-block__title">Investor Deck</span>
-        </div>
-
-        <!-- Startup Site - FEATURED -->
-        <div class="float-block float-block--website float-block--startup float-block--featured">
-          <div class="pattern">
-            <div class="pattern__nav">
-              <div class="pattern__nav-item"></div>
-              <div class="pattern__nav-item"></div>
-              <div class="pattern__nav-item"></div>
-            </div>
-            <div class="pattern__hero"></div>
-            <div class="pattern__sections">
-              <div class="pattern__section"></div>
-              <div class="pattern__section"></div>
-              <div class="pattern__section"></div>
-            </div>
-          </div>
-          <span class="float-block__title">Startup Site</span>
-        </div>
-
-        <!-- AI Workflow -->
-        <div class="float-block float-block--system float-block--ai">
-          <div class="pattern">
-            <div class="pattern__nodes">
-              <div class="pattern__node"></div>
-              <div class="pattern__node"></div>
-              <div class="pattern__node"></div>
-              <div class="pattern__node"></div>
-              <div class="pattern__node"></div>
-              <div class="pattern__line"></div>
-              <div class="pattern__line"></div>
-              <div class="pattern__line"></div>
-              <div class="pattern__line"></div>
-            </div>
-          </div>
-          <span class="float-block__title">AI Workflow</span>
-        </div>
-
-        <!-- Customer Deck -->
-        <div class="float-block float-block--deck float-block--customer">
-          <div class="pattern">
-            <div class="pattern__row">
-              <div class="pattern__box"></div>
-              <div class="pattern__box"></div>
-            </div>
-            <div class="pattern__row">
-              <div class="pattern__box"></div>
-              <div class="pattern__box"></div>
-              <div class="pattern__box"></div>
-            </div>
-            <div class="pattern__row">
-              <div class="pattern__box"></div>
-              <div class="pattern__box"></div>
-            </div>
-          </div>
-          <span class="float-block__title">Intro Deck</span>
-        </div>
-
-        <!-- Multi-page Site -->
-        <div class="float-block float-block--website float-block--multipage">
-          <div class="pattern">
-            <div class="pattern__page">
-              <div class="pattern__page-line"></div>
-              <div class="pattern__page-line"></div>
-              <div class="pattern__page-line"></div>
-            </div>
-            <div class="pattern__page">
-              <div class="pattern__page-line"></div>
-              <div class="pattern__page-line"></div>
-            </div>
-            <div class="pattern__page">
-              <div class="pattern__page-line"></div>
-              <div class="pattern__page-line"></div>
-            </div>
-          </div>
-          <span class="float-block__title">Multi-page</span>
-        </div>
-
-        <!-- Automation -->
-        <div class="float-block float-block--system float-block--automation">
-          <div class="pattern">
-            <div class="pattern__step">
-              <div class="pattern__dot"></div>
-              <div class="pattern__connector"></div>
-              <div class="pattern__dot"></div>
-            </div>
-            <div class="pattern__arrow"></div>
-            <div class="pattern__step">
-              <div class="pattern__dot"></div>
-              <div class="pattern__connector"></div>
-              <div class="pattern__dot"></div>
-              <div class="pattern__connector"></div>
-              <div class="pattern__dot"></div>
-            </div>
-            <div class="pattern__arrow"></div>
-            <div class="pattern__step">
-              <div class="pattern__dot"></div>
-            </div>
-          </div>
-          <span class="float-block__title">Automation</span>
-        </div>
-
-        <!-- Experiments -->
-        <div class="float-block float-block--system float-block--experiments">
-          <div class="pattern">
-            <div class="pattern__shapes">
-              <div class="pattern__shape"></div>
-              <div class="pattern__shape"></div>
-              <div class="pattern__shape"></div>
-            </div>
-          </div>
-          <span class="float-block__title">Experiments</span>
-        </div>
-
-      </div>
-    </div>
-    <!-- Bottom fade boundary -->
-    <div class="signature-fade-bottom"></div>
-  </section>
-
-  <!-- Sample Work Preview -->
-  <section class="section section--white">
-    <div class="container">
-      <h2>Sample work</h2>
-      <p class="text-secondary" style="margin-top: var(--space-md);">Examples to show how things are usually structured.
-      </p>
-      <div class="grid grid--3" style="margin-top: var(--space-md);">
-        <div class="work-item work-item--website">
-          <div class="work-item__image">
-            <span>Website Preview</span>
-            <div class="work-item__overlay">
-              <span class="work-item__overlay-text">View project</span>
-            </div>
-          </div>
-          <div class="work-item__content">
-            <span class="work-item__label">Sample project</span>
-            <h3 class="work-item__title">Portfolio Website</h3>
-            <p class="work-item__desc">Clean single-page portfolio for a freelance designer.</p>
-          </div>
-        </div>
-        <div class="work-item work-item--website">
-          <div class="work-item__image">
-            <span>Website Preview</span>
-            <div class="work-item__overlay">
-              <span class="work-item__overlay-text">View project</span>
-            </div>
-          </div>
-          <div class="work-item__content">
-            <span class="work-item__label">Sample project</span>
-            <h3 class="work-item__title">Startup Website</h3>
-            <p class="work-item__desc">Multi-page site for an early-stage ed-tech startup.</p>
-          </div>
-        </div>
-        <div class="work-item work-item--deck">
-          <div class="work-item__image">
-            <span>Deck Preview</span>
-            <div class="work-item__overlay">
-              <span class="work-item__overlay-text">View project</span>
-            </div>
-          </div>
-          <div class="work-item__content">
-            <span class="work-item__label">Sample project</span>
-            <h3 class="work-item__title">Pitch Deck</h3>
-            <p class="work-item__desc">Investor deck for a consumer fintech idea.</p>
-          </div>
-        </div>
-      </div>
-      <p style="margin-top: var(--space-lg);"><a href="work.html" class="link-arrow">See more examples</a></p>
-    </div>
-  </section>
-
-  <!-- Diagonal divider -->
-  <div class="divider--diagonal"></div>
-
-  <!-- Who This Is For - Dynamic Design -->
-  <section class="section section--audience">
-    <div class="container">
-      <div class="audience-header">
-        <span class="audience-header__badge">Ideal Clients</span>
-        <h2 class="audience-header__title">Who this is for</h2>
-      </div>
-
-      <div class="audience-grid">
-        <!-- Card 1 -->
-        <div class="audience-card">
-          <div class="audience-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
-              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-            </svg>
-          </div>
-          <h3 class="audience-card__title">Students & Freelancers</h3>
-          <p class="audience-card__desc">Need a portfolio to show their work and land opportunities.</p>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="audience-card audience-card--featured">
-          <div class="audience-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 20V10" />
-              <path d="M18 20V4" />
-              <path d="M6 20v-4" />
-            </svg>
-          </div>
-          <h3 class="audience-card__title">Startup Founders</h3>
-          <p class="audience-card__desc">Launching their first website or preparing to talk to investors.</p>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="audience-card">
-          <div class="audience-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M2 12h20" />
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-            </svg>
-          </div>
-          <h3 class="audience-card__title">Growing Teams</h3>
-          <p class="audience-card__desc">Need something simple, clean, and usable that just works.</p>
-        </div>
-      </div>
-
-      <div class="audience-note">
-        <span class="audience-note__icon">💡</span>
-        <p>If you're looking for something very complex or agency-style, this may not be the right fit.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tools & Technologies -->
-  <section class="section section--grey">
-    <div class="container">
-      <div class="tools-section">
-        <h3 class="tools-section__title">Tools & Technologies</h3>
-        <div class="tools-grid">
-          <div class="tool-category">
-            <span class="tool-category__label">Development</span>
-            <div class="tool-category__tags">
-              <span class="skill-tag skill-tag--dev">HTML5</span>
-              <span class="skill-tag skill-tag--dev">CSS3</span>
-              <span class="skill-tag skill-tag--dev">JavaScript</span>
-              <span class="skill-tag skill-tag--dev">React</span>
-              <span class="skill-tag skill-tag--dev">Webflow</span>
-            </div>
-          </div>
-          <div class="tool-category">
-            <span class="tool-category__label">Design</span>
-            <div class="tool-category__tags">
-              <span class="skill-tag skill-tag--design">Figma</span>
-              <span class="skill-tag skill-tag--design">Canva</span>
-              <span class="skill-tag skill-tag--design">Framer</span>
-            </div>
-          </div>
-          <div class="tool-category">
-            <span class="tool-category__label">AI & Automation</span>
-            <div class="tool-category__tags">
-              <span class="skill-tag skill-tag--ai">Agentic AI</span>
-              <span class="skill-tag skill-tag--ai">Cursor IDE</span>
-              <span class="skill-tag skill-tag--ai">Claude</span>
-              <span class="skill-tag skill-tag--ai">GPT-4</span>
-              <span class="skill-tag skill-tag--ai">Perplexity</span>
-              <span class="skill-tag skill-tag--ai">RAG Systems</span>
-              <span class="skill-tag skill-tag--ai">Prompt Engineering</span>
-            </div>
-          </div>
-          <div class="tool-category">
-            <span class="tool-category__label">Productivity</span>
-            <div class="tool-category__tags">
-              <span class="skill-tag skill-tag--prod">Notion</span>
-              <span class="skill-tag skill-tag--prod">Gamma</span>
-              <span class="skill-tag skill-tag--prod">PowerPoint</span>
-              <span class="skill-tag skill-tag--prod">Google Sheets</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing -->
-  <section class="section section--white">
-    <div class="container">
-      <div class="pricing-header">
-        <h2>Transparent Pricing</h2>
-        <p class="pricing-header__sub">Simple, honest rates. No hidden fees.</p>
-      </div>
-      <div class="pricing-cards">
-        <div class="pricing-card">
-          <div class="pricing-card__icon">🤖</div>
-          <h3 class="pricing-card__title">AI Sessions</h3>
-          <p class="pricing-card__desc">1:1 practical AI training</p>
-          <div class="pricing-card__price">
-            <span class="pricing-card__currency">₹</span>
-            <span class="pricing-card__amount">999</span>
-            <span class="pricing-card__period">starting</span>
-          </div>
-        </div>
-        <div class="pricing-card">
-          <div class="pricing-card__icon">📊</div>
-          <h3 class="pricing-card__title">Pitch Decks</h3>
-          <p class="pricing-card__desc">Investor or customer decks</p>
-          <div class="pricing-card__price">
-            <span class="pricing-card__currency">₹</span>
-            <span class="pricing-card__amount">1,499</span>
-            <span class="pricing-card__period">starting</span>
-          </div>
-        </div>
-        <div class="pricing-card">
-          <div class="pricing-card__icon">🌐</div>
-          <h3 class="pricing-card__title">Portfolio Sites</h3>
-          <p class="pricing-card__desc">Single-page portfolios</p>
-          <div class="pricing-card__price">
-            <span class="pricing-card__currency">₹</span>
-            <span class="pricing-card__amount">1,500</span>
-            <span class="pricing-card__period">starting</span>
-          </div>
-        </div>
-        <div class="pricing-card pricing-card--featured">
-          <span class="pricing-card__badge">Most Popular</span>
-          <div class="pricing-card__icon">🚀</div>
-          <h3 class="pricing-card__title">Startup Sites</h3>
-          <p class="pricing-card__desc">Full multi-page websites</p>
-          <div class="pricing-card__price">
-            <span class="pricing-card__currency">₹</span>
-            <span class="pricing-card__amount">3,999</span>
-            <span class="pricing-card__period">starting</span>
-          </div>
-        </div>
-      </div>
-      <p class="pricing-note">Final pricing depends on scope. We'll discuss everything before starting.</p>
-      <div style="text-align: center; margin-top: var(--space-md);">
-        <a href="#contact" class="btn btn--primary">Get a Quote</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section class="section contact-section" id="contact">
-    <div class="container">
-      <h2>Get in touch</h2>
-      <div class="contact-methods" style="margin-top: var(--space-lg);">
-        <a href="mailto:pgp16robing@iimrohtak.ac.in" class="contact-method">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-            stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-          <span>Email Me</span>
+          <span class="trinity__arrow">→</span>
         </a>
-        <a href="https://www.linkedin.com/in/robin-gautam-066ba8233/" class="contact-method" target="_blank"
-          rel="noopener">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-          </svg>
-          <span>LinkedIn</span>
+
+        <a href="portfolio/" class="trinity__item trinity__item--portfolio">
+          <div>
+            <div class="trinity__title">See who's building this</div>
+            <div class="trinity__subtitle">Real projects, honest context</div>
+          </div>
+          <span class="trinity__arrow">→</span>
         </a>
+
+        <button class="trinity__item trinity__item--book" id="bookBtn">
+          <div>
+            <div class="trinity__title">15 minutes on your idea</div>
+            <div class="trinity__subtitle">Book a call</div>
+          </div>
+          <span class="trinity__arrow">→</span>
+        </button>
       </div>
-      <p style="margin-top: var(--space-md);" class="text-secondary text-small">I usually reply within a day.</p>
+    </div>
+  </section>
+
+  <!-- Feedback Forum -->
+  <section class="feedback-forum">
+    <!-- Ticker Container -->
+    <div class="feedback-ticker-container">
+      <!-- Row 1: Left to Right -->
+      <div class="feedback-ticker-row" id="tickerRow1">
+        <!-- Cards will be duplicated by JS for infinite scroll -->
+      </div>
+      <!-- Row 2: Right to Left -->
+      <div class="feedback-ticker-row feedback-ticker-row--reverse" id="tickerRow2">
+        <!-- Cards will be duplicated by JS for infinite scroll -->
+      </div>
+    </div>
+
+    <!-- Write Zone (Pill Form) -->
+    <div class="feedback-write">
+      <form class="feedback-pill" id="feedbackForm">
+        <input type="text" class="feedback-pill__input feedback-pill__input--name" placeholder="Your Name"
+          id="feedbackName" required>
+        <input type="text" class="feedback-pill__input feedback-pill__input--message"
+          placeholder="Leave your feedback..." id="feedbackMessage" required>
+        <button type="submit" class="feedback-pill__submit" aria-label="Send feedback">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </form>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container">
-      <div class="footer__cta">
-        <p>Have a project in mind?</p>
-        <a href="#contact">Let's make it happen →</a>
-      </div>
+    <div class="footer__content">
+      <a href="mailto:hello@robingautam.in" class="footer__link">hello@robingautam.in</a>
       <div class="footer__social">
         <a href="https://www.linkedin.com/in/robin-gautam-066ba8233/" target="_blank" rel="noopener"
           aria-label="LinkedIn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
             <path
               d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
           </svg>
         </a>
-        <a href="https://github.com/Robingautam1" target="_blank" rel="noopener" aria-label="GitHub">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-          </svg>
-        </a>
       </div>
-      <p class="footer__location">Based in India. Available for remote work.</p>
-      <p class="footer__copy">© 2026 Robin Gautam</p>
+      <span class="footer__copy">© Robin Gautam 2026</span>
     </div>
   </footer>
 
+  <!-- Services Overlay -->
+  <div class="services-overlay" id="servicesOverlay">
+    <div class="services-overlay__backdrop"></div>
+    <div class="services-overlay__content">
+      <button class="services-overlay__close" id="servicesClose">×</button>
+      <h2 class="services-overlay__title">Our Capabilities</h2>
+
+      <div class="services-grid">
+        <!-- BUILD & LAUNCH -->
+        <div class="service-card">
+          <div class="service-card__category">Build & Launch</div>
+          <h3 class="service-card__title">Minimalist Websites</h3>
+          <p class="service-card__desc">For your first presence online. A simple one-page site with your name, work, and
+            contact in one place.</p>
+          <div class="service-card__price">From ₹249</div>
+          <div class="service-card__tags">
+            <span class="service-card__tag">First Presence</span>
+            <span class="service-card__tag">Portfolio</span>
+            <span class="service-card__tag">Simple Site</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card__category">Build & Launch</div>
+          <h3 class="service-card__title">Professional Websites</h3>
+          <p class="service-card__desc">For people who want to explain what they do. A clear multi-section website with
+            About, Services, and Contact.</p>
+          <div class="service-card__price">Starts at ₹999</div>
+          <div class="service-card__tags">
+            <span class="service-card__tag">Multi-section</span>
+            <span class="service-card__tag">Clarity</span>
+            <span class="service-card__tag">Mobile-ready</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card__category">Build & Launch</div>
+          <h3 class="service-card__title">Complete Onboarding Systems</h3>
+          <p class="service-card__desc">For people who want to start receiving work online. A full website with booking,
+            forms, or payments. Includes domain setup.</p>
+          <div class="service-card__price">Starts at ₹1,899</div>
+          <div class="service-card__tags">
+            <span class="service-card__tag">Booking</span>
+            <span class="service-card__tag">Payments</span>
+            <span class="service-card__tag">End-to-end Setup</span>
+          </div>
+        </div>
+
+        <!-- VISUAL NARRATIVE -->
+        <div class="service-card">
+          <div class="service-card__category">Visual Narrative</div>
+          <h3 class="service-card__title">Pitch Decks & Intro Slides</h3>
+          <p class="service-card__desc">For explaining your idea clearly. Slides for founders and professionals who need
+            to present without confusion.</p>
+          <div class="service-card__price">Starts at ₹999</div>
+          <div class="service-card__tags">
+            <span class="service-card__tag">Story</span>
+            <span class="service-card__tag">Structure</span>
+            <span class="service-card__tag">Presentation</span>
+          </div>
+        </div>
+
+        <!-- ACCELERATION -->
+        <div class="service-card">
+          <div class="service-card__category">Acceleration</div>
+          <h3 class="service-card__title">1:1 AI Workflows</h3>
+          <p class="service-card__desc">For people who want to simplify daily work. Personal sessions to set up simple
+            AI tools for writing and planning.</p>
+          <div class="service-card__price">Starts at ₹999</div>
+          <div class="service-card__tags">
+            <span class="service-card__tag">ChatGPT</span>
+            <span class="service-card__tag">Automation</span>
+            <span class="service-card__tag">Daily Use</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card__category">Acceleration</div>
+          <h3 class="service-card__title">Founder's Audit</h3>
+          <p class="service-card__desc">A quick look at what you already have. A 15-minute review of your current online
+            presence and what to fix first.</p>
+          <div class="service-card__price">Free</div>
+          <div class="service-card__tags">
+            <span class="service-card__tag">Strategy</span>
+            <span class="service-card__tag">Direction</span>
+            <span class="service-card__tag">First Step</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="services-cta">
+        <a href="book.html" class="services-cta__button">
+          Not sure? Let's talk.
+          <span class="services-cta__arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Book Modal -->
+  <div class="book-modal" id="bookModal">
+    <div class="book-modal__backdrop"></div>
+    <div class="book-modal__content">
+      <button class="book-modal__close" id="bookClose">×</button>
+      <h2 class="book-modal__title">Book a 15-minute call</h2>
+      <p class="book-modal__subtitle">You don't need a perfect idea. Just bring what you have.</p>
+      <div class="book-modal__embed">
+        <p>📅 Cal.com booking widget will appear here</p>
+        <br>
+        <a href="mailto:hello@robingautam.in" style="color: var(--sky-600); font-weight: 500;">Or email directly →</a>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // Hamburger menu toggle with body scroll lock
-    function toggleNav() {
-      const navLinks = document.getElementById('navLinks');
-      const navToggle = document.querySelector('.nav__toggle');
-      navLinks.classList.toggle('nav__links--open');
-      navToggle.classList.toggle('nav__toggle--active');
-      document.body.classList.toggle('nav-open');
+    // Navigation scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('nav--scrolled');
+      } else {
+        nav.classList.remove('nav--scrolled');
+      }
+    });
+
+    // Services overlay
+    const servicesBtn = document.getElementById('servicesBtn');
+    const servicesOverlay = document.getElementById('servicesOverlay');
+    const servicesClose = document.getElementById('servicesClose');
+    const servicesBackdrop = servicesOverlay.querySelector('.services-overlay__backdrop');
+
+    servicesBtn.addEventListener('click', () => {
+      servicesOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    [servicesClose, servicesBackdrop].forEach(el => {
+      el.addEventListener('click', () => {
+        servicesOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Book modal
+    const bookBtn = document.getElementById('bookBtn');
+    const bookModal = document.getElementById('bookModal');
+    const bookClose = document.getElementById('bookClose');
+    const bookBackdrop = bookModal.querySelector('.book-modal__backdrop');
+
+    bookBtn.addEventListener('click', () => {
+      bookModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    [bookClose, bookBackdrop].forEach(el => {
+      el.addEventListener('click', () => {
+        bookModal.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Escape key closes modals
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        servicesOverlay.classList.remove('active');
+        bookModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // ========== FEEDBACK FORUM ==========
+    const initialFeedback = [
+      { name: "Sarah K.", message: "This design is breathless." },
+      { name: "Rahul M.", message: "Cleanest portfolio I've seen." },
+      { name: "DesignBot", message: "Antigravity effect is smooth!" },
+      { name: "Amit", message: "Love the pricing transparency." },
+      { name: "Priya S.", message: "Finally, a site that feels calm." },
+      { name: "Tech Reviewer", message: "The glassmorphism is on point." }
+    ];
+
+    const feedbackForm = document.getElementById('feedbackForm');
+    const feedbackName = document.getElementById('feedbackName');
+    const feedbackMessage = document.getElementById('feedbackMessage');
+    const tickerRow1 = document.getElementById('tickerRow1');
+    const tickerRow2 = document.getElementById('tickerRow2');
+
+    // Load feedback from localStorage or use initial mock data
+    function getFeedback() {
+      const stored = localStorage.getItem('antigravity-feedback');
+      if (stored) {
+        return JSON.parse(stored);
+      }
+      return [...initialFeedback];
     }
 
-    // Close menu when clicking a link
-    document.querySelectorAll('.nav__link').forEach(link => {
-      link.addEventListener('click', () => {
-        document.getElementById('navLinks').classList.remove('nav__links--open');
-        document.querySelector('.nav__toggle').classList.remove('nav__toggle--active');
-        document.body.classList.remove('nav-open');
-      });
+    function saveFeedback(feedback) {
+      localStorage.setItem('antigravity-feedback', JSON.stringify(feedback.slice(0, 20)));
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function createChip(item) {
+      return `
+        <div class="feedback-chip">
+          <div class="feedback-chip__name">${escapeHtml(item.name)}</div>
+          <div class="feedback-chip__message">${escapeHtml(item.message)}</div>
+        </div>
+      `;
+    }
+
+    function renderTicker() {
+      const feedback = getFeedback();
+
+      // Split feedback into two rows
+      const row1Items = feedback.filter((_, i) => i % 2 === 0);
+      const row2Items = feedback.filter((_, i) => i % 2 !== 0);
+
+      // Create chip HTML for each row
+      const row1ChipsHtml = row1Items.map(createChip).join('');
+      const row2ChipsHtml = row2Items.map(createChip).join('');
+
+      // Duplicate content inside track wrappers for seamless infinite scroll
+      // Two identical tracks side by side - when first track scrolls out, second takes over
+      tickerRow1.innerHTML = `
+        <div class="feedback-ticker-track">${row1ChipsHtml}</div>
+        <div class="feedback-ticker-track">${row1ChipsHtml}</div>
+      `;
+      tickerRow2.innerHTML = `
+        <div class="feedback-ticker-track">${row2ChipsHtml}</div>
+        <div class="feedback-ticker-track">${row2ChipsHtml}</div>
+      `;
+    }
+
+    // Handle form submission (Optimistic UI)
+    feedbackForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = feedbackName.value.trim();
+      const message = feedbackMessage.value.trim();
+
+      if (name && message) {
+        const feedback = getFeedback();
+        const newItem = { name, message, date: new Date().toISOString() };
+        feedback.unshift(newItem);
+        saveFeedback(feedback);
+
+        // Clear inputs
+        feedbackName.value = '';
+        feedbackMessage.value = '';
+
+        // Re-render ticker with new feedback (optimistic update)
+        renderTicker();
+      }
     });
 
-    // Smooth scrolling for anchor links (respects reduced motion)
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-
-        const target = document.querySelector(targetId);
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({
-            behavior: prefersReducedMotion ? 'auto' : 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-
-    // Signature strip drag-to-scroll
-    (function () {
-      const strip = document.getElementById('signatureStrip');
-      if (!strip) return;
-
-      let isDown = false;
-      let startX;
-      let scrollLeft;
-
-      strip.addEventListener('mousedown', (e) => {
-        isDown = true;
-        strip.style.cursor = 'grabbing';
-        startX = e.pageX - strip.offsetLeft;
-        scrollLeft = strip.scrollLeft;
-      });
-
-      strip.addEventListener('mouseleave', () => {
-        isDown = false;
-        strip.style.cursor = 'grab';
-      });
-
-      strip.addEventListener('mouseup', () => {
-        isDown = false;
-        strip.style.cursor = 'grab';
-      });
-
-      strip.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - strip.offsetLeft;
-        const walk = (x - startX) * 1.5;
-        strip.scrollLeft = scrollLeft - walk;
-      });
-
-      // Touch support
-      let touchStartX;
-      let touchScrollLeft;
-
-      strip.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].pageX;
-        touchScrollLeft = strip.scrollLeft;
-      }, { passive: true });
-
-      strip.addEventListener('touchmove', (e) => {
-        const x = e.touches[0].pageX;
-        const walk = (touchStartX - x) * 1.2;
-        strip.scrollLeft = touchScrollLeft + walk;
-      }, { passive: true });
-    })();
+    // Initial render
+    renderTicker();
   </script>
+
 </body>
 
 </html>

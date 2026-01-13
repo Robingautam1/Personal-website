@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Call | Robin Gautam</title>
+    <meta name="description"
+        content="You don't need a perfect idea. Just bring what you have. Book a free 15-minute consultation.">
+    <link rel="stylesheet" href="antigravity.css">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◯</text></svg>">
+    <style>
+        .book-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem;
+        }
+
+        .book-content {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .book-card {
+            background: var(--glass-bg-strong);
+            backdrop-filter: blur(var(--glass-blur-strong));
+            -webkit-backdrop-filter: blur(var(--glass-blur-strong));
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 3rem;
+            animation: float-in 0.8s var(--ease-out-expo) both;
+        }
+
+        .book-card__intro {
+            font-size: 1.5rem;
+            font-weight: 500;
+            line-height: 1.4;
+            margin-bottom: 2rem;
+            color: var(--slate-800);
+        }
+
+        .book-card__embed {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .book-card__embed-placeholder {
+            color: var(--slate-500);
+            font-size: 0.9375rem;
+        }
+
+        .book-card__email {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--slate-900);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all var(--duration-fast) ease;
+        }
+
+        .book-card__email:hover {
+            background: var(--slate-800);
+            transform: translateY(-2px);
+        }
+
+        .book-details {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--glass-bg);
+            border-radius: 16px;
+            text-align: left;
+        }
+
+        .book-details__title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--slate-700);
+        }
+
+        .book-details__list {
+            list-style: none;
+        }
+
+        .book-details__list li {
+            padding: 0.5rem 0;
+            font-size: 0.9375rem;
+            color: var(--slate-600);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .book-details__list li::before {
+            content: '→';
+            color: var(--sky-500);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Animated Atmosphere -->
+    <div class="atmosphere">
+        <div class="atmosphere__gradient"></div>
+        <div class="atmosphere__clouds">
+            <div class="cloud cloud--1"></div>
+            <div class="cloud cloud--2"></div>
+        </div>
+        <div class="atmosphere__grain"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav nav--scrolled">
+        <div class="nav__inner">
+            <a href="index.html" class="nav__logo">Robin Gautam</a>
+            <a href="index.html" class="nav__trigger">← Back</a>
+        </div>
+    </nav>
+
+    <!-- Book Content -->
+    <main class="book-page">
+        <div class="book-content">
+            <div class="book-card">
+                <p class="book-card__intro">
+                    You don't need a perfect idea.<br>
+                    Just bring what you have.
+                </p>
+
+                <div class="book-card__embed">
+                    <p class="book-card__embed-placeholder">
+                        📅 Calendly widget will appear here
+                    </p>
+                </div>
+
+                <a href="mailto:hello@robingautam.in" class="book-card__email">
+                    Or email directly →
+                </a>
+
+                <div class="book-details">
+                    <h3 class="book-details__title">In 15 minutes:</h3>
+                    <ul class="book-details__list">
+                        <li>We understand what you're building</li>
+                        <li>We see what you actually need</li>
+                        <li>We decide the next step together</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__content">
+            <span class="footer__copy">© Robin Gautam 2026</span>
+        </div>
+    </footer>
+
+</body>
+
+</html>

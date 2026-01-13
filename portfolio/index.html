@@ -4,469 +4,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robin Gautam | Ecosystem Builder</title>
+    <title>Portfolio | Robin Gautam</title>
     <meta name="description"
-        content="Portfolio of Robin Gautam, MBA student at IIM Rohtak. I build ecosystems, not just resumes.">
-
-    <!-- Favicon -->
+        content="Real projects with honest context. Websites, pitch decks, and platforms for students, founders, and growing teams.">
+    <link rel="stylesheet" href="../antigravity.css">
     <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◯</text></svg>">
+    <style>
+        .portfolio-page {
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+        }
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+        .portfolio-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/style.css?v=2.3">
+        .portfolio-header__title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            animation: word-float 0.8s var(--ease-out-expo) both;
+        }
 
-    <!-- Lottie Player -->
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        .portfolio-header__subtitle {
+            font-size: 1.125rem;
+            color: var(--slate-600);
+            animation: word-float 0.8s var(--ease-out-expo) 0.1s both;
+        }
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .portfolio-card {
+            background: var(--glass-bg-strong);
+            backdrop-filter: blur(var(--glass-blur-strong));
+            -webkit-backdrop-filter: blur(var(--glass-blur-strong));
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all var(--duration-fast) var(--ease-out-expo);
+            animation: float-in 0.8s var(--ease-out-expo) both;
+        }
+
+        .portfolio-card:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+
+        .portfolio-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .portfolio-card:nth-child(3) {
+            animation-delay: 0.15s;
+        }
+
+        .portfolio-card:nth-child(4) {
+            animation-delay: 0.2s;
+        }
+
+        .portfolio-card:nth-child(5) {
+            animation-delay: 0.25s;
+        }
+
+        .portfolio-card:nth-child(6) {
+            animation-delay: 0.3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .portfolio-card__preview {
+            aspect-ratio: 16/10;
+            background: linear-gradient(135deg, var(--sky-100), var(--sky-200));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--slate-400);
+            font-size: 0.875rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-card__preview::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 50%, rgba(255, 255, 255, 0.3));
+        }
+
+        .portfolio-card__content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-card__type {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--sky-600);
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-card__name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-card__context {
+            font-size: 0.9375rem;
+            color: var(--slate-600);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-card__link {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--sky-600);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap var(--duration-fast) ease;
+        }
+
+        .portfolio-card__link:hover {
+            gap: 0.75rem;
+        }
+
+        .portfolio-cta {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .portfolio-cta__button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: var(--slate-900);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all var(--duration-fast) ease;
+        }
+
+        .portfolio-cta__button:hover {
+            background: var(--slate-800);
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 
 <body>
 
+    <!-- Animated Atmosphere -->
+    <div class="atmosphere">
+        <div class="atmosphere__gradient"></div>
+        <div class="atmosphere__clouds">
+            <div class="cloud cloud--1"></div>
+            <div class="cloud cloud--2"></div>
+            <div class="cloud cloud--3"></div>
+        </div>
+        <div class="atmosphere__grain"></div>
+    </div>
+
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">RG.</a>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="#home">Portfolio Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#work">Work & Impact</a></li>
-                <li><a href="#ai-tools">AI Tools</a></li>
-                <li><a href="#timeline">Timeline</a></li>
-                <li><a href="#contact" class="btn-nav">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+    <nav class="nav nav--scrolled">
+        <div class="nav__inner">
+            <a href="../index.html" class="nav__logo">Robin Gautam</a>
+            <a href="../index.html" class="nav__trigger">← Back</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero"
-        style="background-image: linear-gradient(rgba(26, 35, 64, 0.85), rgba(26, 35, 64, 0.7)), url('assets/hero-bg.png');">
-        <div class="container hero-content">
-            <div class="hero-text-container">
-                <h1 class="hero-line delay-1">I turn ideas into systems</h1>
-                <h1 class="hero-line delay-2">and people into teams.</h1>
-            </div>
-            <p class="hero-subtext">MBA @ IIM Rohtak. Strategy | AI | Growth | Leadership</p>
+    <!-- Portfolio Content -->
+    <main class="portfolio-page">
+        <header class="portfolio-header">
+            <h1 class="portfolio-header__title">Work</h1>
+            <p class="portfolio-header__subtitle">Real projects. Honest context.</p>
+        </header>
 
-            <div class="hero-buttons">
-                <a href="#" class="btn btn-primary btn-lg">Download Resume</a>
-                <a href="#contact" class="btn btn-secondary btn-lg">Let’s Connect</a>
-                <a href="https://www.linkedin.com/in/robin-gautam-066ba8233/" target="_blank"
-                    class="btn btn-icon btn-lg"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-
-            <div class="hero-logos">
-                <div class="logo-item" title="IIM Rohtak">
-                    <!-- Placeholder for IIM Rohtak Logo -->
-                    <span class="logo-text">IIM Rohtak</span>
+        <div class="portfolio-grid">
+            <article class="portfolio-card">
+                <div class="portfolio-card__preview">Preview</div>
+                <div class="portfolio-card__content">
+                    <span class="portfolio-card__type">Website</span>
+                    <h2 class="portfolio-card__name">Designer Portfolio</h2>
+                    <p class="portfolio-card__context">Single-page portfolio for a design student landing internships at
+                        top firms.</p>
+                    <a href="#" class="portfolio-card__link">View project →</a>
                 </div>
-                <div class="logo-item" title="DSEU Dwarka">
-                    <!-- Placeholder for DSEU Dwarka Logo -->
-                    <span class="logo-text">DSEU Dwarka</span>
-                </div>
-            </div>
+            </article>
 
-            <div class="scroll-indicator">
-                <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_w51pcehl.json"
-                    background="transparent" speed="1" style="width: 50px; height: 50px;" loop autoplay></lottie-player>
-            </div>
+            <article class="portfolio-card">
+                <div class="portfolio-card__preview">Preview</div>
+                <div class="portfolio-card__content">
+                    <span class="portfolio-card__type">Website</span>
+                    <h2 class="portfolio-card__name">Doctor's Clinic</h2>
+                    <p class="portfolio-card__context">Professional site for a dentist. Patients book appointments and
+                        see services clearly.</p>
+                    <a href="#" class="portfolio-card__link">View project →</a>
+                </div>
+            </article>
+
+            <article class="portfolio-card">
+                <div class="portfolio-card__preview">Preview</div>
+                <div class="portfolio-card__content">
+                    <span class="portfolio-card__type">Platform</span>
+                    <h2 class="portfolio-card__name">Ed-Tech Startup</h2>
+                    <p class="portfolio-card__context">Multi-page site for a seed-stage company. Built credibility for
+                        investor meetings.</p>
+                    <a href="#" class="portfolio-card__link">View project →</a>
+                </div>
+            </article>
+
+            <article class="portfolio-card">
+                <div class="portfolio-card__preview">Preview</div>
+                <div class="portfolio-card__content">
+                    <span class="portfolio-card__type">Pitch Deck</span>
+                    <h2 class="portfolio-card__name">Fintech Investor Deck</h2>
+                    <p class="portfolio-card__context">10-slide narrative for Series A. Focused on clarity and flow, not
+                        flash.</p>
+                    <a href="#" class="portfolio-card__link">View project →</a>
+                </div>
+            </article>
+
+            <article class="portfolio-card">
+                <div class="portfolio-card__preview">Preview</div>
+                <div class="portfolio-card__content">
+                    <span class="portfolio-card__type">Website</span>
+                    <h2 class="portfolio-card__name">Student NGO</h2>
+                    <p class="portfolio-card__context">Landing page for a non-profit. Explains mission and drives
+                        volunteer signups.</p>
+                    <a href="#" class="portfolio-card__link">View project →</a>
+                </div>
+            </article>
+
+            <article class="portfolio-card">
+                <div class="portfolio-card__preview">Preview</div>
+                <div class="portfolio-card__content">
+                    <span class="portfolio-card__type">Brand</span>
+                    <h2 class="portfolio-card__name">Consultant Personal Brand</h2>
+                    <p class="portfolio-card__context">Portfolio and blog setup for someone building their online
+                        authority.</p>
+                    <a href="#" class="portfolio-card__link">View project →</a>
+                </div>
+            </article>
         </div>
-        <div class="hero-bg-anim"></div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="about section-padding">
-        <div class="container about-grid">
-            <div class="about-text scroll-reveal">
-                <h2 class="section-title">About Me</h2>
-                <p class="lead">I don’t come from a perfect roadmap. I figured things out by doing them.</p>
-                <p>I’ve built student communities, negotiated partnerships, handled events that seemed impossible at
-                    first, and worked with people much smarter than me. That’s where I learn the most.</p>
-                <p>Right now, I’m pursuing my MBA at IIM Rohtak, exploring how <strong>AI + Strategy +
-                        Execution</strong> can solve real problems at scale. I’m curious, I experiment a lot, and I
-                    prefer building things, not just planning them.</p>
-            </div>
-            <div class="about-image scroll-reveal delay-200">
-                <img src="assets/robin-photo.jpg" alt="Robin Gautam" class="profile-photo">
-            </div>
+        <div class="portfolio-cta">
+            <a href="../book.html" class="portfolio-cta__button">Start your project →</a>
         </div>
-    </section>
-
-    <!-- Work & Impact Section -->
-    <section id="work" class="work section-padding">
-        <div class="container">
-            <h2 class="section-title center-text scroll-reveal">Real Impact</h2>
-            <div class="cards-grid">
-                <!-- FEATURED CASE STUDIES -->
-
-                <!-- Card 1: CorStone -->
-                <div class="card case-card scroll-reveal delay-100">
-                    <div class="card-header">
-                        <div class="case-icon"><i class="fas fa-bullhorn"></i></div>
-                        <div>
-                            <h3>CorStone</h3>
-                            <span class="role">Content & Outreach Intern</span>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="narrative-text">
-                            Impact stories were scattered, so stakeholders didn't see the full picture. I built a
-                            content workflow and interviewed beneficiaries directly to craft real narratives. This
-                            approach didn't just organize data. It <strong>improved NPS scores</strong> and got our
-                            stories presented at the leadership level.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Card 2: StockGro -->
-                <div class="card case-card scroll-reveal delay-200">
-                    <div class="card-header">
-                        <div class="case-icon"><i class="fas fa-chart-line"></i></div>
-                        <div>
-                            <h3>StockGro</h3>
-                            <span class="role">Campus Intern</span>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="narrative-text">
-                            The goal was to break into a crowded campus market. I skipped generic promos and negotiated
-                            strategic MoUs while leading targeted campaigns. We didn't just get reach; we
-                            <strong>onboarded 1,100+ students</strong> and built a genuine community.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Card 3: Finlatics -->
-                <div class="card case-card scroll-reveal delay-250">
-                    <div class="card-header">
-                        <div class="case-icon"><i class="fas fa-search-dollar"></i></div>
-                        <div>
-                            <h3>Finlatics</h3>
-                            <span class="role">Market Research Analyst</span>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="case-study">
-                            <div class="cs-row">
-                                <span class="cs-label">Problem:</span>
-                                <p>Need for data-backed growth strategies in new segments.</p>
-                            </div>
-                            <div class="cs-row">
-                                <span class="cs-label">Action:</span>
-                                <p>Researched 20+ firms & tested 3+ growth hypotheses.</p>
-                            </div>
-                            <div class="cs-row">
-                                <span class="cs-label">Outcome:</span>
-                                <p>Improved STP by <strong>15%</strong> & raised CTR by <strong>12%</strong>.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 4: QuantMaster -->
-                <div class="card case-card scroll-reveal delay-300">
-                    <div class="card-header">
-                        <div class="case-icon"><i class="fas fa-laptop-code"></i></div>
-                        <div>
-                            <h3>QuantMaster</h3>
-                            <span class="role">Creator & Developer</span>
-                            <a href="https://robingautam1.github.io/quantmaster-site/" target="_blank"
-                                class="project-link" title="View Live Site"><i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="case-study">
-                            <div class="cs-row">
-                                <span class="cs-label">Problem:</span>
-                                <p>Started as a selfish project to revise without hunting random PDFs.</p>
-                            </div>
-                            <div class="cs-row">
-                                <span class="cs-label">Action:</span>
-                                <p>Built a hub with interactive JS calculators & hosted it on GitHub.</p>
-                            </div>
-                            <div class="cs-row">
-                                <span class="cs-label">Outcome:</span>
-                                <p>Turned “exam pressure” into a product that helps friends & strangers.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- LEADERSHIP SUBSECTION -->
-            <h3 class="subsection-title center-text scroll-reveal">Leadership & Initiatives</h3>
-
-            <div class="compact-grid">
-                <!-- Card 5: E-Cell -->
-                <div class="compact-card scroll-reveal delay-350">
-                    <div class="compact-icon"><i class="fas fa-users-cog"></i></div>
-                    <div class="compact-content">
-                        <h4>E-Cell DSEU</h4>
-                        <span class="compact-role">President (2023-25)</span>
-                        <p>Led 30-member team, engaged 2,200+ students, and scaled flagship event 'Riwaaz'.</p>
-                    </div>
-                </div>
-
-                <!-- Card 6: Placement Cell -->
-                <div class="compact-card scroll-reveal delay-400">
-                    <div class="compact-icon"><i class="fas fa-handshake"></i></div>
-                    <div class="compact-content">
-                        <h4>Placement Cell</h4>
-                        <span class="compact-role">Coordinator</span>
-                        <p>Facilitated placements for 2,000+ students & managed recruiter relations.</p>
-                    </div>
-                </div>
-
-                <!-- Card 7: IT Committee -->
-                <div class="compact-card scroll-reveal delay-450">
-                    <div class="compact-icon"><i class="fas fa-network-wired"></i></div>
-                    <div class="compact-content">
-                        <h4>IT Committee</h4>
-                        <span class="compact-role">Junior Coordinator</span>
-                        <p>Organized Tech Talks & streamlined learning resources for the batch.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI Toolkit Section -->
-    <section id="ai-tools" class="ai-tools section-padding">
-        <div class="container">
-            <div class="section-header center-text scroll-reveal">
-                <h2 class="section-title">My AI Toolkit</h2>
-                <p class="subtitle">How I use AI to think faster, not to replace thinking.</p>
-            </div>
-
-            <div class="ai-grid">
-                <!-- Card 1 -->
-                <div class="ai-card scroll-reveal">
-                    <div class="ai-header">
-                        <div class="icon"><i class="fas fa-search"></i></div>
-                        <h4>Perplexity</h4>
-                    </div>
-                    <p class="ai-purpose">Market Research & Scanning</p>
-                    <p class="ai-result">Reduced research time by <strong>60%</strong></p>
-                </div>
-                <!-- Card 2 -->
-                <div class="ai-card scroll-reveal delay-100">
-                    <div class="ai-header">
-                        <div class="icon"><i class="fas fa-pen-nib"></i></div>
-                        <h4>Gemini / ChatGPT</h4>
-                    </div>
-                    <p class="ai-purpose">Storytelling & Narratives</p>
-                    <p class="ai-result">Shaped emotional narratives for impact</p>
-                </div>
-                <!-- Card 3 -->
-                <div class="ai-card scroll-reveal delay-200">
-                    <div class="ai-header">
-                        <div class="icon"><i class="fas fa-project-diagram"></i></div>
-                        <h4>Notion AI</h4>
-                    </div>
-                    <p class="ai-purpose">Content Workflow</p>
-                    <p class="ai-result">Built repeatable content systems</p>
-                </div>
-                <!-- Card 4 -->
-                <div class="ai-card scroll-reveal delay-300">
-                    <div class="ai-header">
-                        <div class="icon"><i class="fas fa-desktop"></i></div>
-                        <h4>Gamma / Beautiful.ai</h4>
-                    </div>
-                    <p class="ai-purpose">Presentation Design</p>
-                    <p class="ai-result">Created pitch decks in minutes</p>
-                </div>
-                <!-- Card 5 -->
-                <div class="ai-card scroll-reveal delay-400">
-                    <div class="ai-header">
-                        <div class="icon"><i class="fas fa-microphone-alt"></i></div>
-                        <h4>Otter.ai</h4>
-                    </div>
-                    <p class="ai-purpose">Meeting Intelligence</p>
-                    <p class="ai-result">Never missed a key insight</p>
-                </div>
-                <!-- Card 6 -->
-                <div class="ai-card scroll-reveal delay-500">
-                    <div class="ai-header">
-                        <div class="icon"><i class="fas fa-code"></i></div>
-                        <h4>Cursor / Copilot</h4>
-                    </div>
-                    <p class="ai-purpose">Rapid Prototyping</p>
-                    <p class="ai-result">Built this portfolio from scratch</p>
-                </div>
-            </div>
-
-            <div class="ai-quote center-text scroll-reveal">
-                <p>I don’t use AI to write for me.<br>I use it to think faster when I’m stuck.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section id="timeline" class="timeline section-padding">
-        <div class="container">
-            <h2 class="section-title center-text scroll-reveal">My Journey</h2>
-            <div class="timeline-container">
-                <div class="timeline-item left scroll-reveal" data-year="2018">
-                    <div class="timeline-icon"><i class="fas fa-school"></i></div>
-                    <div class="content">
-                        <h3>2018</h3>
-                        <p>School in Patna</p>
-                        <span class="timeline-tag">Foundation</span>
-                    </div>
-                </div>
-                <div class="timeline-item right scroll-reveal" data-year="2020">
-                    <div class="timeline-icon"><i class="fas fa-virus"></i></div>
-                    <div class="content">
-                        <h3>2020</h3>
-                        <p>Pandemic → confusion & pause</p>
-                        <span class="timeline-tag">Reset</span>
-                    </div>
-                </div>
-                <div class="timeline-item left scroll-reveal" data-year="2021">
-                    <div class="timeline-icon"><i class="fas fa-lightbulb"></i></div>
-                    <div class="content">
-                        <h3>2021</h3>
-                        <p>First time I realised I can build something</p>
-                        <span class="timeline-tag">Spark</span>
-                    </div>
-                </div>
-                <div class="timeline-item right scroll-reveal" data-year="2022">
-                    <div class="timeline-icon"><i class="fas fa-university"></i></div>
-                    <div class="content">
-                        <h3>2022</h3>
-                        <p>BBA @ DSEU begins</p>
-                        <span class="timeline-tag">New Chapter</span>
-                    </div>
-                </div>
-                <div class="timeline-item left scroll-reveal" data-year="2023">
-                    <div class="timeline-icon"><i class="fas fa-rocket"></i></div>
-                    <div class="content">
-                        <h3>2023</h3>
-                        <p>Launched my first startup</p>
-                        <p class="timeline-sub">Scaled to <strong>₹16 Lakh ARR</strong></p>
-                        <span class="timeline-tag">Founder</span>
-                    </div>
-                </div>
-                <div class="timeline-item right scroll-reveal" data-year="2024">
-                    <div class="timeline-icon"><i class="fas fa-briefcase"></i></div>
-                    <div class="content">
-                        <h3>2024</h3>
-                        <p>CorStone Impact & Cracking CAT</p>
-                        <p class="timeline-sub">97%ile Overall • <strong>99%ile Quants</strong></p>
-                        <span class="timeline-tag">Impact & Analytics</span>
-                    </div>
-                </div>
-                <div class="timeline-item left scroll-reveal" data-year="2025">
-                    <div class="timeline-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <div class="content">
-                        <h3>2025</h3>
-                        <p>IIM Rohtak begins, bigger problems, bigger responsibility</p>
-                        <span class="timeline-tag">MBA</span>
-                    </div>
-                </div>
-                <div class="timeline-item right scroll-reveal" data-year="2026">
-                    <div class="timeline-icon"><i class="fas fa-binoculars"></i></div>
-                    <div class="content">
-                        <h3>2026 →</h3>
-                        <p class="timeline-future">“Let’s see what we build next.”</p>
-                        <span class="timeline-tag">Future</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Looking For Next Section -->
-    <section id="next" class="next-section section-padding">
-        <div class="container center-text scroll-reveal">
-            <h2 class="section-title">What I’m Looking For Next</h2>
-            <div class="next-content">
-                <p>I’m looking for roles at the intersection of <strong>strategy, AI, leadership, and growth</strong>.
-                </p>
-                <p>Consulting, early-stage startups, and problem-solving environments excite me the most.</p>
-                <p class="highlight-text">If you think I fit, I'd love to have a conversation.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact section-padding">
-        <div class="container contact-wrapper">
-            <div class="contact-content scroll-reveal">
-                <h2 class="section-title">Let’s Talk</h2>
-                <p>If you see potential in me, I’ll match it with effort.</p>
-
-                <div class="contact-actions">
-                    <a href="#" class="btn btn-primary resume-btn btn-lg">
-                        <span>Download Resume</span>
-                        <i class="fas fa-file-download"></i>
-                    </a>
-
-                    <div class="social-links">
-                        <a href="mailto:pgp16robing@iimrohtak.ac.in" class="social-btn email" title="Email Me">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/robin-gautam-066ba8233/" target="_blank"
-                            class="social-btn linkedin" title="Connect on LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <form class="contact-form scroll-reveal delay-200" action="mailto:pgp16robing@iimrohtak.ac.in" method="post"
-                enctype="text/plain">
-                <div class="form-group">
-                    <input type="text" placeholder="Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <textarea placeholder="Message" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
-            </form>
-        </div>
-    </section>
+    </main>
 
     <!-- Footer -->
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-nav">
-                <a href="/">← Back to Main Site</a>
-            </div>
-            <div class="footer-social">
-                <a href="https://www.linkedin.com/in/robin-gautam-066ba8233/" target="_blank" rel="noopener"
-                    aria-label="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://github.com/Robingautam1" target="_blank" rel="noopener" aria-label="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
-            <p>&copy; 2026 Robin Gautam</p>
+    <footer class="footer">
+        <div class="footer__content">
+            <a href="mailto:hello@robingautam.in" class="footer__link">hello@robingautam.in</a>
+            <span class="footer__copy">© Robin Gautam 2026</span>
         </div>
     </footer>
 
-    <!-- Scroll to Top -->
-    <a href="#" class="scroll-top"><i class="fas fa-arrow-up"></i></a>
-
-    <script src="js/script.js"></script>
 </body>
 
 </html>
