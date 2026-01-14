@@ -241,6 +241,27 @@ body {
     background: var(--glass-bg-strong);
 }
 
+.nav__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav__link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--slate-700);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    transition: all var(--duration-fast) ease;
+}
+
+.nav__link:hover {
+    background: var(--glass-bg-strong);
+    color: var(--slate-900);
+}
+
 /* ===== HERO SECTION ===== */
 .hero {
     min-height: 100vh;

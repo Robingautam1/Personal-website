@@ -4,280 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Robin Gautam</title>
+    <title>About Robin Gautam</title>
     <meta name="description"
-        content="Real projects with honest context. Websites, pitch decks, and platforms for students, founders, and growing teams.">
-    <link rel="stylesheet" href="../antigravity.css">
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◯</text></svg>">
+        content="Learn more about Robin Gautam - Web developer, designer, and AI workflow consultant.">
+    <meta http-equiv="refresh" content="0; url=https://robingautam1.github.io/Portfolio/">
+    <link rel="canonical" href="https://robingautam1.github.io/Portfolio/">
     <style>
-        .portfolio-page {
-            min-height: 100vh;
-            padding: 8rem 2rem 4rem;
-        }
-
-        .portfolio-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .portfolio-header__title {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            margin-bottom: 1rem;
-            animation: word-float 0.8s var(--ease-out-expo) both;
-        }
-
-        .portfolio-header__subtitle {
-            font-size: 1.125rem;
-            color: var(--slate-600);
-            animation: word-float 0.8s var(--ease-out-expo) 0.1s both;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .portfolio-card {
-            background: var(--glass-bg-strong);
-            backdrop-filter: blur(var(--glass-blur-strong));
-            -webkit-backdrop-filter: blur(var(--glass-blur-strong));
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            overflow: hidden;
-            transition: all var(--duration-fast) var(--ease-out-expo);
-            animation: float-in 0.8s var(--ease-out-expo) both;
-        }
-
-        .portfolio-card:nth-child(1) {
-            animation-delay: 0.05s;
-        }
-
-        .portfolio-card:nth-child(2) {
-            animation-delay: 0.1s;
-        }
-
-        .portfolio-card:nth-child(3) {
-            animation-delay: 0.15s;
-        }
-
-        .portfolio-card:nth-child(4) {
-            animation-delay: 0.2s;
-        }
-
-        .portfolio-card:nth-child(5) {
-            animation-delay: 0.25s;
-        }
-
-        .portfolio-card:nth-child(6) {
-            animation-delay: 0.3s;
-        }
-
-        .portfolio-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-card);
-        }
-
-        .portfolio-card__preview {
-            aspect-ratio: 16/10;
-            background: linear-gradient(135deg, var(--sky-100), var(--sky-200));
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--slate-400);
-            font-size: 0.875rem;
-            position: relative;
-            overflow: hidden;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd, #e0f2fe);
         }
 
-        .portfolio-card__preview::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, transparent 50%, rgba(255, 255, 255, 0.3));
-        }
-
-        .portfolio-card__content {
-            padding: 1.5rem;
-        }
-
-        .portfolio-card__type {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--sky-600);
-            margin-bottom: 0.5rem;
-        }
-
-        .portfolio-card__name {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .portfolio-card__context {
-            font-size: 0.9375rem;
-            color: var(--slate-600);
-            line-height: 1.5;
-            margin-bottom: 1rem;
-        }
-
-        .portfolio-card__link {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--sky-600);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: gap var(--duration-fast) ease;
-        }
-
-        .portfolio-card__link:hover {
-            gap: 0.75rem;
-        }
-
-        .portfolio-cta {
+        .redirect-message {
             text-align: center;
-            margin-top: 4rem;
+            padding: 2rem;
         }
 
-        .portfolio-cta__button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 2rem;
-            background: var(--slate-900);
-            color: white;
+        a {
+            color: #0284c7;
             text-decoration: none;
-            border-radius: 12px;
-            font-weight: 500;
-            transition: all var(--duration-fast) ease;
-        }
-
-        .portfolio-cta__button:hover {
-            background: var(--slate-800);
-            transform: translateY(-2px);
         }
     </style>
 </head>
 
 <body>
-
-    <!-- Animated Atmosphere -->
-    <div class="atmosphere">
-        <div class="atmosphere__gradient"></div>
-        <div class="atmosphere__clouds">
-            <div class="cloud cloud--1"></div>
-            <div class="cloud cloud--2"></div>
-            <div class="cloud cloud--3"></div>
-        </div>
-        <div class="atmosphere__grain"></div>
+    <div class="redirect-message">
+        <p>Redirecting to my portfolio...</p>
+        <p>If not redirected, <a href="https://robingautam1.github.io/Portfolio/">click here</a>.</p>
     </div>
-
-    <!-- Navigation -->
-    <nav class="nav nav--scrolled">
-        <div class="nav__inner">
-            <a href="../index.html" class="nav__logo">Robin Gautam</a>
-            <a href="../index.html" class="nav__trigger">← Back</a>
-        </div>
-    </nav>
-
-    <!-- Portfolio Content -->
-    <main class="portfolio-page">
-        <header class="portfolio-header">
-            <h1 class="portfolio-header__title">Work</h1>
-            <p class="portfolio-header__subtitle">Real projects. Honest context.</p>
-        </header>
-
-        <div class="portfolio-grid">
-            <article class="portfolio-card">
-                <div class="portfolio-card__preview">Preview</div>
-                <div class="portfolio-card__content">
-                    <span class="portfolio-card__type">Website</span>
-                    <h2 class="portfolio-card__name">Designer Portfolio</h2>
-                    <p class="portfolio-card__context">Single-page portfolio for a design student landing internships at
-                        top firms.</p>
-                    <a href="#" class="portfolio-card__link">View project →</a>
-                </div>
-            </article>
-
-            <article class="portfolio-card">
-                <div class="portfolio-card__preview">Preview</div>
-                <div class="portfolio-card__content">
-                    <span class="portfolio-card__type">Website</span>
-                    <h2 class="portfolio-card__name">Doctor's Clinic</h2>
-                    <p class="portfolio-card__context">Professional site for a dentist. Patients book appointments and
-                        see services clearly.</p>
-                    <a href="#" class="portfolio-card__link">View project →</a>
-                </div>
-            </article>
-
-            <article class="portfolio-card">
-                <div class="portfolio-card__preview">Preview</div>
-                <div class="portfolio-card__content">
-                    <span class="portfolio-card__type">Platform</span>
-                    <h2 class="portfolio-card__name">Ed-Tech Startup</h2>
-                    <p class="portfolio-card__context">Multi-page site for a seed-stage company. Built credibility for
-                        investor meetings.</p>
-                    <a href="#" class="portfolio-card__link">View project →</a>
-                </div>
-            </article>
-
-            <article class="portfolio-card">
-                <div class="portfolio-card__preview">Preview</div>
-                <div class="portfolio-card__content">
-                    <span class="portfolio-card__type">Pitch Deck</span>
-                    <h2 class="portfolio-card__name">Fintech Investor Deck</h2>
-                    <p class="portfolio-card__context">10-slide narrative for Series A. Focused on clarity and flow, not
-                        flash.</p>
-                    <a href="#" class="portfolio-card__link">View project →</a>
-                </div>
-            </article>
-
-            <article class="portfolio-card">
-                <div class="portfolio-card__preview">Preview</div>
-                <div class="portfolio-card__content">
-                    <span class="portfolio-card__type">Website</span>
-                    <h2 class="portfolio-card__name">Student NGO</h2>
-                    <p class="portfolio-card__context">Landing page for a non-profit. Explains mission and drives
-                        volunteer signups.</p>
-                    <a href="#" class="portfolio-card__link">View project →</a>
-                </div>
-            </article>
-
-            <article class="portfolio-card">
-                <div class="portfolio-card__preview">Preview</div>
-                <div class="portfolio-card__content">
-                    <span class="portfolio-card__type">Brand</span>
-                    <h2 class="portfolio-card__name">Consultant Personal Brand</h2>
-                    <p class="portfolio-card__context">Portfolio and blog setup for someone building their online
-                        authority.</p>
-                    <a href="#" class="portfolio-card__link">View project →</a>
-                </div>
-            </article>
-        </div>
-
-        <div class="portfolio-cta">
-            <a href="https://calendly.com/gautam-robin333/30min" target="_blank" rel="noopener"
-                class="portfolio-cta__button">Start your project →</a>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer__content">
-            <a href="mailto:hello@robingautam.in" class="footer__link">hello@robingautam.in</a>
-            <span class="footer__copy">© Robin Gautam 2026</span>
-        </div>
-    </footer>
-
 </body>
 
 </html>
