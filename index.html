@@ -81,38 +81,6 @@
     </div>
   </section>
 
-  <!-- Feedback Forum -->
-  <section class="feedback-forum">
-    <!-- Ticker Container -->
-    <div class="feedback-ticker-container">
-      <!-- Row 1: Left to Right -->
-      <div class="feedback-ticker-row" id="tickerRow1">
-        <!-- Cards will be duplicated by JS for infinite scroll -->
-      </div>
-      <!-- Row 2: Right to Left -->
-      <div class="feedback-ticker-row feedback-ticker-row--reverse" id="tickerRow2">
-        <!-- Cards will be duplicated by JS for infinite scroll -->
-      </div>
-    </div>
-
-    <!-- Write Zone (Pill Form) -->
-    <div class="feedback-write">
-      <form class="feedback-pill" id="feedbackForm">
-        <input type="text" class="feedback-pill__input feedback-pill__input--name" placeholder="Your Name"
-          id="feedbackName" required>
-        <input type="text" class="feedback-pill__input feedback-pill__input--message"
-          placeholder="Leave your feedback..." id="feedbackMessage" required>
-        <button type="submit" class="feedback-pill__submit" aria-label="Send feedback">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </button>
-      </form>
-    </div>
-  </section>
-
   <!-- Footer -->
   <footer class="footer">
     <div class="footer__content">
@@ -306,96 +274,6 @@
       }
     });
 
-    // ========== FEEDBACK FORUM ==========
-    const initialFeedback = [
-      { name: "Sarah K.", message: "This design is breathless." },
-      { name: "Rahul M.", message: "Cleanest portfolio I've seen." },
-      { name: "DesignBot", message: "Antigravity effect is smooth!" },
-      { name: "Amit", message: "Love the pricing transparency." },
-      { name: "Priya S.", message: "Finally, a site that feels calm." },
-      { name: "Tech Reviewer", message: "The glassmorphism is on point." }
-    ];
-
-    const feedbackForm = document.getElementById('feedbackForm');
-    const feedbackName = document.getElementById('feedbackName');
-    const feedbackMessage = document.getElementById('feedbackMessage');
-    const tickerRow1 = document.getElementById('tickerRow1');
-    const tickerRow2 = document.getElementById('tickerRow2');
-
-    // Load feedback from localStorage or use initial mock data
-    function getFeedback() {
-      const stored = localStorage.getItem('antigravity-feedback');
-      if (stored) {
-        return JSON.parse(stored);
-      }
-      return [...initialFeedback];
-    }
-
-    function saveFeedback(feedback) {
-      localStorage.setItem('antigravity-feedback', JSON.stringify(feedback.slice(0, 20)));
-    }
-
-    function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
-    }
-
-    function createChip(item) {
-      return `
-        <div class="feedback-chip">
-          <div class="feedback-chip__name">${escapeHtml(item.name)}</div>
-          <div class="feedback-chip__message">${escapeHtml(item.message)}</div>
-        </div>
-      `;
-    }
-
-    function renderTicker() {
-      const feedback = getFeedback();
-
-      // Split feedback into two rows
-      const row1Items = feedback.filter((_, i) => i % 2 === 0);
-      const row2Items = feedback.filter((_, i) => i % 2 !== 0);
-
-      // Create chip HTML for each row
-      const row1ChipsHtml = row1Items.map(createChip).join('');
-      const row2ChipsHtml = row2Items.map(createChip).join('');
-
-      // Duplicate content inside track wrappers for seamless infinite scroll
-      // Two identical tracks side by side - when first track scrolls out, second takes over
-      tickerRow1.innerHTML = `
-        <div class="feedback-ticker-track">${row1ChipsHtml}</div>
-        <div class="feedback-ticker-track">${row1ChipsHtml}</div>
-      `;
-      tickerRow2.innerHTML = `
-        <div class="feedback-ticker-track">${row2ChipsHtml}</div>
-        <div class="feedback-ticker-track">${row2ChipsHtml}</div>
-      `;
-    }
-
-    // Handle form submission (Optimistic UI)
-    feedbackForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = feedbackName.value.trim();
-      const message = feedbackMessage.value.trim();
-
-      if (name && message) {
-        const feedback = getFeedback();
-        const newItem = { name, message, date: new Date().toISOString() };
-        feedback.unshift(newItem);
-        saveFeedback(feedback);
-
-        // Clear inputs
-        feedbackName.value = '';
-        feedbackMessage.value = '';
-
-        // Re-render ticker with new feedback (optimistic update)
-        renderTicker();
-      }
-    });
-
-    // Initial render
-    renderTicker();
   </script>
 
 </body>
