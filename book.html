@@ -170,6 +170,44 @@
         </div>
     </footer>
 
+    <!-- Cursor Spotlight -->
+    <div class="cursor-spotlight" id="cursorSpotlight"></div>
+
+    <script>
+        // CURSOR SPOTLIGHT
+        const spotlight = document.getElementById('cursorSpotlight');
+        let spotlightActive = false;
+
+        document.addEventListener('mousemove', (e) => {
+            if (!spotlightActive) {
+                spotlight.classList.add('active');
+                spotlightActive = true;
+            }
+            spotlight.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            spotlight.classList.remove('active');
+            spotlightActive = false;
+        });
+
+        // SCROLL PARALLAX
+        const clouds = document.querySelector('.atmosphere__clouds');
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    if (clouds) {
+                        clouds.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    </script>
+
 </body>
 
 </html>

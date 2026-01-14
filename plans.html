@@ -49,6 +49,7 @@
 
         /* ===== GLASS PANEL CARD ===== */
         .glass-panel {
+            position: relative;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
@@ -57,10 +58,33 @@
             padding: 2rem;
             display: flex;
             flex-direction: column;
-            transition: transform 0.4s var(--ease-out-expo),
+            transition: transform 0.15s ease-out,
                 border-color 0.3s ease,
                 box-shadow 0.4s ease;
             animation: float-in 0.8s var(--ease-out-expo) both;
+            transform-style: preserve-3d;
+            overflow: hidden;
+        }
+
+        /* Glare overlay */
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            background: linear-gradient(115deg,
+                    transparent 35%,
+                    rgba(255, 255, 255, 0.1) 45%,
+                    rgba(255, 255, 255, 0.2) 50%,
+                    rgba(255, 255, 255, 0.1) 55%,
+                    transparent 65%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .glass-panel:hover::before {
+            opacity: 1;
         }
 
         .glass-panel:nth-child(1) {
@@ -76,9 +100,8 @@
         }
 
         .glass-panel:hover {
-            transform: translateY(-10px);
             border-color: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2);
         }
 
         /* Premium tier styling */
@@ -495,6 +518,69 @@
             <span class="footer__copy">© Robin Gautam 2026</span>
         </div>
     </footer>
+
+    <!-- Cursor Spotlight -->
+    <div class="cursor-spotlight" id="cursorSpotlight"></div>
+
+    <script>
+        // ========== IMMERSIVE EFFECTS ==========
+
+        // 1. CURSOR SPOTLIGHT
+        const spotlight = document.getElementById('cursorSpotlight');
+        let spotlightActive = false;
+
+        document.addEventListener('mousemove', (e) => {
+            if (!spotlightActive) {
+                spotlight.classList.add('active');
+                spotlightActive = true;
+            }
+            spotlight.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            spotlight.classList.remove('active');
+            spotlightActive = false;
+        });
+
+        // 2. 3D TILT ON GLASS PANELS
+        function handleTilt(e, card, maxRotation = 8) {
+            const rect = card.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            const rotateY = ((e.clientX - centerX) / (rect.width / 2)) * maxRotation;
+            const rotateX = ((centerY - e.clientY) / (rect.height / 2)) * maxRotation;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+        }
+
+        function resetTilt(card) {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+        }
+
+        // Apply to all glass-panel cards
+        document.querySelectorAll('.glass-panel').forEach(card => {
+            card.addEventListener('mousemove', (e) => handleTilt(e, card, 6));
+            card.addEventListener('mouseleave', () => resetTilt(card));
+        });
+
+        // 3. SCROLL PARALLAX FOR CLOUDS
+        const clouds = document.querySelector('.atmosphere__clouds');
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+                    if (clouds) {
+                        clouds.style.transform = `translateY(${scrollY * 0.3}px)`;
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    </script>
 
 </body>
 
