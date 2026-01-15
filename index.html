@@ -22,6 +22,9 @@
 
 <body>
 
+  <!-- Noise Overlay (Commercial Polish) -->
+  <div class="noise-overlay"></div>
+
   <!-- Animated Atmosphere Background -->
   <div class="atmosphere">
     <div class="atmosphere__gradient"></div>
@@ -56,8 +59,8 @@
       </h1>
 
       <!-- Trinity CTAs -->
-      <div class="trinity">
-        <a href="plans.html" class="trinity__item trinity__item--pricing">
+      <div class="trinity reveal-stagger">
+        <a href="plans.html" class="trinity__item trinity__item--pricing magnetic-btn">
           <div>
             <div class="trinity__title">Plans from ₹249</div>
             <div class="trinity__subtitle">View pricing</div>
@@ -65,7 +68,7 @@
           <span class="trinity__arrow">→</span>
         </a>
 
-        <a href="portfolio/" class="trinity__item trinity__item--portfolio">
+        <a href="portfolio/" class="trinity__item trinity__item--portfolio magnetic-btn">
           <div>
             <div class="trinity__title">See who's building this</div>
             <div class="trinity__subtitle">Real projects, honest context</div>
@@ -73,7 +76,7 @@
           <span class="trinity__arrow">→</span>
         </a>
 
-        <button class="trinity__item trinity__item--book" id="bookBtn">
+        <button class="trinity__item trinity__item--book magnetic-btn" id="bookBtn">
           <div>
             <div class="trinity__title">15 minutes on your idea</div>
             <div class="trinity__subtitle">Book a call</div>
@@ -140,7 +143,7 @@
       <button class="services-overlay__close" id="servicesClose">×</button>
       <h2 class="services-overlay__title">Our Capabilities</h2>
 
-      <div class="services-grid">
+      <div class="services-grid bento-grid">
         <!-- BUILD & LAUNCH -->
         <div class="service-card">
           <div class="service-card__category">Build & Launch</div>
@@ -326,6 +329,46 @@
         });
         ticking = true;
       }
+    });
+
+    // 4. SCROLL REVEAL ANIMATIONS
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '-50px'
+    });
+
+    // Observe all reveal elements
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // 5. WORD STAGGER FOR HEADLINES
+    document.querySelectorAll('.word-stagger').forEach(headline => {
+      const text = headline.textContent;
+      const words = text.split(' ');
+      headline.innerHTML = words.map((word, i) =>
+        `<span class="word" style="transition-delay: ${i * 0.05}s">${word}</span>`
+      ).join(' ');
+      setTimeout(() => headline.classList.add('revealed'), 100);
+    });
+
+    // 6. MAGNETIC BUTTONS (Subtle magnetic pull effect)
+    document.querySelectorAll('.magnetic-btn').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px) scale(1.02)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0, 0) scale(1)';
+      });
     });
 
     // ========== NAVIGATION ==========

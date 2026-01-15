@@ -284,6 +284,9 @@
 
 <body>
 
+    <!-- Noise Overlay (Commercial Polish) -->
+    <div class="noise-overlay"></div>
+
     <!-- Animated Atmosphere Background -->
     <div class="atmosphere">
         <div class="atmosphere__gradient"></div>
@@ -439,7 +442,7 @@
             </div>
 
             <!-- TIER 3: Full Onboarding -->
-            <div class="glass-panel glass-panel--premium">
+            <div class="glass-panel glass-panel--premium pulse-glow">
                 <div class="tier-name">Full Onboarding</div>
                 <div class="tier-price">₹1,899</div>
                 <div class="tier-price-note">Starts at</div>
@@ -579,6 +582,23 @@
                 });
                 ticking = true;
             }
+        });
+
+        // 4. SCROLL REVEAL ANIMATIONS
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '-30px'
+        });
+
+        document.querySelectorAll('.reveal, .reveal-stagger, .glass-panel').forEach(el => {
+            el.classList.add('reveal');
+            revealObserver.observe(el);
         });
     </script>
 
