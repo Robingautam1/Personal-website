@@ -80,10 +80,63 @@
             </button>
         </div>
 
-        <!-- Hero Mockup Image -->
-        <div class="hero__mockup">
-            <img src="assets/hero-mockup.png" alt="Professional website mockup showing dashboards and analytics"
-                class="hero__mockup-img">
+        <!-- Innovative Floating Cards Visualization -->
+        <div class="hero__orbit">
+            <!-- Central Hub -->
+            <div class="orbit__center">
+                <div class="orbit__pulse"></div>
+                <span class="orbit__logo">R</span>
+            </div>
+
+            <!-- Floating Card 1: Website Preview -->
+            <div class="orbit__card orbit__card--1">
+                <div class="orbit__card-icon">🌐</div>
+                <div class="orbit__card-content">
+                    <div class="orbit__card-title">Your Website</div>
+                    <div class="orbit__card-preview">
+                        <div class="preview-bar"></div>
+                        <div class="preview-lines">
+                            <div class="preview-line"></div>
+                            <div class="preview-line preview-line--short"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating Card 2: Growth Stats -->
+            <div class="orbit__card orbit__card--2">
+                <div class="orbit__card-icon orbit__card-icon--green">📈</div>
+                <div class="orbit__card-content">
+                    <div class="orbit__card-label">New Clients</div>
+                    <div class="orbit__card-stat">+47</div>
+                    <div class="orbit__card-trend">↑ This month</div>
+                </div>
+            </div>
+
+            <!-- Floating Card 3: Live Notifications -->
+            <div class="orbit__card orbit__card--3">
+                <div class="orbit__card-notification">
+                    <div class="notif-dot"></div>
+                    <span>New booking received</span>
+                </div>
+                <div class="orbit__card-notification orbit__card-notification--delayed">
+                    <div class="notif-dot notif-dot--blue"></div>
+                    <span>Client inquiry</span>
+                </div>
+            </div>
+
+            <!-- Connecting Lines (SVG) -->
+            <svg class="orbit__lines" viewBox="0 0 600 400" fill="none">
+                <path class="orbit__line" d="M300,200 Q150,100 100,150" stroke="url(#lineGrad)" stroke-width="1" />
+                <path class="orbit__line" d="M300,200 Q450,100 500,150" stroke="url(#lineGrad)" stroke-width="1" />
+                <path class="orbit__line" d="M300,200 Q300,350 350,320" stroke="url(#lineGrad)" stroke-width="1" />
+                <defs>
+                    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="rgba(59,130,246,0.5)" />
+                        <stop offset="100%" stop-color="rgba(139,92,246,0.2)" />
+                    </linearGradient>
+                </defs>
+            </svg>
         </div>
     </section>
 

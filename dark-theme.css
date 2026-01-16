@@ -301,45 +301,286 @@ body {
     color: var(--light-50);
 }
 
-/* ===== HERO MOCKUP IMAGE ===== */
-.hero__mockup {
+/* ===== INNOVATIVE ORBIT VISUALIZATION ===== */
+.hero__orbit {
     position: relative;
     width: 100%;
-    max-width: 900px;
+    max-width: 700px;
+    height: 380px;
     margin-top: 4rem;
     animation: fade-in-up 1s ease both 0.5s;
-    perspective: 1000px;
 }
 
-.hero__mockup-img {
-    width: 100%;
-    height: auto;
-    border-radius: 16px;
-    box-shadow:
-        0 25px 80px -20px rgba(59, 130, 246, 0.3),
-        0 50px 100px -40px rgba(0, 0, 0, 0.6);
-    transform: rotateX(8deg) rotateY(-5deg);
-    transform-style: preserve-3d;
-    transition: transform 0.6s var(--ease-out-expo);
-    will-change: transform;
-}
-
-.hero__mockup:hover .hero__mockup-img {
-    transform: rotateX(2deg) rotateY(-2deg) scale(1.02);
-}
-
-/* Glow effect under the mockup */
-.hero__mockup::after {
-    content: '';
+/* Central Hub */
+.orbit__center {
     position: absolute;
-    bottom: -30px;
-    left: 10%;
-    right: 10%;
-    height: 60%;
-    background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.25) 0%, transparent 70%);
-    filter: blur(40px);
-    z-index: -1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.orbit__pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+    animation: pulse-expand 3s ease-in-out infinite;
+}
+
+@keyframes pulse-expand {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+.orbit__logo {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--light-50);
+    background: linear-gradient(135deg, var(--accent-primary), #8b5cf6);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.4);
+    position: relative;
+    z-index: 2;
+}
+
+/* Floating Cards */
+.orbit__card {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1rem;
+    transition: all 0.4s var(--ease-out-expo);
+    animation: float 6s ease-in-out infinite;
+}
+
+.orbit__card:hover {
+    transform: translateY(-8px) scale(1.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Card 1: Website Preview (Left) */
+.orbit__card--1 {
+    left: 0;
+    top: 15%;
+    min-width: 180px;
+    animation-delay: 0s;
+}
+
+/* Card 2: Stats (Right) */
+.orbit__card--2 {
+    right: 0;
+    top: 10%;
+    min-width: 140px;
+    animation-delay: 1s;
+}
+
+/* Card 3: Notifications (Bottom) */
+.orbit__card--3 {
+    right: 20%;
+    bottom: 5%;
+    min-width: 200px;
+    animation-delay: 2s;
+}
+
+/* Card Icons */
+.orbit__card-icon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--accent-primary), #8b5cf6);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.orbit__card-icon--green {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+/* Card Content */
+.orbit__card-title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--light-50);
+    margin-bottom: 0.5rem;
+}
+
+.orbit__card-label {
+    font-size: 0.6875rem;
+    color: var(--light-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.orbit__card-stat {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--light-50);
+    line-height: 1.2;
+}
+
+.orbit__card-trend {
+    font-size: 0.75rem;
+    color: #22c55e;
+    margin-top: 0.25rem;
+}
+
+/* Website Preview Mini UI */
+.orbit__card-preview {
+    background: var(--dark-700);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.preview-bar {
+    height: 6px;
+    width: 60%;
+    background: linear-gradient(90deg, var(--accent-primary), #8b5cf6);
+    border-radius: 3px;
+    margin-bottom: 0.5rem;
+}
+
+.preview-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.preview-line {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.preview-line--short {
+    width: 70%;
+}
+
+/* Notification Style */
+.orbit__card-notification {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.5rem 0;
+    font-size: 0.8125rem;
+    color: var(--light-300);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    animation: slide-in 0.5s ease both;
+}
+
+.orbit__card-notification:last-child {
+    border-bottom: none;
+}
+
+.orbit__card-notification--delayed {
+    animation-delay: 1.5s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.notif-dot {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.notif-dot--blue {
+    background: var(--accent-primary);
+}
+
+/* Connecting Lines SVG */
+.orbit__lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
+    opacity: 0.4;
+}
+
+.orbit__line {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: draw-line 2s ease forwards 0.8s;
+}
+
+@keyframes draw-line {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero__orbit {
+        height: 500px;
+        max-width: 100%;
+    }
+
+    .orbit__card--1 {
+        left: 5%;
+        top: 0;
+    }
+
+    .orbit__card--2 {
+        right: 5%;
+        top: 35%;
+    }
+
+    .orbit__card--3 {
+        left: 10%;
+        bottom: 0;
+        right: auto;
+    }
+
+    .orbit__center {
+        top: 45%;
+    }
+
+    .orbit__lines {
+        display: none;
+    }
 }
 
 /* ===== FLOATING VISUAL MOCKUPS (Legacy) ===== */
