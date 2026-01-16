@@ -7,11 +7,243 @@
     <title>Plans | Robin Gautam</title>
     <meta name="description"
         content="Simple, transparent pricing. Start small, grow when you're ready. Plans from ₹249 for first presence to complete founder packages.">
-    <link rel="stylesheet" href="dark-theme.css">
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>●</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        /* ===== PLANS PAGE SPECIFIC STYLES ===== */
+        /* ===== DARK NEBULA THEME (Self-Contained) ===== */
+
+        /* CSS Reset */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Design Tokens */
+        :root {
+            --nebula-black: #000000;
+            --nebula-void: #050a14;
+            --nebula-charcoal: #111827;
+            --light-pure: #ffffff;
+            --light-soft: #f9fafb;
+            --light-muted: #d1d5db;
+            --light-dim: #9ca3af;
+            --light-fade: #6b7280;
+            --plasma-cyan: #22d3ee;
+            --plasma-blue: #3b82f6;
+            --plasma-violet: #8b5cf6;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--nebula-black);
+            min-height: 100vh;
+            color: var(--light-pure);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== ATMOSPHERE ===== */
+        .nebula-atmosphere {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse 120% 80% at 50% 0%, var(--nebula-charcoal) 0%, transparent 50%),
+                radial-gradient(ellipse 100% 100% at 50% 100%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                linear-gradient(180deg, var(--nebula-void) 0%, var(--nebula-black) 100%);
+        }
+
+        .plasma-clouds {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .plasma-cloud {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            will-change: transform;
+        }
+
+        .plasma-cloud--1 {
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(ellipse, var(--plasma-blue) 0%, transparent 70%);
+            top: -10%;
+            left: 20%;
+            animation: drift-1 30s ease-in-out infinite;
+        }
+
+        .plasma-cloud--2 {
+            width: 500px;
+            height: 350px;
+            background: radial-gradient(ellipse, var(--plasma-violet) 0%, transparent 70%);
+            top: 30%;
+            right: -5%;
+            animation: drift-2 25s ease-in-out infinite;
+        }
+
+        .plasma-cloud--3 {
+            width: 400px;
+            height: 300px;
+            background: radial-gradient(ellipse, var(--plasma-cyan) 0%, transparent 70%);
+            bottom: 10%;
+            left: -10%;
+            animation: drift-3 35s ease-in-out infinite;
+        }
+
+        @keyframes drift-1 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(50px, 30px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-30px, -20px) scale(0.95);
+            }
+        }
+
+        @keyframes drift-2 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(-40px, 50px) scale(1.05);
+            }
+        }
+
+        @keyframes drift-3 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            40% {
+                transform: translate(60px, -30px) scale(1.1);
+            }
+
+            80% {
+                transform: translate(-20px, 40px) scale(0.9);
+            }
+        }
+
+        .noise-texture {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.02;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        .cursor-spotlight {
+            position: fixed;
+            width: 800px;
+            height: 800px;
+            pointer-events: none;
+            z-index: 2;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            transform: translate(-50%, -50%);
+            will-change: left, top;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav-pill {
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.5rem 0.5rem 1.25rem;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 100px;
+        }
+
+        .nav-pill__logo {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--light-pure);
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+
+        .nav-pill__links {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .nav-pill__link {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--light-dim);
+            text-decoration: none;
+            padding: 0.5rem 0.875rem;
+            border-radius: 100px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-pill__link:hover {
+            color: var(--light-pure);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-pill__cta {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--nebula-black);
+            background: var(--light-pure);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s var(--ease-spring);
+        }
+
+        .nav-pill__cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        /* ===== PLANS SECTION ===== */
         .plans-section {
             min-height: 100vh;
             padding: 8rem 2rem 4rem;
@@ -56,9 +288,21 @@
                 max-width: 440px;
                 gap: 2rem;
             }
+
+            .nav-pill {
+                width: calc(100% - 2rem);
+                left: 1rem;
+                right: 1rem;
+                transform: none;
+                justify-content: space-between;
+            }
+
+            .nav-pill__links {
+                display: none;
+            }
         }
 
-        /* ===== PRICING CARD (Smoked Glass) ===== */
+        /* ===== PRICING CARD ===== */
         .pricing-card {
             background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(24px);
@@ -74,7 +318,6 @@
             overflow: hidden;
         }
 
-        /* Luminous edge (top light) */
         .pricing-card::before {
             content: '';
             position: absolute;
@@ -103,7 +346,6 @@
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
         }
 
-        /* Premium tier glow */
         .pricing-card--premium {
             background: rgba(59, 130, 246, 0.08);
             border-color: rgba(59, 130, 246, 0.2);
@@ -119,9 +361,7 @@
 
         .pricing-card--premium:hover {
             border-color: rgba(59, 130, 246, 0.35);
-            box-shadow:
-                0 30px 60px rgba(0, 0, 0, 0.4),
-                0 0 80px -20px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 80px -20px rgba(59, 130, 246, 0.3);
         }
 
         /* ===== TIER HEADER ===== */
@@ -205,7 +445,6 @@
             color: var(--plasma-cyan);
         }
 
-        /* Add-ons box */
         .addons {
             margin-top: 1rem;
             padding: 0.875rem 1rem;
@@ -223,7 +462,7 @@
             color: var(--light-muted);
         }
 
-        /* ===== USE CASE SECTION ===== */
+        /* ===== USE CASE ===== */
         .use-case-section {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.04);
@@ -261,7 +500,7 @@
             font-size: 0.75rem;
         }
 
-        /* ===== CTA BUTTONS ===== */
+        /* ===== CTA ===== */
         .tier-cta {
             width: 100%;
             padding: 1rem;
@@ -310,12 +549,10 @@
 
         .tier-cta--solid:hover {
             transform: translateY(-2px) scale(1.02);
-            box-shadow:
-                0 15px 30px rgba(59, 130, 246, 0.3),
-                0 0 40px -10px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.3), 0 0 40px -10px rgba(139, 92, 246, 0.4);
         }
 
-        /* ===== DISCLAIMER ===== */
+        /* ===== FOOTER ===== */
         .pricing-disclaimer {
             text-align: center;
             margin-top: 4rem;
@@ -324,7 +561,6 @@
             animation: fade-in-up 0.8s var(--ease-out-expo) both 0.6s;
         }
 
-        /* ===== FOOTER ===== */
         .plans-footer {
             text-align: center;
             padding: 3rem 2rem;
@@ -343,23 +579,45 @@
         .plans-footer a:hover {
             color: var(--light-pure);
         }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- === THE ATMOSPHERE === -->
+    <!-- Atmosphere -->
     <div class="nebula-atmosphere"></div>
     <div class="plasma-clouds">
         <div class="plasma-cloud plasma-cloud--1"></div>
         <div class="plasma-cloud plasma-cloud--2"></div>
         <div class="plasma-cloud plasma-cloud--3"></div>
-        <div class="plasma-cloud plasma-cloud--4"></div>
     </div>
     <div class="noise-texture"></div>
     <div class="cursor-spotlight" id="cursorSpotlight"></div>
 
-    <!-- === FLOATING PILL NAVIGATION === -->
+    <!-- Navigation -->
     <nav class="nav-pill">
         <a href="index.html" class="nav-pill__logo">Robin Gautam</a>
         <div class="nav-pill__links">
@@ -369,7 +627,7 @@
         <button class="nav-pill__cta" id="bookBtn">Book</button>
     </nav>
 
-    <!-- === PLANS SECTION === -->
+    <!-- Plans Section -->
     <section class="plans-section">
         <header class="plans-header">
             <h1 class="plans-header__title">Plans</h1>
@@ -378,7 +636,7 @@
 
         <div class="pricing-grid">
 
-            <!-- TIER 1: First Step -->
+            <!-- TIER 1 -->
             <div class="pricing-card">
                 <div class="tier-name">First Step</div>
                 <div class="tier-price">
@@ -391,32 +649,32 @@
                     <h3 class="features-section__title">You get</h3>
                     <ul class="features-list">
                         <li>
-                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <polyline points="22 4 12 14.01 9 11.01" />
                             </svg>
                             A simple one-page portfolio or profile
                         </li>
                         <li>
-                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <polyline points="22 4 12 14.01 9 11.01" />
                             </svg>
                             Your name, work, and contact in one place
                         </li>
                         <li>
-                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <polyline points="22 4 12 14.01 9 11.01" />
                             </svg>
                             Mobile-friendly layout
                         </li>
                         <li>
-                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <polyline points="22 4 12 14.01 9 11.01" />
                             </svg>
@@ -434,11 +692,11 @@
                     </ul>
                 </div>
 
-                <a href="https://calendly.com/gautam-robin333/30min" target="_blank" rel="noopener"
+                <a href="https://calendly.com/gautam-robin333/30min" target="_blank"
                     class="tier-cta tier-cta--ghost">Take the first step</a>
             </div>
 
-            <!-- TIER 2: Clear Presence -->
+            <!-- TIER 2 -->
             <div class="pricing-card">
                 <div class="tier-name">Clear Presence</div>
                 <div class="tier-price">
@@ -452,40 +710,40 @@
                     <h3 class="features-section__title">You get</h3>
                     <ul class="features-list">
                         <li>
-                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <polyline points="22 4 12 14.01 9 11.01" />
                             </svg>
                             A multi-section website
                         </li>
                         <li>
-                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <polyline points="22 4 12 14.01 9 11.01" />
                             </svg>
                             Clear "About", "Services", and "Contact"
                         </li>
                         <li>
-                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <polyline points="22 4 12 14.01 9 11.01" />
                             </svg>
                             Designed for people who don't know you yet
                         </li>
                         <li>
-                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <polyline points="22 4 12 14.01 9 11.01" />
                             </svg>
                             Mobile-friendly
                         </li>
                         <li>
-                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <polyline points="22 4 12 14.01 9 11.01" />
                             </svg>
@@ -507,11 +765,11 @@
                     </ul>
                 </div>
 
-                <a href="https://calendly.com/gautam-robin333/30min" target="_blank" rel="noopener"
+                <a href="https://calendly.com/gautam-robin333/30min" target="_blank"
                     class="tier-cta tier-cta--ghost">Build my presence</a>
             </div>
 
-            <!-- TIER 3: Full Onboarding (Premium) -->
+            <!-- TIER 3 -->
             <div class="pricing-card pricing-card--premium">
                 <div class="tier-name">Full Onboarding</div>
                 <div class="tier-price">
@@ -525,40 +783,40 @@
                     <h3 class="features-section__title">You get</h3>
                     <ul class="features-list">
                         <li>
-                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <polyline points="22 4 12 14.01 9 11.01" />
                             </svg>
                             Complete multi-page website
                         </li>
                         <li>
-                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <polyline points="22 4 12 14.01 9 11.01" />
                             </svg>
                             Booking or inquiry flow
                         </li>
                         <li>
-                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <polyline points="22 4 12 14.01 9 11.01" />
                             </svg>
                             Payment integration (if needed)
                         </li>
                         <li>
-                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <polyline points="22 4 12 14.01 9 11.01" />
                             </svg>
                             Domain and hosting guidance
                         </li>
                         <li>
-                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <polyline points="22 4 12 14.01 9 11.01" />
                             </svg>
@@ -576,116 +834,77 @@
                     </ul>
                 </div>
 
-                <a href="https://calendly.com/gautam-robin333/30min" target="_blank" rel="noopener"
+                <a href="https://calendly.com/gautam-robin333/30min" target="_blank"
                     class="tier-cta tier-cta--solid">Set me up completely</a>
             </div>
 
         </div>
 
-        <p class="pricing-disclaimer">
-            Final pricing depends on scope. We talk everything through before starting.
-        </p>
+        <p class="pricing-disclaimer">Final pricing depends on scope. We talk everything through before starting.</p>
     </section>
 
-    <!-- === FOOTER === -->
     <footer class="plans-footer">
         <a href="mailto:hello@robingautam.in">hello@robingautam.in</a>
         <span style="margin: 0 1rem;">·</span>
         <span>© Robin Gautam 2026</span>
     </footer>
 
-    <!-- === BOOKING MODAL === -->
-    <div class="booking-modal" id="bookingModal"
+    <!-- Booking Modal -->
+    <div id="bookingModal"
         style="display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px);">
         <div
             style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 500px; background: rgba(10, 14, 23, 0.95); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 2rem; max-height: 90vh; overflow-y: auto;">
             <button id="closeModal"
-                style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #6b7280; font-size: 1.5rem; cursor: pointer; transition: color 0.2s;">×</button>
-            <h2 style="color: #ffffff; font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">Book a 15-minute
-                call
+                style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #6b7280; font-size: 1.5rem; cursor: pointer;">×</button>
+            <h2 style="color: #fff; font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">Book a 15-minute call
             </h2>
-            <p style="color: #6b7280; margin-bottom: 1.5rem; font-size: 0.9375rem;">You don't need a perfect idea. Just
-                bring what you have.</p>
+            <p style="color: #6b7280; margin-bottom: 1.5rem;">You don't need a perfect idea. Just bring what you have.
+            </p>
             <div class="calendly-inline-widget"
                 data-url="https://calendly.com/gautam-robin333/30min?hide_event_type_details=1&hide_gdpr_banner=1"
                 style="min-width: 100%; height: 500px;"></div>
-            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
         </div>
     </div>
 
-    <!-- === SCRIPTS === -->
     <script>
-        // Mouse-Follow Spotlight
+        // Spotlight
         const spotlight = document.getElementById('cursorSpotlight');
-        let mouseX = 0, mouseY = 0;
-        let spotlightX = 0, spotlightY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        function animateSpotlight() {
+        let mouseX = 0, mouseY = 0, spotlightX = 0, spotlightY = 0;
+        document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+        (function animate() {
             spotlightX += (mouseX - spotlightX) * 0.08;
             spotlightY += (mouseY - spotlightY) * 0.08;
             spotlight.style.left = spotlightX + 'px';
             spotlight.style.top = spotlightY + 'px';
-            requestAnimationFrame(animateSpotlight);
-        }
-        animateSpotlight();
+            requestAnimationFrame(animate);
+        })();
 
-        // Magnetic Button Effects
-        const magneticElements = document.querySelectorAll('.nav-pill__cta, .tier-cta--solid');
-        magneticElements.forEach(el => {
-            el.addEventListener('mousemove', (e) => {
-                const rect = el.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                el.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) scale(1.02)`;
+        // Magnetic CTA
+        document.querySelectorAll('.nav-pill__cta, .tier-cta--solid').forEach(el => {
+            el.addEventListener('mousemove', e => {
+                const r = el.getBoundingClientRect();
+                el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.15}px, ${(e.clientY - r.top - r.height / 2) * 0.15}px) scale(1.02)`;
             });
-            el.addEventListener('mouseleave', () => {
-                el.style.transform = 'translate(0, 0) scale(1)';
-            });
+            el.addEventListener('mouseleave', () => el.style.transform = '');
         });
 
-        // Booking Modal
-        const bookBtn = document.getElementById('bookBtn');
-        const bookingModal = document.getElementById('bookingModal');
-        const closeModal = document.getElementById('closeModal');
+        // Modal
+        const modal = document.getElementById('bookingModal');
+        document.getElementById('bookBtn')?.addEventListener('click', () => { modal.style.display = 'block'; document.body.style.overflow = 'hidden'; });
+        document.getElementById('closeModal')?.addEventListener('click', () => { modal.style.display = 'none'; document.body.style.overflow = ''; });
+        modal?.addEventListener('click', e => { if (e.target === modal) { modal.style.display = 'none'; document.body.style.overflow = ''; } });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') { modal.style.display = 'none'; document.body.style.overflow = ''; } });
 
-        const openBookingModal = () => {
-            bookingModal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        };
-
-        const closeBookingModal = () => {
-            bookingModal.style.display = 'none';
-            document.body.style.overflow = '';
-        };
-
-        bookBtn?.addEventListener('click', openBookingModal);
-        closeModal?.addEventListener('click', closeBookingModal);
-        bookingModal?.addEventListener('click', (e) => {
-            if (e.target === bookingModal) closeBookingModal();
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeBookingModal();
-        });
-
-        // 3D Tilt on Cards
+        // 3D Tilt
         document.querySelectorAll('.pricing-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-                const rotateY = ((e.clientX - centerX) / (rect.width / 2)) * 4;
-                const rotateX = ((centerY - e.clientY) / (rect.height / 2)) * 4;
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+            card.addEventListener('mousemove', e => {
+                const r = card.getBoundingClientRect();
+                const rY = ((e.clientX - r.left - r.width / 2) / (r.width / 2)) * 4;
+                const rX = ((r.top + r.height / 2 - e.clientY) / (r.height / 2)) * 4;
+                card.style.transform = `perspective(1000px) rotateX(${rX}deg) rotateY(${rY}deg) translateY(-8px)`;
             });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
-            });
+            card.addEventListener('mouseleave', () => card.style.transform = '');
         });
     </script>
 

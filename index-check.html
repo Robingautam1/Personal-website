@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robin Gautam | Get Your Business Online</title>
+    <meta name="description"
+        content="I help businesses get online and start receiving clients. Professional websites, booking systems, and digital presence — all set up for you.">
+    <meta name="keywords"
+        content="Business Online, Website Development India, Digital Presence, Startup Websites, Client Onboarding">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Robin Gautam | Get Your Business Online">
+    <meta property="og:description"
+        content="I help businesses get online and start receiving clients. Plans from ₹249.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://robingautam.in">
+
+    <link rel="stylesheet" href="dark-theme.css">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>●</text></svg>">
+</head>
+
+<body>
+
+    <!-- Grid Pattern Background -->
+    <div class="grid-bg"></div>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__inner">
+            <a href="index.html" class="nav__logo">Robin Gautam</a>
+            <div class="nav__actions">
+                <a href="portfolio/" class="nav__link">About</a>
+                <a href="plans.html" class="nav__link">Pricing</a>
+                <button class="nav__cta" id="bookBtn">Book a Call</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-dark">
+        <!-- Status Badge -->
+        <div class="hero__badge">
+            <span class="hero__badge-dot"></span>
+            <span>Available for new projects</span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="hero__headline-dark">
+            Get your business online<br>
+            <span class="hero__headline-muted">and start receiving clients.</span>
+        </h1>
+
+        <!-- Subtext -->
+        <p class="hero__subtext">
+            I help founders and professionals launch their digital presence — websites, booking systems,
+            and everything you need to look professional and get real work. Setup done for you.
+        </p>
+
+        <!-- Main CTA -->
+        <a href="plans.html" class="hero__cta">
+            See Plans from ₹249
+            <span class="hero__cta-arrow">→</span>
+        </a>
+
+        <!-- Secondary Links -->
+        <div class="hero__links">
+            <a href="portfolio/" class="hero__link">
+                <span>See who's building this</span>
+                <span>↗</span>
+            </a>
+            <button class="hero__link" id="servicesBtn" style="background: none; border: none; cursor: pointer;">
+                <span>View all services</span>
+                <span>↗</span>
+            </button>
+        </div>
+
+        <!-- Hero Mockup Image -->
+        <div class="hero__mockup">
+            <img src="assets/hero-mockup.png" alt="Professional website mockup showing dashboards and analytics"
+                class="hero__mockup-img">
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div class="booking-modal" id="bookingModal"
+        style="display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);">
+        <div
+            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 500px; background: #18181b; border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 2rem; max-height: 90vh; overflow-y: auto;">
+            <button id="closeModal"
+                style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #a1a1aa; font-size: 1.5rem; cursor: pointer;">×</button>
+            <h2 style="color: #fafafa; font-size: 1.5rem; margin-bottom: 0.5rem;">Book a 15-minute call</h2>
+            <p style="color: #71717a; margin-bottom: 1.5rem;">You don't need a perfect idea. Just bring what you have.
+            </p>
+            <div class="calendly-inline-widget"
+                data-url="https://calendly.com/gautam-robin333/30min?hide_event_type_details=1&hide_gdpr_banner=1"
+                style="min-width: 100%; height: 500px;"></div>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        </div>
+    </div>
+
+    <!-- Services Overlay (keep existing) -->
+    <div class="services-overlay" id="servicesOverlay"
+        style="display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.9); backdrop-filter: blur(16px); padding: 2rem; overflow-y: auto;">
+        <div
+            style="max-width: 1000px; margin: 4rem auto; background: #18181b; border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 2.5rem;">
+            <button id="servicesClose"
+                style="position: absolute; top: 2rem; right: 2rem; background: none; border: none; color: #a1a1aa; font-size: 2rem; cursor: pointer;">×</button>
+            <h2 style="color: #fafafa; font-size: 2rem; margin-bottom: 2rem;">Our Capabilities</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                <!-- Service Cards -->
+                <div
+                    style="background: #232326; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.5rem;">
+                    <div
+                        style="font-size: 0.75rem; color: #71717a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+                        Build & Launch</div>
+                    <h3 style="color: #fafafa; font-size: 1.125rem; margin-bottom: 0.75rem;">Minimalist Websites</h3>
+                    <p style="color: #a1a1aa; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem;">For your
+                        first presence online. A simple one-page site with your name, work, and contact.</p>
+                    <div style="color: #3b82f6; font-weight: 600;">From ₹249</div>
+                </div>
+
+                <div
+                    style="background: #232326; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.5rem;">
+                    <div
+                        style="font-size: 0.75rem; color: #71717a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+                        Build & Launch</div>
+                    <h3 style="color: #fafafa; font-size: 1.125rem; margin-bottom: 0.75rem;">Professional Websites</h3>
+                    <p style="color: #a1a1aa; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem;">For people
+                        who want to explain what they do. Multi-section with About, Services, and Contact.</p>
+                    <div style="color: #3b82f6; font-weight: 600;">Starts at ₹999</div>
+                </div>
+
+                <div
+                    style="background: #232326; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.5rem;">
+                    <div
+                        style="font-size: 0.75rem; color: #71717a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+                        Build & Launch</div>
+                    <h3 style="color: #fafafa; font-size: 1.125rem; margin-bottom: 0.75rem;">Complete Onboarding Systems
+                    </h3>
+                    <p style="color: #a1a1aa; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem;">Full website
+                        with booking, forms, or payments. Includes domain setup.</p>
+                    <div style="color: #3b82f6; font-weight: 600;">Starts at ₹1,899</div>
+                </div>
+
+                <div
+                    style="background: #232326; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.5rem;">
+                    <div
+                        style="font-size: 0.75rem; color: #71717a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+                        Visual Narrative</div>
+                    <h3 style="color: #fafafa; font-size: 1.125rem; margin-bottom: 0.75rem;">Pitch Decks & Slides</h3>
+                    <p style="color: #a1a1aa; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem;">For
+                        explaining your idea clearly. Slides for founders who need to present without confusion.</p>
+                    <div style="color: #3b82f6; font-weight: 600;">Starts at ₹999</div>
+                </div>
+
+                <div
+                    style="background: #232326; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.5rem;">
+                    <div
+                        style="font-size: 0.75rem; color: #71717a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+                        Acceleration</div>
+                    <h3 style="color: #fafafa; font-size: 1.125rem; margin-bottom: 0.75rem;">1:1 AI Workflows</h3>
+                    <p style="color: #a1a1aa; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem;">Personal
+                        sessions to set up simple AI tools for writing and planning.</p>
+                    <div style="color: #3b82f6; font-weight: 600;">Starts at ₹999</div>
+                </div>
+
+                <div
+                    style="background: #232326; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.5rem;">
+                    <div
+                        style="font-size: 0.75rem; color: #71717a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+                        Micro-Consultancy</div>
+                    <h3 style="color: #fafafa; font-size: 1.125rem; margin-bottom: 0.75rem;">Founder's Audit</h3>
+                    <p style="color: #a1a1aa; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem;">A quick look
+                        at what you already have. A 15-min review and what to fix first.</p>
+                    <div style="color: #22c55e; font-weight: 600;">Free</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="plans.html"
+                    style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: #fafafa; color: #0a0a0b; font-weight: 600; border-radius: 100px; text-decoration: none;">
+                    View All Plans →
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer
+        style="position: relative; z-index: 1; padding: 2rem; text-align: center; color: #71717a; font-size: 0.875rem;">
+        © Robin Gautam 2026
+    </footer>
+
+    <script>
+        // Booking Modal
+        const bookBtn = document.getElementById('bookBtn');
+        const bookingModal = document.getElementById('bookingModal');
+        const closeModal = document.getElementById('closeModal');
+
+        bookBtn?.addEventListener('click', () => {
+            bookingModal.style.display = 'block';
+        });
+
+        closeModal?.addEventListener('click', () => {
+            bookingModal.style.display = 'none';
+        });
+
+        bookingModal?.addEventListener('click', (e) => {
+            if (e.target === bookingModal) {
+                bookingModal.style.display = 'none';
+            }
+        });
+
+        // Services Overlay
+        const servicesBtn = document.getElementById('servicesBtn');
+        const servicesOverlay = document.getElementById('servicesOverlay');
+        const servicesClose = document.getElementById('servicesClose');
+
+        servicesBtn?.addEventListener('click', () => {
+            servicesOverlay.style.display = 'block';
+        });
+
+        servicesClose?.addEventListener('click', () => {
+            servicesOverlay.style.display = 'none';
+        });
+
+        servicesOverlay?.addEventListener('click', (e) => {
+            if (e.target === servicesOverlay) {
+                servicesOverlay.style.display = 'none';
+            }
+        });
+
+        // Escape key closes modals
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                bookingModal.style.display = 'none';
+                servicesOverlay.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
