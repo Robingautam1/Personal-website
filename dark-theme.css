@@ -563,35 +563,63 @@ body {
     }
 }
 
-/* Responsive */
+/* Responsive - Mobile */
 @media (max-width: 768px) {
     .hero__orbit {
-        height: 500px;
+        height: auto;
+        min-height: 450px;
         max-width: 100%;
-    }
-
-    .orbit__card--1 {
-        left: 5%;
-        top: 0;
-    }
-
-    .orbit__card--2 {
-        right: 5%;
-        top: 35%;
-    }
-
-    .orbit__card--3 {
-        left: 10%;
-        bottom: 0;
-        right: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 2rem 0;
     }
 
     .orbit__center {
-        top: 45%;
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin-bottom: 1.5rem;
+    }
+
+    .orbit__card {
+        position: relative;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        width: 90%;
+        max-width: 280px;
+        animation: none;
+    }
+
+    .orbit__card--1,
+    .orbit__card--2,
+    .orbit__card--3 {
+        position: relative;
+        margin: 0.5rem auto;
     }
 
     .orbit__lines {
         display: none;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 380px) {
+    .orbit__card {
+        max-width: 260px;
+        padding: 0.75rem;
+    }
+
+    .orbit__card-stat {
+        font-size: 1.25rem;
+    }
+
+    .orbit__card-title {
+        font-size: 0.75rem;
     }
 }
 
