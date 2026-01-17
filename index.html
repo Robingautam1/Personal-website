@@ -1,596 +1,895 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robin Gautam | Get Your Business Online</title>
+    <title>Robin Gautam | Digital Product Studio for Founders</title>
     <meta name="description"
-        content="I help businesses get online and start receiving clients. Professional websites, booking systems, and digital presence — all set up for you.">
-    <meta name="keywords"
-        content="Business Online, Website Development India, Digital Presence, Startup Websites, Client Onboarding">
+        content="We build digital systems for the next generation of founders. Professional websites, booking systems, and digital infrastructure that drives growth.">
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Robin Gautam | Get Your Business Online">
-    <meta property="og:description"
-        content="I help businesses get online and start receiving clients. Plans from ₹249.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://robingautam.in">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        midnight: {
+                            950: '#030303',
+                            900: '#0a0a0a',
+                            800: '#121212',
+                            700: '#1a1a1a',
+                            600: '#262626',
+                        },
+                        accent: {
+                            DEFAULT: '#3b82f6',
+                            light: '#60a5fa',
+                            dark: '#2563eb',
+                        },
+                    },
+                    fontSize: {
+                        'fluid-hero': 'clamp(2.5rem, 6vw, 4.5rem)',
+                        'fluid-display': 'clamp(2rem, 4vw, 3rem)',
+                    },
+                    animation: {
+                        'gradient-border': 'gradient-border 3s ease infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'slide-up': 'slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        'gradient-border': {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(2deg)' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.3)' },
+                            '50%': { boxShadow: '0 0 40px rgba(59, 130, 246, 0.6)' },
+                        },
+                        'slide-up': {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
 
-    <link rel="stylesheet" href="dark-theme.css">
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>●</text></svg>">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* Noise Texture */
+        .noise-bg::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Gradient Border Animation */
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+            border-radius: 24px;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 26px;
+            padding: 2px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+            background-size: 300% 100%;
+            animation: gradient-border 3s ease infinite;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* 3D Float Transform */
+        .float-3d {
+            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+            transform-style: preserve-3d;
+        }
+
+        /* Staggered Animations */
+        .stagger-1 {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-2 {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-3 {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-4 {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-5 {
+            animation-delay: 0.5s;
+        }
+
+        .animate-on-load {
+            opacity: 0;
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #262626;
+            border-radius: 3px;
+        }
+    </style>
 </head>
 
-<body>
-
-    <!-- Global Network Map (Animated Connections) -->
-    <canvas id="networkMap" class="network-map"></canvas>
-
-    <!-- Grid Pattern Background -->
-    <div class="grid-bg"></div>
-
-    <!-- Noise Overlay -->
-    <div class="noise-overlay"></div>
+<body class="bg-midnight-950 text-white font-sans antialiased noise-bg">
 
     <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav__inner">
-            <a href="index.html" class="nav__logo">Robin Gautam</a>
-            <div class="nav__actions">
-                <a href="portfolio/" class="nav__link">About</a>
-                <a href="plans.html" class="nav__link">Pricing</a>
-                <button class="nav__cta" id="bookBtn">Book a Call</button>
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-midnight-950/80 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#" class="flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">R</span>
+                    </div>
+                    <span class="font-semibold text-lg hidden sm:block">Robin Gautam</span>
+                </a>
+
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#process" class="text-sm text-zinc-400 hover:text-white transition-colors">Process</a>
+                    <a href="#work" class="text-sm text-zinc-400 hover:text-white transition-colors">Work</a>
+                    <a href="portfolio/" class="text-sm text-zinc-400 hover:text-white transition-colors">About</a>
+                </div>
+
+                <button id="bookBtn"
+                    class="px-6 py-3 bg-white text-midnight-950 text-sm font-semibold rounded-xl hover:bg-zinc-200 transition-all hover:scale-105">
+                    Let's Talk
+                </button>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-dark">
-        <!-- Status Badge -->
-        <div class="hero__badge">
-            <span class="hero__badge-dot"></span>
-            <span>Available for new projects</span>
+    <section class="min-h-screen pt-32 pb-20 relative overflow-hidden">
+        <!-- Background Glows -->
+        <div
+            class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[150px] pointer-events-none">
+        </div>
+        <div
+            class="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none">
         </div>
 
-        <!-- Main Headline -->
-        <h1 class="hero__headline-dark">
-            Get your business online<br>
-            <span class="hero__headline-muted">and start receiving clients.</span>
-        </h1>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-8 items-center min-h-[70vh]">
+                <!-- Left Side -->
+                <div class="space-y-8">
+                    <!-- Badge -->
+                    <div
+                        class="animate-on-load animate-slide-up stagger-1 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-midnight-800 border border-white/10">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        <span class="text-sm text-zinc-400">Available for new projects</span>
+                    </div>
 
-        <!-- Subtext -->
-        <p class="hero__subtext">
-            Your skills are real. Your digital presence should be too. I build websites, booking flows, and all the
-            systems you need to show up with clarity and confidence from day one — the kind that make people take you
-            seriously and hit "book."
-        </p>
+                    <!-- Headline -->
+                    <h1
+                        class="animate-on-load animate-slide-up stagger-2 text-fluid-hero font-bold leading-[1.1] tracking-tight">
+                        We build <span class="gradient-text">digital systems</span> for the next generation of founders.
+                    </h1>
 
-        <!-- Main CTA -->
-        <a href="plans.html" class="hero__cta">
-            See Plans from ₹249
-            <span class="hero__cta-arrow">→</span>
-        </a>
+                    <!-- Subheadline -->
+                    <p
+                        class="animate-on-load animate-slide-up stagger-3 text-lg sm:text-xl text-zinc-400 max-w-lg leading-relaxed">
+                        From idea to launch in weeks, not months. We architect the digital infrastructure your business
+                        needs to scale with confidence.
+                    </p>
 
-        <!-- Secondary Links -->
-        <div class="hero__links">
-            <a href="portfolio/" class="hero__link">
-                <span>See who's building this</span>
-                <span>↗</span>
-            </a>
-            <button class="hero__link" id="servicesBtn" style="background: none; border: none; cursor: pointer;">
-                <span>View all services</span>
-                <span>↗</span>
-            </button>
-        </div>
+                    <!-- CTAs -->
+                    <div class="animate-on-load animate-slide-up stagger-4 flex flex-wrap gap-4">
+                        <button onclick="document.getElementById('bookingModal').style.display='flex'"
+                            class="group px-8 py-4 bg-accent text-white font-semibold rounded-xl hover:bg-accent-light transition-all hover:scale-105 flex items-center gap-2">
+                            Get Started
+                            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </button>
+                        <a href="#work"
+                            class="px-8 py-4 border border-white/10 text-white font-medium rounded-xl hover:bg-white/5 transition-all">
+                            View Work
+                        </a>
+                    </div>
 
-        <!-- Innovative Floating Cards Visualization -->
-        <div class="hero__orbit">
-            <!-- Central Hub -->
-            <div class="orbit__center">
-                <div class="orbit__pulse"></div>
-                <span class="orbit__logo">R</span>
-            </div>
+                    <!-- Stats -->
+                    <div class="animate-on-load animate-slide-up stagger-5 flex gap-12 pt-8 border-t border-white/5">
+                        <div>
+                            <div class="text-3xl font-bold text-white">15+</div>
+                            <div class="text-sm text-zinc-500">Projects Delivered</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-white">100%</div>
+                            <div class="text-sm text-zinc-500">Client Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Floating Card 1: Website Preview -->
-            <div class="orbit__card orbit__card--1">
-                <div class="orbit__card-icon">🌐</div>
-                <div class="orbit__card-content">
-                    <div class="orbit__card-title">Your Website</div>
-                    <div class="orbit__card-preview">
-                        <div class="preview-bar"></div>
-                        <div class="preview-lines">
-                            <div class="preview-line"></div>
-                            <div class="preview-line preview-line--short"></div>
+                <!-- Right Side - Mac Window Card -->
+                <div class="relative flex justify-center lg:justify-end">
+                    <div class="float-3d animate-float">
+                        <!-- Mac Window -->
+                        <div class="glass-card rounded-2xl overflow-hidden w-[420px] shadow-2xl shadow-accent/20">
+                            <!-- Window Header -->
+                            <div class="flex items-center gap-2 px-4 py-3 bg-midnight-800/80 border-b border-white/5">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                <span class="ml-4 text-sm text-zinc-500">Control Center</span>
+                            </div>
+
+                            <!-- Window Content -->
+                            <div class="p-6">
+                                <!-- Status Banner -->
+                                <div
+                                    class="flex items-center gap-4 p-4 rounded-xl bg-green-500/10 border border-green-500/20 mb-6">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-green-400" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-green-400">System Online</div>
+                                        <div class="text-sm text-zinc-400">All services operational</div>
+                                    </div>
+                                    <div class="ml-auto w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                                </div>
+
+                                <!-- Metrics Grid -->
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="bg-midnight-800/50 rounded-xl p-4">
+                                        <div class="text-xs text-zinc-500 mb-1">Performance</div>
+                                        <div class="text-2xl font-bold text-accent">98%</div>
+                                    </div>
+                                    <div class="bg-midnight-800/50 rounded-xl p-4">
+                                        <div class="text-xs text-zinc-500 mb-1">SEO Score</div>
+                                        <div class="text-2xl font-bold text-white">100</div>
+                                    </div>
+                                    <div class="bg-midnight-800/50 rounded-xl p-4">
+                                        <div class="text-xs text-zinc-500 mb-1">Load Time</div>
+                                        <div class="text-2xl font-bold text-white">1.2s</div>
+                                    </div>
+                                    <div class="bg-midnight-800/50 rounded-xl p-4">
+                                        <div class="text-xs text-zinc-500 mb-1">Uptime</div>
+                                        <div class="text-2xl font-bold text-green-400">99.9%</div>
+                                    </div>
+                                </div>
+
+                                <!-- Progress Bar -->
+                                <div class="mt-6 space-y-2">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-zinc-500">Launch Progress</span>
+                                        <span class="text-white font-medium">Complete</span>
+                                    </div>
+                                    <div class="h-2 bg-midnight-800 rounded-full overflow-hidden">
+                                        <div
+                                            class="h-full w-full bg-gradient-to-r from-accent to-purple-500 rounded-full">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Floating Card 2: Growth Stats -->
-            <div class="orbit__card orbit__card--2">
-                <div class="orbit__card-icon orbit__card-icon--green">📈</div>
-                <div class="orbit__card-content">
-                    <div class="orbit__card-label">New Clients</div>
-                    <div class="orbit__card-stat">+47</div>
-                    <div class="orbit__card-trend">↑ This month</div>
-                </div>
-            </div>
-
-            <!-- Floating Card 3: Live Notifications -->
-            <div class="orbit__card orbit__card--3">
-                <div class="orbit__card-notification">
-                    <div class="notif-dot"></div>
-                    <span>New booking received</span>
-                </div>
-                <div class="orbit__card-notification orbit__card-notification--delayed">
-                    <div class="notif-dot notif-dot--blue"></div>
-                    <span>Client inquiry</span>
-                </div>
-            </div>
-
-            <!-- Connecting Lines (SVG) -->
-            <svg class="orbit__lines" viewBox="0 0 600 400" fill="none">
-                <path class="orbit__line" d="M300,200 Q150,100 100,150" stroke="url(#lineGrad)" stroke-width="1" />
-                <path class="orbit__line" d="M300,200 Q450,100 500,150" stroke="url(#lineGrad)" stroke-width="1" />
-                <path class="orbit__line" d="M300,200 Q300,350 350,320" stroke="url(#lineGrad)" stroke-width="1" />
-                <defs>
-                    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="rgba(59,130,246,0.5)" />
-                        <stop offset="100%" stop-color="rgba(139,92,246,0.2)" />
-                    </linearGradient>
-                </defs>
-            </svg>
         </div>
     </section>
 
-    <!-- Work Section -->
-    <section class="work-section" id="work">
-        <div class="work-section__inner">
-            <h2 class="work-section__title">Recent Work</h2>
-            <p class="work-section__subtitle">Things I've built that are out in the world</p>
+    <!-- Process Section -->
+    <section id="process" class="py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <span class="text-accent text-sm font-semibold uppercase tracking-widest">Our Process</span>
+                <h2 class="text-fluid-display font-bold mt-4 mb-6">From Vision to Launch in 3 Steps</h2>
+                <p class="text-zinc-400 text-lg max-w-2xl mx-auto">A battle-tested framework that transforms ideas into
+                    scalable digital products.</p>
+            </div>
 
-            <div class="work-grid">
-                <!-- CashCurious Project -->
-                <a href="https://cash-curious.vercel.app/" target="_blank" class="work-card">
-                    <div class="work-card__badge">Live</div>
-                    <div class="work-card__icon">💰</div>
-                    <h3 class="work-card__title">CashCurious</h3>
-                    <p class="work-card__tagline">Financial Literacy for the Next Gen</p>
-                    <p class="work-card__description">
-                        An interactive learning platform that makes personal finance fun and accessible.
-                        Features gamified lessons, quizzes, and real-world scenarios designed to help
-                        young people build smart money habits from day one.
-                    </p>
-                    <div class="work-card__tech">
-                        <span>Next.js</span>
-                        <span>React</span>
-                        <span>TypeScript</span>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Step 1: Audit -->
+                <div class="group">
+                    <div class="glass-card rounded-3xl p-8 hover:border-accent/20 transition-all duration-300 h-full">
+                        <div
+                            class="w-16 h-16 rounded-2xl bg-midnight-800 border border-white/10 flex items-center justify-center mb-6 group-hover:border-accent/30 transition-colors">
+                            <svg class="w-8 h-8 text-zinc-400 group-hover:text-accent transition-colors" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                                <circle cx="11" cy="11" r="7" />
+                                <path d="M21 21l-4.35-4.35" />
+                            </svg>
+                        </div>
+                        <div class="text-xs text-accent font-semibold mb-3">STEP 01</div>
+                        <h3 class="text-2xl font-bold mb-4">Audit</h3>
+                        <p class="text-zinc-400 leading-relaxed">Deep-dive into your business, users, and market. We
+                            identify gaps and the fastest path to results.</p>
                     </div>
-                    <span class="work-card__link">View Project →</span>
-                </a>
+                </div>
 
-                <!-- QuantMaster Project -->
-                <a href="https://robingautam1.github.io/quant-master/" target="_blank" class="work-card">
-                    <div class="work-card__badge">Live</div>
-                    <div class="work-card__icon">📊</div>
-                    <h3 class="work-card__title">QuantMaster</h3>
-                    <p class="work-card__tagline">Financial Calculator Hub</p>
-                    <p class="work-card__description">
-                        A comprehensive toolkit with 25+ interactive JavaScript calculators for finance professionals
-                        and students. Features NPV, IRR, CAPM, WACC, and more — built to make complex
-                        calculations accessible and fast.
-                    </p>
-                    <div class="work-card__tech">
-                        <span>JavaScript</span>
-                        <span>HTML/CSS</span>
-                        <span>GitHub Pages</span>
+                <!-- Step 2: Build -->
+                <div class="group">
+                    <div class="glass-card rounded-3xl p-8 hover:border-accent/20 transition-all duration-300 h-full">
+                        <div
+                            class="w-16 h-16 rounded-2xl bg-midnight-800 border border-white/10 flex items-center justify-center mb-6 group-hover:border-accent/30 transition-colors">
+                            <svg class="w-8 h-8 text-zinc-400 group-hover:text-accent transition-colors" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                                <path d="M8 9l3 3-3 3" />
+                                <path d="M13 15h3" />
+                                <rect x="3" y="4" width="18" height="16" rx="2" />
+                            </svg>
+                        </div>
+                        <div class="text-xs text-accent font-semibold mb-3">STEP 02</div>
+                        <h3 class="text-2xl font-bold mb-4">Build</h3>
+                        <p class="text-zinc-400 leading-relaxed">Agile design and development sprints. We ship fast,
+                            iterate faster, and keep you in the loop.</p>
                     </div>
-                    <span class="work-card__link">View Project →</span>
-                </a>
+                </div>
+
+                <!-- Step 3: Scale -->
+                <div class="group">
+                    <div class="glass-card rounded-3xl p-8 hover:border-accent/20 transition-all duration-300 h-full">
+                        <div
+                            class="w-16 h-16 rounded-2xl bg-midnight-800 border border-white/10 flex items-center justify-center mb-6 group-hover:border-accent/30 transition-colors">
+                            <svg class="w-8 h-8 text-zinc-400 group-hover:text-accent transition-colors" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                                <path
+                                    d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+                                <path
+                                    d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+                            </svg>
+                        </div>
+                        <div class="text-xs text-accent font-semibold mb-3">STEP 03</div>
+                        <h3 class="text-2xl font-bold mb-4">Scale</h3>
+                        <p class="text-zinc-400 leading-relaxed">Launch, measure, and optimize. We ensure your product
+                            keeps winning with ongoing support.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Work Section - Immersive Browser Previews -->
+    <section id="work" class="py-32 bg-midnight-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16">
+                <div>
+                    <span class="text-accent text-sm font-semibold uppercase tracking-widest">Recent Work</span>
+                    <h2 class="text-fluid-display font-bold mt-4">Live Project Demos</h2>
+                    <p class="text-zinc-400 mt-3">Hover to see them in action</p>
+                </div>
+                <a href="portfolio/"
+                    class="mt-6 md:mt-0 text-zinc-400 hover:text-white transition-colors flex items-center gap-2">
+                    View All Projects
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Bento Grid -->
+            <div class="grid grid-cols-12 gap-8">
+                <!-- CashCurious - Large Card -->
+                <div class="col-span-12 lg:col-span-7 group cursor-pointer">
+                    <div class="relative h-full">
+                        <!-- Browser Window Mockup -->
+                        <div
+                            class="bg-midnight-800/60 backdrop-blur-xl rounded-2xl overflow-hidden shadow-2xl border border-white/10 group-hover:shadow-accent/20 transition-all duration-500">
+                            <!-- Browser Chrome -->
+                            <div class="flex items-center gap-3 px-4 py-3 bg-midnight-950/50 border-b border-white/5">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                                </div>
+                                <div
+                                    class="flex-1 flex items-center gap-2 px-3 py-1.5 bg-midnight-900/80 rounded-lg border border-white/5">
+                                    <svg class="w-3 h-3 text-zinc-500" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                    </svg>
+                                    <span class="text-xs text-zinc-500 truncate">cash-curious.vercel.app</span>
+                                </div>
+                            </div>
+
+                            <!-- Preview Area -->
+                            <div
+                                class="relative aspect-[16/10] bg-gradient-to-br from-emerald-900/30 to-midnight-950 overflow-hidden">
+                                <!-- Static Preview (Always visible) -->
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 flex items-center justify-center p-12">
+                                    <div class="w-full space-y-8">
+                                        <!-- Hero Section Mockup -->
+                                        <div class="text-center space-y-4">
+                                            <div class="h-8 bg-white/10 rounded-lg w-3/4 mx-auto"></div>
+                                            <div class="h-6 bg-white/5 rounded-lg w-1/2 mx-auto"></div>
+                                        </div>
+                                        <!-- Feature Cards -->
+                                        <div class="grid grid-cols-3 gap-4">
+                                            <div
+                                                class="aspect-square bg-emerald-500/20 rounded-xl border border-emerald-500/30 transform group-hover:scale-105 transition-transform duration-700 delay-100">
+                                            </div>
+                                            <div
+                                                class="aspect-square bg-blue-500/20 rounded-xl border border-blue-500/30 transform group-hover:scale-105 transition-transform duration-700 delay-200">
+                                            </div>
+                                            <div
+                                                class="aspect-square bg-purple-500/20 rounded-xl border border-purple-500/30 transform group-hover:scale-105 transition-transform duration-700 delay-300">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Scroll Animation Overlay (Reveals on hover) -->
+                                <div
+                                    class="absolute inset-0 bg-midnight-950 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                                    <div class="text-center space-y-4 animate-pulse">
+                                        <div
+                                            class="w-16 h-16 border-4 border-accent border-t-transparent rounded-full animate-spin mx-auto">
+                                        </div>
+                                        <p class="text-accent text-sm font-semibold">Loading Demo...</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Glassmorphism Info Panel -->
+                            <div
+                                class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-midnight-950/95 via-midnight-950/90 to-transparent backdrop-blur-md p-6 transform translate-y-0 group-hover:translate-y-0 transition-all duration-500">
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="text-2xl font-bold">CashCurious</h3>
+                                        <div
+                                            class="px-4 py-2 bg-emerald-500/20 rounded-full border border-emerald-500/30">
+                                            <span class="text-emerald-400 font-bold text-sm">+40% Engagement</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Gamified financial literacy
+                                        platform
+                                        making personal finance fun for the next generation.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span
+                                            class="px-3 py-1 bg-accent/10 border border-accent/20 rounded-full text-xs text-accent">Next.js</span>
+                                        <span
+                                            class="px-3 py-1 bg-accent/10 border border-accent/20 rounded-full text-xs text-accent">React</span>
+                                        <span
+                                            class="px-3 py-1 bg-accent/10 border border-accent/20 rounded-full text-xs text-accent">TypeScript</span>
+                                    </div>
+
+                                    <!-- CTA Button (Slides up on hover) -->
+                                    <div
+                                        class="opacity-0 -translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                                        <a href="https://cash-curious.vercel.app/" target="_blank"
+                                            class="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-light rounded-xl font-semibold text-sm transition-colors">
+                                            View Live Site
+                                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QuantMaster Card -->
+                <div class="col-span-12 lg:col-span-5 group cursor-pointer">
+                    <div class="relative h-full">
+                        <!-- Browser Window Mockup -->
+                        <div
+                            class="bg-midnight-800/60 backdrop-blur-xl rounded-2xl overflow-hidden shadow-2xl border border-white/10 group-hover:shadow-purple-500/20 transition-all duration-500">
+                            <!-- Browser Chrome -->
+                            <div class="flex items-center gap-3 px-4 py-3 bg-midnight-950/50 border-b border-white/5">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                                </div>
+                                <div
+                                    class="flex-1 flex items-center gap-2 px-3 py-1.5 bg-midnight-900/80 rounded-lg border border-white/5">
+                                    <svg class="w-3 h-3 text-zinc-500" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                    </svg>
+                                    <span class="text-xs text-zinc-500 truncate">robingautam1.github.io</span>
+                                </div>
+                            </div>
+
+                            <!-- Preview Area -->
+                            <div
+                                class="relative aspect-[16/10] bg-gradient-to-br from-purple-900/30 to-midnight-950 overflow-hidden">
+                                <!-- Code Preview -->
+                                <div class="absolute inset-0 p-8 font-mono text-sm">
+                                    <div class="space-y-2">
+                                        <div class="text-zinc-600">// QuantMaster Financial Calculators</div>
+                                        <div class="text-purple-400">class <span
+                                                class="text-accent">FinancialCalculator</span> {'{'}
+                                        </div>
+                                        <div
+                                            class="pl-4 text-zinc-400 transform group-hover:translate-x-2 transition-transform duration-500">
+                                            calculateNPV(cashFlows, rate) {'{'}</div>
+                                        <div
+                                            class="pl-8 text-emerald-400 transform group-hover:translate-x-4 transition-transform duration-700">
+                                            return npv;</div>
+                                        <div class="pl-4 text-zinc-400">{'}'}</div>
+                                        <div class="text-purple-400">{'}'}</div>
+                                        <div class="mt-4 text-zinc-600 animate-pulse">› 25+ Interactive Tools</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Glassmorphism Info Panel -->
+                            <div
+                                class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-midnight-950/95 via-midnight-950/90 to-transparent backdrop-blur-md p-6 transform translate-y-0 group-hover:translate-y-0 transition-all duration-500">
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="text-xl font-bold">QuantMaster</h3>
+                                        <span class="text-accent font-bold text-lg">25+ Tools</span>
+                                    </div>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Suite of interactive financial
+                                        calculators for professionals and students.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span
+                                            class="px-3 py-1 bg-accent/10 border border-accent/20 rounded-full text-xs text-accent">JavaScript</span>
+                                        <span
+                                            class="px-3 py-1 bg-accent/10 border border-accent/20 rounded-full text-xs text-accent">GitHub
+                                            Pages</span>
+                                    </div>
+
+                                    <!-- CTA Button -->
+                                    <div
+                                        class="opacity-0 -translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                                        <a href="https://robingautam1.github.io/quant-master/" target="_blank"
+                                            class="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-light rounded-xl font-semibold text-sm transition-colors">
+                                            View Live Site
+                                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Tiers Section -->
+    <section class="py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <span class="text-accent text-sm font-semibold uppercase tracking-widest">Our Services</span>
+                <h2 class="text-fluid-display font-bold mt-4 mb-6">Choose Your Growth Path</h2>
+                <p class="text-zinc-400 text-lg max-w-2xl mx-auto">From MVP to enterprise scale. Pick the tier that
+                    matches your ambition.</p>
+            </div>
+
+            <!-- Pricing Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Launch Tier -->
+                <div class="glass-card rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold mb-2">Launch</h3>
+                        <p class="text-zinc-400 text-sm">Perfect for validating your idea</p>
+                    </div>
+
+                    <div class="mb-8">
+                        <div class="text-4xl font-bold text-white mb-1">₹899</div>
+                        <div class="text-zinc-500 text-sm">Starting price</div>
+                    </div>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-zinc-300 text-sm">Landing page + 3-5 core pages</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-zinc-300 text-sm">Mobile responsive design</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-zinc-300 text-sm">Basic SEO setup</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-zinc-300 text-sm">GitHub deployment</span>
+                        </div>
+                    </div>
+
+                    <button onclick="document.getElementById('bookingModal').style.display='flex'"
+                        class="w-full px-6 py-4 bg-midnight-800 hover:bg-midnight-700 text-white rounded-xl font-semibold transition-all">
+                        Get Started
+                    </button>
+                </div>
+
+                <!-- Growth Tier -->
+                <div class="glass-card rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold mb-2">Growth</h3>
+                        <p class="text-zinc-400 text-sm">For businesses ready to scale</p>
+                    </div>
+
+                    <div class="mb-8">
+                        <div class="text-4xl font-bold text-white mb-1">₹1499</div>
+                        <div class="text-zinc-500 text-sm">Starting price</div>
+                    </div>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-zinc-300 text-sm">Everything in Launch</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-zinc-300 text-sm">Custom web application</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-zinc-300 text-sm">Database integration</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-zinc-300 text-sm">User authentication</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-zinc-300 text-sm">Advanced SEO optimization</span>
+                        </div>
+                    </div>
+
+                    <button onclick="document.getElementById('bookingModal').style.display='flex'"
+                        class="w-full px-6 py-4 bg-midnight-800 hover:bg-midnight-700 text-white rounded-xl font-semibold transition-all">
+                        Get Started
+                    </button>
+                </div>
+
+                <!-- Scale Tier (Popular) -->
+                <div class="relative">
+                    <!-- Popular Badge -->
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+                        <div
+                            class="px-4 py-1.5 bg-gradient-to-r from-accent to-purple-500 rounded-full text-white text-xs font-bold uppercase tracking-wide">
+                            Most Popular
+                        </div>
+                    </div>
+
+                    <!-- Animated Gradient Border -->
+                    <div class="gradient-border rounded-3xl p-[2px]">
+                        <div class="glass-card rounded-3xl p-8 bg-midnight-900/95">
+                            <div class="mb-6">
+                                <h3 class="text-2xl font-bold mb-2">Scale</h3>
+                                <p class="text-zinc-400 text-sm">Enterprise-grade solutions</p>
+                            </div>
+
+                            <div class="mb-8">
+                                <div
+                                    class="text-4xl font-bold bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent mb-1">
+                                    ₹2499</div>
+                                <div class="text-zinc-500 text-sm">Starting price</div>
+                            </div>
+
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-zinc-300 text-sm">Everything in Growth</span>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-zinc-300 text-sm">Multi-platform support</span>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-zinc-300 text-sm">Advanced analytics & tracking</span>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-zinc-300 text-sm">Payment gateway integration</span>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-zinc-300 text-sm">API development</span>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-zinc-300 text-sm">3 months post-launch support</span>
+                                </div>
+                            </div>
+
+                            <button onclick="document.getElementById('bookingModal').style.display='flex'"
+                                class="w-full px-6 py-4 bg-gradient-to-r from-accent to-purple-500 hover:from-accent-light hover:to-purple-400 text-white rounded-xl font-semibold transition-all hover:scale-105">
+                                Get Started
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-fluid-display font-bold mb-6">Ready to build something great?</h2>
+            <p class="text-zinc-400 text-lg mb-10 max-w-2xl mx-auto">Let's discuss your project and see how we can help
+                transform your vision into reality.</p>
+            <button onclick="document.getElementById('bookingModal').style.display='flex'"
+                class="px-10 py-5 bg-accent text-white font-semibold rounded-2xl hover:bg-accent-light transition-all hover:scale-105 text-lg">
+                Book a Free Consultation
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">R</span>
+                    </div>
+                    <span class="font-semibold">Robin Gautam</span>
+                </div>
+                <div class="flex items-center gap-6 text-sm text-zinc-400">
+                    <a href="mailto:hello@robingautam.in"
+                        class="hover:text-white transition-colors">hello@robingautam.in</a>
+                    <a href="portfolio/" class="hover:text-white transition-colors">Portfolio</a>
+                </div>
+                <div class="text-sm text-zinc-500">
+                    © 2026 Robin Gautam. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Booking Modal -->
-    <div class="booking-modal" id="bookingModal"
-        style="display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);">
+    <div id="bookingModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm"
+        onclick="if(event.target === this) this.style.display='none'">
         <div
-            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 500px; background: #18181b; border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 2rem; max-height: 90vh; overflow-y: auto;">
-            <button id="closeModal"
-                style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #a1a1aa; font-size: 1.5rem; cursor: pointer;">×</button>
-            <h2 style="color: #fafafa; font-size: 1.5rem; margin-bottom: 0.5rem;">Book a 15-minute call</h2>
-            <p style="color: #71717a; margin-bottom: 1.5rem;">You don't need a perfect idea. Just bring what you have.
-            </p>
+            class="bg-midnight-800 border border-white/10 rounded-3xl p-8 max-w-lg w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Book a Call</h2>
+                <button onclick="document.getElementById('bookingModal').style.display='none'"
+                    class="text-zinc-400 hover:text-white text-2xl">&times;</button>
+            </div>
+            <p class="text-zinc-400 mb-6">You don't need a perfect idea. Just bring what you have.</p>
             <div class="calendly-inline-widget"
                 data-url="https://calendly.com/gautam-robin333/30min?hide_event_type_details=1&hide_gdpr_banner=1"
-                style="min-width: 100%; height: 500px;"></div>
+                style="min-height: 500px;"></div>
             <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         </div>
     </div>
 
-    <!-- Services Overlay (keep existing) -->
-    <div class="services-overlay" id="servicesOverlay"
-        style="display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.9); backdrop-filter: blur(16px); padding: 2rem; overflow-y: auto;">
-        <div
-            style="max-width: 1000px; margin: 4rem auto; background: #18181b; border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 2.5rem;">
-            <button id="servicesClose"
-                style="position: absolute; top: 2rem; right: 2rem; background: none; border: none; color: #a1a1aa; font-size: 2rem; cursor: pointer;">×</button>
-            <h2 style="color: #fafafa; font-size: 2rem; margin-bottom: 2rem;">Our Capabilities</h2>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-                <!-- Service Cards -->
-                <div
-                    style="background: #232326; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.5rem;">
-                    <div
-                        style="font-size: 0.75rem; color: #71717a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
-                        Build & Launch</div>
-                    <h3 style="color: #fafafa; font-size: 1.125rem; margin-bottom: 0.75rem;">Minimalist Websites</h3>
-                    <p style="color: #a1a1aa; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem;">For your
-                        first presence online. A simple one-page site with your name, work, and contact.</p>
-                    <div style="color: #3b82f6; font-weight: 600;">From ₹249</div>
-                </div>
-
-                <div
-                    style="background: #232326; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.5rem;">
-                    <div
-                        style="font-size: 0.75rem; color: #71717a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
-                        Build & Launch</div>
-                    <h3 style="color: #fafafa; font-size: 1.125rem; margin-bottom: 0.75rem;">Professional Websites</h3>
-                    <p style="color: #a1a1aa; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem;">For people
-                        who want to explain what they do. Multi-section with About, Services, and Contact.</p>
-                    <div style="color: #3b82f6; font-weight: 600;">Starts at ₹999</div>
-                </div>
-
-                <div
-                    style="background: #232326; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.5rem;">
-                    <div
-                        style="font-size: 0.75rem; color: #71717a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
-                        Build & Launch</div>
-                    <h3 style="color: #fafafa; font-size: 1.125rem; margin-bottom: 0.75rem;">Complete Onboarding Systems
-                    </h3>
-                    <p style="color: #a1a1aa; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem;">Full website
-                        with booking, forms, or payments. Includes domain setup.</p>
-                    <div style="color: #3b82f6; font-weight: 600;">Starts at ₹1,899</div>
-                </div>
-
-                <div
-                    style="background: #232326; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.5rem;">
-                    <div
-                        style="font-size: 0.75rem; color: #71717a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
-                        Visual Narrative</div>
-                    <h3 style="color: #fafafa; font-size: 1.125rem; margin-bottom: 0.75rem;">Pitch Decks & Slides</h3>
-                    <p style="color: #a1a1aa; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem;">For
-                        explaining your idea clearly. Slides for founders who need to present without confusion.</p>
-                    <div style="color: #3b82f6; font-weight: 600;">Starts at ₹999</div>
-                </div>
-
-                <div
-                    style="background: #232326; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.5rem;">
-                    <div
-                        style="font-size: 0.75rem; color: #71717a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
-                        Acceleration</div>
-                    <h3 style="color: #fafafa; font-size: 1.125rem; margin-bottom: 0.75rem;">1:1 AI Workflows</h3>
-                    <p style="color: #a1a1aa; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem;">Personal
-                        sessions to set up simple AI tools for writing and planning.</p>
-                    <div style="color: #3b82f6; font-weight: 600;">Starts at ₹999</div>
-                </div>
-
-                <div
-                    style="background: #232326; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1.5rem;">
-                    <div
-                        style="font-size: 0.75rem; color: #71717a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
-                        Micro-Consultancy</div>
-                    <h3 style="color: #fafafa; font-size: 1.125rem; margin-bottom: 0.75rem;">Founder's Audit</h3>
-                    <p style="color: #a1a1aa; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem;">A quick look
-                        at what you already have. A 15-min review and what to fix first.</p>
-                    <div style="color: #22c55e; font-weight: 600;">Free</div>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="plans.html"
-                    style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: #fafafa; color: #0a0a0b; font-weight: 600; border-radius: 100px; text-decoration: none;">
-                    View All Plans →
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer
-        style="position: relative; z-index: 1; padding: 2rem; text-align: center; color: #71717a; font-size: 0.875rem;">
-        <a href="mailto:hello@robingautam.in"
-            style="color: #a1a1aa; text-decoration: none; transition: color 0.2s;">hello@robingautam.in</a>
-        <span style="margin: 0 1rem;">·</span>
-        <span>© Robin Gautam 2026</span>
-    </footer>
-
+    <!-- Animations Script -->
     <script>
-        // Booking Modal
-        const bookBtn = document.getElementById('bookBtn');
-        const bookingModal = document.getElementById('bookingModal');
-        const closeModal = document.getElementById('closeModal');
-
-        bookBtn?.addEventListener('click', () => {
-            bookingModal.style.display = 'block';
+        // Trigger animations on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.animate-on-load');
+            animatedElements.forEach(el => {
+                el.classList.remove('opacity-0');
+            });
         });
-
-        closeModal?.addEventListener('click', () => {
-            bookingModal.style.display = 'none';
-        });
-
-        bookingModal?.addEventListener('click', (e) => {
-            if (e.target === bookingModal) {
-                bookingModal.style.display = 'none';
-            }
-        });
-
-        // Services Overlay
-        const servicesBtn = document.getElementById('servicesBtn');
-        const servicesOverlay = document.getElementById('servicesOverlay');
-        const servicesClose = document.getElementById('servicesClose');
-
-        servicesBtn?.addEventListener('click', () => {
-            servicesOverlay.style.display = 'block';
-        });
-
-        servicesClose?.addEventListener('click', () => {
-            servicesOverlay.style.display = 'none';
-        });
-
-        servicesOverlay?.addEventListener('click', (e) => {
-            if (e.target === servicesOverlay) {
-                servicesOverlay.style.display = 'none';
-            }
-        });
-
-        // Escape key closes modals
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                bookingModal.style.display = 'none';
-                servicesOverlay.style.display = 'none';
-            }
-        });
-
-        // ===== GLOBAL NETWORK MAP ANIMATION =====
-        (function initNetworkMap() {
-            const canvas = document.getElementById('networkMap');
-            if (!canvas) return;
-
-            const ctx = canvas.getContext('2d');
-            let width, height;
-            let nodes = [];
-            let connections = [];
-            let particles = [];
-            let time = 0;
-
-            // Major cities with approximate relative positions (0-1 range)
-            const cities = [
-                { name: 'Mumbai', x: 0.60, y: 0.48 },
-                { name: 'Delhi', x: 0.59, y: 0.38 },
-                { name: 'Bangalore', x: 0.58, y: 0.55 },
-                { name: 'London', x: 0.47, y: 0.30 },
-                { name: 'New York', x: 0.25, y: 0.35 },
-                { name: 'Singapore', x: 0.70, y: 0.58 },
-                { name: 'Dubai', x: 0.55, y: 0.42 },
-                { name: 'Sydney', x: 0.85, y: 0.72 },
-                { name: 'Tokyo', x: 0.82, y: 0.38 },
-                { name: 'San Francisco', x: 0.12, y: 0.38 },
-                { name: 'Toronto', x: 0.22, y: 0.32 },
-                { name: 'Berlin', x: 0.50, y: 0.28 },
-                { name: 'Paris', x: 0.47, y: 0.32 },
-                { name: 'Hong Kong', x: 0.75, y: 0.45 },
-                { name: 'Shanghai', x: 0.77, y: 0.40 },
-            ];
-
-            // Resize handler
-            function resize() {
-                width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight;
-
-                // Update node positions based on new dimensions
-                nodes = cities.map(city => ({
-                    ...city,
-                    px: city.x * width,
-                    py: city.y * height,
-                    pulse: Math.random() * Math.PI * 2,
-                    size: 2 + Math.random() * 2
-                }));
-
-                // Create connections between nearby nodes
-                generateConnections();
-            }
-
-            // Generate connections between nodes
-            function generateConnections() {
-                connections = [];
-                const maxDist = width * 0.35;
-
-                for (let i = 0; i < nodes.length; i++) {
-                    for (let j = i + 1; j < nodes.length; j++) {
-                        const dx = nodes[i].px - nodes[j].px;
-                        const dy = nodes[i].py - nodes[j].py;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-
-                        if (dist < maxDist && Math.random() > 0.3) {
-                            connections.push({
-                                from: nodes[i],
-                                to: nodes[j],
-                                dist: dist,
-                                active: false,
-                                progress: 0
-                            });
-                        }
-                    }
-                }
-            }
-
-            // Create traveling particles
-            function spawnParticle() {
-                if (connections.length === 0) return;
-                const conn = connections[Math.floor(Math.random() * connections.length)];
-                const reverse = Math.random() > 0.5;
-
-                particles.push({
-                    from: reverse ? conn.to : conn.from,
-                    to: reverse ? conn.from : conn.to,
-                    progress: 0,
-                    speed: 0.003 + Math.random() * 0.004
-                });
-            }
-
-            // Draw the map
-            function draw() {
-                ctx.clearRect(0, 0, width, height);
-
-                // Draw world map dots (simplified continents)
-                drawWorldMapDots();
-
-                // Draw connections (static lines)
-                connections.forEach(conn => {
-                    ctx.beginPath();
-                    ctx.moveTo(conn.from.px, conn.from.py);
-
-                    // Curved line
-                    const midX = (conn.from.px + conn.to.px) / 2;
-                    const midY = (conn.from.py + conn.to.py) / 2 - conn.dist * 0.1;
-                    ctx.quadraticCurveTo(midX, midY, conn.to.px, conn.to.py);
-
-                    ctx.strokeStyle = 'rgba(59, 130, 246, 0.08)';
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                });
-
-                // Draw traveling particles
-                particles.forEach((particle, index) => {
-                    particle.progress += particle.speed;
-
-                    if (particle.progress >= 1) {
-                        particles.splice(index, 1);
-                        return;
-                    }
-
-                    const t = particle.progress;
-                    const from = particle.from;
-                    const to = particle.to;
-
-                    // Quadratic bezier point
-                    const midX = (from.px + to.px) / 2;
-                    const midY = (from.py + to.py) / 2 - Math.abs(from.px - to.px) * 0.1;
-
-                    const x = (1 - t) * (1 - t) * from.px + 2 * (1 - t) * t * midX + t * t * to.px;
-                    const y = (1 - t) * (1 - t) * from.py + 2 * (1 - t) * t * midY + t * t * to.py;
-
-                    // Draw particle trail
-                    const gradient = ctx.createRadialGradient(x, y, 0, x, y, 8);
-                    gradient.addColorStop(0, 'rgba(0, 242, 255, 0.8)');
-                    gradient.addColorStop(0.5, 'rgba(59, 130, 246, 0.3)');
-                    gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
-
-                    ctx.beginPath();
-                    ctx.arc(x, y, 8, 0, Math.PI * 2);
-                    ctx.fillStyle = gradient;
-                    ctx.fill();
-
-                    // Bright core
-                    ctx.beginPath();
-                    ctx.arc(x, y, 2, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-                    ctx.fill();
-                });
-
-                // Draw nodes (cities)
-                nodes.forEach(node => {
-                    node.pulse += 0.02;
-                    const pulseSize = 1 + Math.sin(node.pulse) * 0.3;
-
-                    // Outer glow
-                    const gradient = ctx.createRadialGradient(
-                        node.px, node.py, 0,
-                        node.px, node.py, 12 * pulseSize
-                    );
-                    gradient.addColorStop(0, 'rgba(59, 130, 246, 0.3)');
-                    gradient.addColorStop(0.5, 'rgba(59, 130, 246, 0.1)');
-                    gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
-
-                    ctx.beginPath();
-                    ctx.arc(node.px, node.py, 12 * pulseSize, 0, Math.PI * 2);
-                    ctx.fillStyle = gradient;
-                    ctx.fill();
-
-                    // Core dot
-                    ctx.beginPath();
-                    ctx.arc(node.px, node.py, node.size, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(59, 130, 246, 0.8)';
-                    ctx.fill();
-
-                    // Center highlight
-                    ctx.beginPath();
-                    ctx.arc(node.px, node.py, node.size * 0.5, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-                    ctx.fill();
-                });
-            }
-
-            // Draw simplified world map as dot pattern
-            function drawWorldMapDots() {
-                const dotSize = 1;
-                const spacing = 20;
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.015)';
-
-                // Create a simple world map shape using dots
-                for (let x = 0; x < width; x += spacing) {
-                    for (let y = 0; y < height; y += spacing) {
-                        const relX = x / width;
-                        const relY = y / height;
-
-                        // Simple continent shapes (approximate)
-                        if (isLand(relX, relY)) {
-                            ctx.beginPath();
-                            ctx.arc(x, y, dotSize, 0, Math.PI * 2);
-                            ctx.fill();
-                        }
-                    }
-                }
-            }
-
-            // Simple land detection function
-            function isLand(x, y) {
-                // North America
-                if (x > 0.08 && x < 0.32 && y > 0.22 && y < 0.50) return true;
-                // South America
-                if (x > 0.22 && x < 0.38 && y > 0.52 && y < 0.85) return true;
-                // Europe
-                if (x > 0.42 && x < 0.58 && y > 0.22 && y < 0.42) return true;
-                // Africa
-                if (x > 0.42 && x < 0.58 && y > 0.42 && y < 0.72) return true;
-                // Asia
-                if (x > 0.55 && x < 0.85 && y > 0.25 && y < 0.55) return true;
-                // India
-                if (x > 0.55 && x < 0.68 && y > 0.38 && y < 0.58) return true;
-                // Australia
-                if (x > 0.75 && x < 0.92 && y > 0.62 && y < 0.78) return true;
-                return false;
-            }
-
-            // Animation loop
-            function animate() {
-                // Spawn new particles periodically
-                if (Math.random() < 0.05 && particles.length < 15) {
-                    spawnParticle();
-                }
-
-                draw();
-                time++;
-                requestAnimationFrame(animate);
-            }
-
-            // Initialize
-            resize();
-            window.addEventListener('resize', resize);
-            requestAnimationFrame(animate);
-        })();
     </script>
 
 </body>
