@@ -186,7 +186,7 @@
                     <a href="portfolio/" class="text-sm text-zinc-400 hover:text-white transition-colors">About</a>
                 </div>
 
-                <button id="bookBtn"
+                <button onclick="document.getElementById('bookingModal').style.display='flex'"
                     class="px-6 py-3 bg-white text-midnight-950 text-sm font-semibold rounded-xl hover:bg-zinc-200 transition-all hover:scale-105">
                     Let's Talk
                 </button>
@@ -864,10 +864,10 @@
     </footer>
 
     <!-- Booking Modal -->
-    <div id="bookingModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm"
+    <div id="bookingModal"
+        class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4"
         onclick="if(event.target === this) this.style.display='none'">
-        <div
-            class="bg-midnight-800 border border-white/10 rounded-3xl p-8 max-w-lg w-full mx-4 max-h-[90vh] overflow-y-auto">
+        <div class="bg-midnight-800 border border-white/10 rounded-3xl p-8 max-w-lg w-full">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl font-bold">Book a Call</h2>
                 <button onclick="document.getElementById('bookingModal').style.display='none'"
@@ -876,7 +876,7 @@
             <p class="text-zinc-400 mb-6">You don't need a perfect idea. Just bring what you have.</p>
             <div class="calendly-inline-widget"
                 data-url="https://calendly.com/gautam-robin333/30min?hide_event_type_details=1&hide_gdpr_banner=1"
-                style="min-height: 500px;"></div>
+                style="min-height: 700px; height: 700px;"></div>
             <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         </div>
     </div>
