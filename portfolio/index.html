@@ -5,402 +5,1769 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Robin Gautam | Ecosystem Builder</title>
-    <meta name="description"
-        content="Portfolio of Robin Gautam, MBA student at IIM Rohtak. I build ecosystems, not just resumes.">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
         rel="stylesheet">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/style.css?v=2.3">
+    <style>
+        /* ============================================
+           CSS VARIABLES & RESET
+        ============================================ */
+        :root {
+            --bg-primary: #050505;
+            --bg-card: #0A0A0A;
+            --bg-card-hover: #0F0F0F;
+            --accent: #10b981;
+            --accent-glow: rgba(16, 185, 129, 0.4);
+            --text-primary: #FAFAFA;
+            --text-secondary: #A1A1AA;
+            --text-muted: #71717A;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-glass: rgba(255, 255, 255, 0.12);
+            --glass-bg: rgba(10, 10, 10, 0.7);
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+        }
 
-    <!-- Lottie Player -->
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ============================================
+           UTILITY CLASSES
+        ============================================ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 140px 0;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger delays */
+        .delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        .delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        .delay-5 {
+            transition-delay: 0.5s;
+        }
+
+        /* ============================================
+           NAVIGATION
+        ============================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 10px 24px;
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+
+        /* ============================================
+           HERO SECTION WITH DOT GRID
+        ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        /* Interactive Dot Grid Background */
+        .dot-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        .grid-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.3;
+            filter: blur(60px);
+            transition: transform 0.1s ease-out;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            padding: 0 24px;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 32px;
+        }
+
+        .hero-label::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #FAFAFA 0%, #A1A1AA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 48px;
+            line-height: 1.7;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Magnetic Button Effect */
+        .btn-primary {
+            position: relative;
+            padding: 16px 32px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -10px var(--accent-glow);
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn-secondary {
+            padding: 16px 32px;
+            background: transparent;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 12px;
+            border: 1px solid var(--border-glass);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 12px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        .scroll-indicator svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--text-muted);
+        }
+
+        /* ============================================
+           ABOUT SECTION
+        ============================================ */
+        .about {
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-card) 50%, var(--bg-primary) 100%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-content p {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            margin-bottom: 24px;
+            line-height: 1.8;
+        }
+
+        .about-content strong {
+            color: var(--text-primary);
+        }
+
+        .about-highlight {
+            display: inline;
+            background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+            background-size: 100% 2px;
+            background-position: 0 100%;
+            background-repeat: no-repeat;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+        }
+
+        .about-image {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 24px;
+            border: 1px solid var(--border-subtle);
+            filter: grayscale(20%);
+            transition: filter 0.5s ease;
+        }
+
+        .about-image:hover {
+            filter: grayscale(0%);
+        }
+
+        .about-image-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: var(--accent-glow);
+            filter: blur(100px);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* ============================================
+           METRICS BADGES
+        ============================================ */
+        .metrics-row {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-top: 48px;
+        }
+
+        .metric-badge {
+            position: relative;
+            padding: 20px 28px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .metric-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .metric-badge:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px -20px var(--accent-glow);
+        }
+
+        .metric-badge:hover::before {
+            opacity: 1;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .metric-value span {
+            color: var(--accent);
+        }
+
+        .metric-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ============================================
+           BENTO GRID - REAL IMPACT
+        ============================================ */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: auto;
+            gap: 24px;
+        }
+
+        .bento-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .bento-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Large card - CorStone */
+        .bento-large {
+            grid-column: span 7;
+            grid-row: span 2;
+        }
+
+        /* Medium card - StockGro */
+        .bento-medium {
+            grid-column: span 5;
+        }
+
+        /* Small card - Finlatics */
+        .bento-small {
+            grid-column: span 5;
+        }
+
+        /* Wide card - QuantMaster */
+        .bento-wide {
+            grid-column: span 12;
+        }
+
+        .bento-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            margin-bottom: 24px;
+            color: var(--accent);
+        }
+
+        .bento-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .bento-title {
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .bento-role {
+            font-size: 14px;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .bento-content {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .bento-content strong {
+            color: var(--text-primary);
+        }
+
+        .bento-section {
+            margin-bottom: 20px;
+        }
+
+        .bento-section-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .bento-metrics {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .bento-metric {
+            padding: 12px 20px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-metric::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+
+        .bento-metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .bento-metric-label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* QuantMaster special styling */
+        .bento-wide .bento-inner {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .calculator-preview {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 24px;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 13px;
+        }
+
+        .calculator-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .calc-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .calc-dot.red {
+            background: #ff5f57;
+        }
+
+        .calc-dot.yellow {
+            background: #febc2e;
+        }
+
+        .calc-dot.green {
+            background: #28c840;
+        }
+
+        .calculator-code {
+            color: var(--text-secondary);
+        }
+
+        .calculator-code .comment {
+            color: var(--text-muted);
+        }
+
+        .calculator-code .keyword {
+            color: #c084fc;
+        }
+
+        .calculator-code .function {
+            color: var(--accent);
+        }
+
+        .calculator-code .number {
+            color: #fbbf24;
+        }
+
+        /* ============================================
+           LEADERSHIP SECTION
+        ============================================ */
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .leadership-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .leadership-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .leadership-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 16px;
+            color: var(--accent);
+        }
+
+        .leadership-title {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .leadership-role {
+            font-size: 13px;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .leadership-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           AI TOOLKIT SECTION
+        ============================================ */
+        .toolkit {
+            background: linear-gradient(180deg, var(--bg-primary) 0%, #080808 100%);
+        }
+
+        .toolkit-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .toolkit-quote {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 24px auto 0;
+        }
+
+        .toolkit-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .toolkit-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .toolkit-card:hover {
+            border-color: var(--border-glass);
+            transform: translateY(-4px);
+        }
+
+        .toolkit-card:hover .toolkit-icon {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+
+        .toolkit-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 16px;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .toolkit-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .toolkit-category {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .toolkit-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .toolkit-desc strong {
+            color: var(--accent);
+        }
+
+        .toolkit-footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 32px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .toolkit-footer p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .toolkit-footer p strong {
+            color: var(--text-primary);
+        }
+
+        /* ============================================
+           WHAT'S NEXT SECTION
+        ============================================ */
+        .next {
+            text-align: center;
+            padding: 160px 0;
+        }
+
+        .next-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .next-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        .next-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin: 0 auto 32px;
+            border-radius: 2px;
+        }
+
+        .next-text {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .next-text strong {
+            color: var(--text-primary);
+        }
+
+        .next-cta {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-top: 48px;
+        }
+
+        /* ============================================
+           CONTACT SECTION
+        ============================================ */
+        .contact {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-info h2 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-divider {
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+            margin: 16px 0 24px;
+            border-radius: 2px;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .contact-link {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        textarea.form-input {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            align-self: flex-start;
+            padding: 16px 40px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 12px;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -10px var(--accent-glow);
+        }
+
+        /* ============================================
+           FOOTER
+        ============================================ */
+        .footer {
+            padding: 40px 0;
+            background: #030303;
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--accent);
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+            border-radius: 10px;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+        ============================================ */
+        @media (max-width: 1024px) {
+            .bento-large {
+                grid-column: span 12;
+                grid-row: span 1;
+            }
+
+            .bento-medium {
+                grid-column: span 6;
+            }
+
+            .bento-small {
+                grid-column: span 6;
+            }
+
+            .bento-wide .bento-inner {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .bento-medium,
+            .bento-small {
+                grid-column: span 12;
+            }
+
+            .leadership-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .toolkit-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .metrics-row {
+                justify-content: center;
+            }
+        }
+
+        /* ============================================
+           CUSTOM SCROLLBAR
+        ============================================ */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-glass);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+    </style>
 </head>
 
 <body>
-
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="container nav-container">
+        <div class="container navbar-inner">
             <a href="#" class="logo">RG.</a>
             <ul class="nav-links">
-                <li><a href="https://robingautam.in">Home</a></li>
-                <li><a href="#home">Portfolio Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#work">Work & Impact</a></li>
-                <li><a href="#ai-tools">AI Tools</a></li>
-
-                <li><a href="#contact" class="btn-nav">Contact</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#leadership">Leadership</a></li>
+                <li><a href="#toolkit">AI Toolkit</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <a href="#contact" class="nav-cta">Let's Talk</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero"
-        style="background-image: linear-gradient(rgba(26, 35, 64, 0.85), rgba(26, 35, 64, 0.7)), url('assets/hero-bg.png');">
-        <div class="container hero-content">
-            <div class="hero-text-container">
-                <h1 class="hero-line delay-1">I turn ideas into systems</h1>
-                <h1 class="hero-line delay-2">and people into teams.</h1>
-            </div>
-            <p class="hero-subtext">MBA @ IIM Rohtak. Strategy | AI | Growth | Leadership</p>
+    <section class="hero">
+        <div class="dot-grid"></div>
+        <div class="grid-glow" id="gridGlow"></div>
 
-            <div class="hero-buttons">
-                <a href="#" class="btn btn-primary btn-lg">Download Resume</a>
-                <a href="#contact" class="btn btn-secondary btn-lg">Let’s Connect</a>
-                <a href="https://www.linkedin.com/in/robin-gautam-066ba8233/" target="_blank"
-                    class="btn btn-icon btn-lg"><i class="fab fa-linkedin-in"></i></a>
+        <div class="hero-content">
+            <div class="hero-label reveal">
+                MBA @ IIM Rohtak • AI + Strategy + Execution
             </div>
-
-            <div class="hero-logos">
-                <div class="logo-item" title="IIM Rohtak">
-                    <!-- Placeholder for IIM Rohtak Logo -->
-                    <span class="logo-text">IIM Rohtak</span>
-                </div>
-                <div class="logo-item" title="DSEU Dwarka">
-                    <!-- Placeholder for DSEU Dwarka Logo -->
-                    <span class="logo-text">DSEU Dwarka</span>
-                </div>
-            </div>
-
-            <div class="scroll-indicator">
-                <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_w51pcehl.json"
-                    background="transparent" speed="1" style="width: 50px; height: 50px;" loop autoplay></lottie-player>
+            <h1 class="hero-title reveal delay-1">I turn ideas into systems<br>and people into teams.</h1>
+            <p class="hero-subtitle reveal delay-2">
+                I don't come from a perfect roadmap. I figured things out by doing them.
+                Building communities, negotiating partnerships, and solving problems at scale.
+            </p>
+            <div class="hero-cta-group reveal delay-3">
+                <a href="#impact" class="btn-primary magnetic">View My Work</a>
+                <a href="#contact" class="btn-secondary">Get In Touch</a>
             </div>
         </div>
-        <div class="hero-bg-anim"></div>
+
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7" />
+            </svg>
+        </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about section-padding">
-        <div class="container about-grid">
-            <div class="about-text scroll-reveal">
-                <h2 class="section-title">About Me</h2>
-                <p class="lead">I don’t come from a perfect roadmap. I figured things out by doing them.</p>
-                <p>I’ve built student communities, negotiated partnerships, handled events that seemed impossible at
-                    first, and worked with people much smarter than me. That’s where I learn the most.</p>
-                <p>Right now, I’m pursuing my MBA at IIM Rohtak, exploring how <strong>AI + Strategy +
-                        Execution</strong> can solve real problems at scale. I’m curious, I experiment a lot, and I
-                    prefer building things, not just planning them.</p>
-            </div>
-            <div class="about-image scroll-reveal delay-200">
-                <img src="assets/robin-photo.jpg" alt="Robin Gautam" class="profile-photo">
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <span class="section-label reveal">About Me</span>
+                    <h2 class="section-title reveal delay-1">Learning by Building</h2>
+                    <p class="reveal delay-2">
+                        I've built student communities, negotiated partnerships, handled events that seemed impossible
+                        at first, and worked with people much smarter than me. <strong>That's where I learn the
+                            most.</strong>
+                    </p>
+                    <p class="reveal delay-3">
+                        Right now, I'm pursuing my MBA at IIM Rohtak, exploring how <span class="about-highlight">AI +
+                            Strategy + Execution</span> can solve real problems at scale. I'm curious, I experiment a
+                        lot, and I prefer <strong>building things, not just planning them.</strong>
+                    </p>
+
+                    <div class="metrics-row">
+                        <div class="metric-badge reveal delay-4">
+                            <div class="metric-value">1,300<span>+</span></div>
+                            <div class="metric-label">Students Reached</div>
+                        </div>
+                        <div class="metric-badge reveal delay-5">
+                            <div class="metric-value">60<span>%</span></div>
+                            <div class="metric-label">Research Time Saved</div>
+                        </div>
+                        <div class="metric-badge reveal delay-4">
+                            <div class="metric-value">25<span>+</span></div>
+                            <div class="metric-label">JS Calculators Built</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image-wrapper reveal delay-2">
+                    <div class="about-image-glow"></div>
+                    <img src="assets/robin-photo.jpg" alt="Robin Gautam" class="about-image">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Work & Impact Section -->
-    <section id="work" class="work section-padding">
+    <!-- Real Impact - Bento Grid -->
+    <section id="impact" class="section">
         <div class="container">
-            <h2 class="section-title center-text scroll-reveal">Real Impact</h2>
-            <div class="cards-grid">
-                <!-- FEATURED CASE STUDIES -->
+            <div class="text-center" style="text-align: center; margin-bottom: 80px;">
+                <span class="section-label reveal">Real Impact</span>
+                <h2 class="section-title reveal delay-1">Stories, Not Just Titles</h2>
+                <p class="section-subtitle reveal delay-2" style="margin: 0 auto;">
+                    Every role taught me something. Here's what I actually did—and what changed because of it.
+                </p>
+            </div>
 
-                <!-- Card 1: CashCurious -->
-                <a href="https://cash-curious.vercel.app/" target="_blank"
-                    class="card case-card scroll-reveal delay-100" style="text-decoration: none; display: block;">
-                    <div class="card-header">
-                        <div class="case-icon"><i class="fas fa-coins"></i></div>
+            <div class="bento-grid">
+                <!-- CashCurious - Wide Card with Code Preview -->
+                <a href="https://cash-curious.vercel.app/" target="_blank" class="bento-card bento-wide reveal"
+                    style="text-decoration: none; display: block;">
+                    <div class="bento-inner">
                         <div>
-                            <h3>CashCurious <span
-                                    style="background: #22c55e; color: #000; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 600; margin-left: 8px;">LIVE</span>
-                            </h3>
-                            <span class="role">Creator & Developer</span>
+                            <div class="bento-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 6v12" />
+                                    <path
+                                        d="M15 9.5c0-1.5-1.5-2.5-3-2.5s-3 1-3 2.5 1.5 2 3 2.5 3 1 3 2.5-1.5 2.5-3 2.5-3-1-3-2.5" />
+                                </svg>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 4px;">
+                                <h3 class="bento-title" style="margin: 0;">CashCurious</h3>
+                                <span
+                                    style="background: #22c55e; color: #000; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Live</span>
+                            </div>
+                            <span class="bento-role">Creator & Developer</span>
+
+                            <div class="bento-content">
+                                <div class="bento-section">
+                                    <div class="bento-section-label">The Problem</div>
+                                    <p>Financial literacy feels boring and inaccessible to young people.</p>
+                                </div>
+                                <div class="bento-section">
+                                    <div class="bento-section-label">What I Built</div>
+                                    <p>An interactive learning platform with <strong>gamified lessons &
+                                            quizzes</strong>.</p>
+                                </div>
+                                <div class="bento-section">
+                                    <div class="bento-section-label">The Outcome</div>
+                                    <p>Making personal finance fun for the next generation.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="narrative-text">
-                            Financial literacy feels boring and inaccessible to young people. I built an interactive
-                            learning platform that makes personal finance fun — featuring <strong>gamified lessons,
-                                quizzes,
-                                and real-world scenarios</strong> to help build smart money habits from day one.
-                        </p>
+
+                        <div class="calculator-preview">
+                            <div class="calculator-header">
+                                <span class="calc-dot red"></span>
+                                <span class="calc-dot yellow"></span>
+                                <span class="calc-dot green"></span>
+                            </div>
+                            <div class="calculator-code">
+                                <p><span class="comment">// CashCurious - Financial Literacy</span></p>
+                                <p><span class="keyword">const</span> <span class="function">Lesson</span> = ({ topic })
+                                    => {</p>
+                                <p>&nbsp;&nbsp;<span class="keyword">const</span> [progress, setProgress] = <span
+                                        class="function">useState</span>(<span class="number">0</span>);</p>
+                                <p>&nbsp;&nbsp;<span class="keyword">const</span> [xp, setXp] = <span
+                                        class="function">useState</span>(<span class="number">0</span>);</p>
+                                <p>&nbsp;&nbsp;</p>
+                                <p>&nbsp;&nbsp;<span class="keyword">return</span> (</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="function">GameCard</span> topic={topic}
+                                    /&gt;</p>
+                                <p>&nbsp;&nbsp;);</p>
+                                <p>}</p>
+                                <br>
+                                <p><span class="comment">// Built with Next.js + React</span></p>
+                                <p><span class="comment">// Gamified learning experience</span></p>
+                            </div>
+                        </div>
                     </div>
                 </a>
 
-                <!-- Card 2: StockGro -->
-                <div class="card case-card scroll-reveal delay-200">
-                    <div class="card-header">
-                        <div class="case-icon"><i class="fas fa-chart-line"></i></div>
-                        <div>
-                            <h3>StockGro</h3>
-                            <span class="role">Campus Intern</span>
-                        </div>
+                <!-- StockGro - Medium Card -->
+                <div class="bento-card bento-medium reveal delay-1">
+                    <div class="bento-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 6l-9.5 9.5-5-5L1 18" />
+                            <path d="M17 6h6v6" />
+                        </svg>
                     </div>
-                    <div class="card-body">
-                        <p class="narrative-text">
-                            The goal was to break into a crowded campus market. I skipped generic promos and negotiated
-                            strategic MoUs while leading targeted campaigns. We didn't just get reach; we
-                            <strong>onboarded 1,100+ students</strong> and built a genuine community.
-                        </p>
-                    </div>
-                </div>
+                    <h3 class="bento-title">StockGro</h3>
+                    <span class="bento-role">Campus Intern</span>
 
-                <!-- Card 3: Finlatics -->
-                <div class="card case-card scroll-reveal delay-250">
-                    <div class="card-header">
-                        <div class="case-icon"><i class="fas fa-search-dollar"></i></div>
-                        <div>
-                            <h3>Finlatics</h3>
-                            <span class="role">Market Research Analyst</span>
-                        </div>
+                    <div class="bento-content">
+                        <p>The goal was to break into a crowded campus market. I skipped generic promos and negotiated
+                            strategic MoUs while leading targeted campaigns.</p>
+                        <p style="margin-top: 16px;">We didn't just get reach; we <strong>onboarded 1,300+
+                                students</strong> and built a genuine community.</p>
                     </div>
-                    <div class="card-body">
-                        <div class="case-study">
-                            <div class="cs-row">
-                                <span class="cs-label">Problem:</span>
-                                <p>Need for data-backed growth strategies in new segments.</p>
-                            </div>
-                            <div class="cs-row">
-                                <span class="cs-label">Action:</span>
-                                <p>Researched 20+ firms & tested 3+ growth hypotheses.</p>
-                            </div>
-                            <div class="cs-row">
-                                <span class="cs-label">Outcome:</span>
-                                <p>Improved STP by <strong>15%</strong> & raised CTR by <strong>12%</strong>.</p>
-                            </div>
+
+                    <div class="bento-metrics">
+                        <div class="bento-metric">
+                            <div class="bento-metric-value">1,300+</div>
+                            <div class="bento-metric-label">Students Onboarded</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 4: QuantMaster -->
-                <div class="card case-card scroll-reveal delay-300">
-                    <div class="card-header">
-                        <div class="case-icon"><i class="fas fa-laptop-code"></i></div>
-                        <div>
-                            <h3>QuantMaster</h3>
-                            <span class="role">Creator & Developer</span>
-                            <a href="https://robingautam1.github.io/quantmaster-site/" target="_blank"
-                                class="project-link" title="View Live Site"><i class="fas fa-external-link-alt"></i></a>
+                <!-- Finlatics - Small Card -->
+                <div class="bento-card bento-small reveal delay-2">
+                    <div class="bento-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="M21 21l-4.35-4.35" />
+                        </svg>
+                    </div>
+                    <h3 class="bento-title">Finlatics</h3>
+                    <span class="bento-role">Market Research Analyst</span>
+
+                    <div class="bento-content">
+                        <p>Need for data-backed growth strategies in new segments. Researched 20+ firms & tested 5+
+                            growth hypotheses.</p>
+                    </div>
+
+                    <div class="bento-metrics">
+                        <div class="bento-metric">
+                            <div class="bento-metric-value">+15%</div>
+                            <div class="bento-metric-label">STP Improved</div>
+                        </div>
+                        <div class="bento-metric">
+                            <div class="bento-metric-value">+12%</div>
+                            <div class="bento-metric-label">CTR Raised</div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="case-study">
-                            <div class="cs-row">
-                                <span class="cs-label">Problem:</span>
-                                <p>Started as a selfish project to revise without hunting random PDFs.</p>
+                </div>
+
+                <!-- QuantMaster - Wide Card -->
+                <div class="bento-card bento-wide reveal delay-3">
+                    <div class="bento-inner">
+                        <div>
+                            <div class="bento-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                                    <line x1="8" y1="21" x2="16" y2="21" />
+                                    <line x1="12" y1="17" x2="12" y2="21" />
+                                </svg>
                             </div>
-                            <div class="cs-row">
-                                <span class="cs-label">Action:</span>
-                                <p>Built a hub with interactive JS calculators & hosted it on GitHub.</p>
+                            <h3 class="bento-title">QuantMaster</h3>
+                            <span class="bento-role">Creator & Developer</span>
+
+                            <div class="bento-content">
+                                <div class="bento-section">
+                                    <div class="bento-section-label">The Problem</div>
+                                    <p>Started as a selfish project to revise without hunting random PDFs.</p>
+                                </div>
+                                <div class="bento-section">
+                                    <div class="bento-section-label">What I Built</div>
+                                    <p>Built a hub with interactive <strong>25 JS calculators</strong> & hosted it on
+                                        GitHub.</p>
+                                </div>
+                                <div class="bento-section">
+                                    <div class="bento-section-label">The Outcome</div>
+                                    <p>Turned "exam pressure" into a product that helps friends & strangers.</p>
+                                </div>
                             </div>
-                            <div class="cs-row">
-                                <span class="cs-label">Outcome:</span>
-                                <p>Turned “exam pressure” into a product that helps friends & strangers.</p>
+                        </div>
+
+                        <div class="calculator-preview">
+                            <div class="calculator-header">
+                                <span class="calc-dot red"></span>
+                                <span class="calc-dot yellow"></span>
+                                <span class="calc-dot green"></span>
+                            </div>
+                            <div class="calculator-code">
+                                <p><span class="comment">// QuantMaster Calculator</span></p>
+                                <p><span class="keyword">function</span> <span
+                                        class="function">calculateNPV</span>(cashFlows, rate) {</p>
+                                <p>&nbsp;&nbsp;<span class="keyword">return</span> cashFlows.<span
+                                        class="function">reduce</span>((npv, cf, t) => {</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> npv + cf / Math.<span
+                                        class="function">pow</span>(<span class="number">1</span> + rate, t);</p>
+                                <p>&nbsp;&nbsp;}, <span class="number">0</span>);</p>
+                                <p>}</p>
+                                <br>
+                                <p><span class="comment">// 25 calculators built</span></p>
+                                <p><span class="comment">// NPV, IRR, CAPM, WACC...</span></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- LEADERSHIP SUBSECTION -->
-            <h3 class="subsection-title center-text scroll-reveal">Leadership & Initiatives</h3>
+    <!-- Leadership Section -->
+    <section id="leadership" class="section"
+        style="background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-card) 100%);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 80px;">
+                <span class="section-label reveal">Leadership & Initiatives</span>
+                <h2 class="section-title reveal delay-1">Beyond the Resume</h2>
+            </div>
 
-            <div class="compact-grid">
-                <!-- Card 5: E-Cell -->
-                <div class="compact-card scroll-reveal delay-350">
-                    <div class="compact-icon"><i class="fas fa-users-cog"></i></div>
-                    <div class="compact-content">
-                        <h4>E-Cell DSEU</h4>
-                        <span class="compact-role">President (2023-25)</span>
-                        <p>Led 30-member team, engaged 2,200+ students, and scaled flagship event 'Riwaaz'.</p>
+            <div class="leadership-grid">
+                <div class="leadership-card reveal">
+                    <div class="leadership-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                            <path d="M2 17l10 5 10-5" />
+                            <path d="M2 12l10 5 10-5" />
+                        </svg>
                     </div>
+                    <h3 class="leadership-title">E-Cell DSEU</h3>
+                    <span class="leadership-role">President (2023-25)</span>
+                    <p class="leadership-desc">Led 30-member team, engaged 2,100+ students, and scaled flagship event
+                        'Riwaaz'.</p>
                 </div>
 
-                <!-- Card 6: Placement Cell -->
-                <div class="compact-card scroll-reveal delay-400">
-                    <div class="compact-icon"><i class="fas fa-handshake"></i></div>
-                    <div class="compact-content">
-                        <h4>Placement Cell</h4>
-                        <span class="compact-role">Coordinator</span>
-                        <p>Facilitated placements for 2,000+ students & managed recruiter relations.</p>
+                <div class="leadership-card reveal delay-1">
+                    <div class="leadership-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="8.5" cy="7" r="4" />
+                            <line x1="20" y1="8" x2="20" y2="14" />
+                            <line x1="23" y1="11" x2="17" y2="11" />
+                        </svg>
                     </div>
+                    <h3 class="leadership-title">Placement Cell</h3>
+                    <span class="leadership-role">Coordinator</span>
+                    <p class="leadership-desc">Facilitated placements for 2,000+ students & managed recruiter relations.
+                    </p>
                 </div>
 
-                <!-- Card 7: IT Committee -->
-                <div class="compact-card scroll-reveal delay-450">
-                    <div class="compact-icon"><i class="fas fa-network-wired"></i></div>
-                    <div class="compact-content">
-                        <h4>IT Committee</h4>
-                        <span class="compact-role">Junior Coordinator</span>
-                        <p>Organized Tech Talks & streamlined learning resources for the batch.</p>
+                <div class="leadership-card reveal delay-2">
+                    <div class="leadership-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                            <line x1="8" y1="21" x2="16" y2="21" />
+                            <line x1="12" y1="17" x2="12" y2="21" />
+                        </svg>
                     </div>
+                    <h3 class="leadership-title">IT Committee</h3>
+                    <span class="leadership-role">Junior Coordinator</span>
+                    <p class="leadership-desc">Organized Tech Talks & streamlined learning resources for the batch.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- AI Toolkit Section -->
-    <section id="ai-tools" class="ai-tools section-padding">
+    <section id="toolkit" class="section toolkit">
         <div class="container">
-            <div class="section-header center-text scroll-reveal">
-                <h2 class="section-title">My AI Toolkit</h2>
-                <p class="subtitle">How I use AI to think faster, not to replace thinking.</p>
+            <div class="toolkit-header">
+                <span class="section-label reveal">My AI Toolkit</span>
+                <h2 class="section-title reveal delay-1">Think Faster, Not Replace Thinking</h2>
+                <p class="toolkit-quote reveal delay-2">"How I use AI to think faster, not to replace thinking."</p>
             </div>
 
-            <div class="ai-grid">
-                <!-- Card 1 -->
-                <div class="ai-card scroll-reveal">
-                    <div class="ai-header">
-                        <div class="icon"><i class="fas fa-search"></i></div>
-                        <h4>Perplexity</h4>
-                    </div>
-                    <p class="ai-purpose">Market Research & Scanning</p>
-                    <p class="ai-result">Reduced research time by <strong>60%</strong></p>
+            <div class="toolkit-grid">
+                <div class="toolkit-card reveal">
+                    <div class="toolkit-icon">🔍</div>
+                    <h4 class="toolkit-name">Perplexity</h4>
+                    <span class="toolkit-category">Market Research & Scanning</span>
+                    <p class="toolkit-desc"><strong>Reduced research time by 60%</strong></p>
                 </div>
-                <!-- Card 2 -->
-                <div class="ai-card scroll-reveal delay-100">
-                    <div class="ai-header">
-                        <div class="icon"><i class="fas fa-pen-nib"></i></div>
-                        <h4>Gemini / ChatGPT</h4>
-                    </div>
-                    <p class="ai-purpose">Storytelling & Narratives</p>
-                    <p class="ai-result">Shaped emotional narratives for impact</p>
+
+                <div class="toolkit-card reveal delay-1">
+                    <div class="toolkit-icon">✨</div>
+                    <h4 class="toolkit-name">Gemini / ChatGPT</h4>
+                    <span class="toolkit-category">Storytelling & Narratives</span>
+                    <p class="toolkit-desc">Shaped emotional narratives for impact</p>
                 </div>
-                <!-- Card 3 -->
-                <div class="ai-card scroll-reveal delay-200">
-                    <div class="ai-header">
-                        <div class="icon"><i class="fas fa-project-diagram"></i></div>
-                        <h4>Notion AI</h4>
-                    </div>
-                    <p class="ai-purpose">Content Workflow</p>
-                    <p class="ai-result">Built repeatable content systems</p>
+
+                <div class="toolkit-card reveal delay-2">
+                    <div class="toolkit-icon">📝</div>
+                    <h4 class="toolkit-name">Notion AI</h4>
+                    <span class="toolkit-category">Content Workflow</span>
+                    <p class="toolkit-desc">Built repeatable content systems</p>
                 </div>
-                <!-- Card 4 -->
-                <div class="ai-card scroll-reveal delay-300">
-                    <div class="ai-header">
-                        <div class="icon"><i class="fas fa-desktop"></i></div>
-                        <h4>Gamma / Beautiful.ai</h4>
-                    </div>
-                    <p class="ai-purpose">Presentation Design</p>
-                    <p class="ai-result">Created pitch decks in minutes</p>
+
+                <div class="toolkit-card reveal delay-1">
+                    <div class="toolkit-icon">🎨</div>
+                    <h4 class="toolkit-name">Gamma / Beautiful.ai</h4>
+                    <span class="toolkit-category">Presentation Design</span>
+                    <p class="toolkit-desc">Created pitch decks in minutes</p>
                 </div>
-                <!-- Card 5 -->
-                <div class="ai-card scroll-reveal delay-400">
-                    <div class="ai-header">
-                        <div class="icon"><i class="fas fa-microphone-alt"></i></div>
-                        <h4>Otter.ai</h4>
-                    </div>
-                    <p class="ai-purpose">Meeting Intelligence</p>
-                    <p class="ai-result">Never missed a key insight</p>
+
+                <div class="toolkit-card reveal delay-2">
+                    <div class="toolkit-icon">🎙️</div>
+                    <h4 class="toolkit-name">Otter.ai</h4>
+                    <span class="toolkit-category">Meeting Intelligence</span>
+                    <p class="toolkit-desc">Never missed a key insight</p>
                 </div>
-                <!-- Card 6 -->
-                <div class="ai-card scroll-reveal delay-500">
-                    <div class="ai-header">
-                        <div class="icon"><i class="fas fa-code"></i></div>
-                        <h4>Cursor / Copilot</h4>
-                    </div>
-                    <p class="ai-purpose">Rapid Prototyping</p>
-                    <p class="ai-result">Built this portfolio from scratch</p>
+
+                <div class="toolkit-card reveal delay-3">
+                    <div class="toolkit-icon">⚡</div>
+                    <h4 class="toolkit-name">Cursor / Copilot</h4>
+                    <span class="toolkit-category">Rapid Prototyping</span>
+                    <p class="toolkit-desc">Built this portfolio from scratch</p>
                 </div>
             </div>
 
-            <div class="ai-quote center-text scroll-reveal">
-                <p>I don’t use AI to write for me.<br>I use it to think faster when I’m stuck.</p>
+            <div class="toolkit-footer reveal">
+                <p><strong>I don't use AI to write for me.</strong><br>I use it to think faster when I'm stuck.</p>
             </div>
         </div>
     </section>
 
-
-
-    <!-- Looking For Next Section -->
-    <section id="next" class="next-section section-padding">
-        <div class="container center-text scroll-reveal">
-            <h2 class="section-title">What I’m Looking For Next</h2>
+    <!-- What's Next Section -->
+    <section id="next" class="next">
+        <div class="container">
             <div class="next-content">
-                <p>I’m looking for roles at the intersection of <strong>strategy, AI, leadership, and growth</strong>.
+                <h2 class="next-title reveal">What I'm Looking For Next</h2>
+                <div class="next-divider reveal delay-1"></div>
+                <p class="next-text reveal delay-2">
+                    I'm looking for roles at the intersection of <strong>strategy, AI, leadership, and growth.</strong>
                 </p>
-                <p>Consulting, early-stage startups, and problem-solving environments excite me the most.</p>
-                <p class="highlight-text">If you think I fit, I'd love to have a conversation.</p>
+                <p class="next-text reveal delay-3">
+                    Consulting, early-stage startups, and problem-solving environments excite me the most.
+                </p>
+                <p class="next-cta reveal delay-4">If you think I fit, I'd love to have a conversation.</p>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact section-padding">
-        <div class="container contact-wrapper">
-            <div class="contact-content scroll-reveal">
-                <h2 class="section-title">Let’s Talk</h2>
-                <p>If you see potential in me, I’ll match it with effort.</p>
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2 class="reveal">Let's Talk</h2>
+                    <div class="contact-divider reveal delay-1"></div>
+                    <p class="reveal delay-2">If you see potential in me, I'll match it with effort.</p>
 
-                <div class="contact-actions">
-                    <a href="#" class="btn btn-primary resume-btn btn-lg">
-                        <span>Download Resume</span>
-                        <i class="fas fa-file-download"></i>
+                    <a href="#" class="btn-primary reveal delay-3"
+                        style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 24px;">
+                        Download Resume
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
                     </a>
 
-                    <div class="social-links">
-                        <a href="mailto:pgp16robing@iimrohtak.ac.in" class="social-btn email" title="Email Me">
-                            <i class="fas fa-envelope"></i>
+                    <div class="contact-links reveal delay-4">
+                        <a href="mailto:hello@robingautam.in" class="contact-link" title="Email">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                <polyline points="22,6 12,13 2,6" />
+                            </svg>
                         </a>
-                        <a href="https://www.linkedin.com/in/robin-gautam-066ba8233/" target="_blank"
-                            class="social-btn linkedin" title="Connect on LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
+                        <a href="https://linkedin.com" target="_blank" class="contact-link" title="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
                         </a>
                     </div>
                 </div>
-            </div>
 
-            <form class="contact-form scroll-reveal delay-200" action="mailto:pgp16robing@iimrohtak.ac.in" method="post"
-                enctype="text/plain">
-                <div class="form-group">
-                    <input type="text" placeholder="Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <textarea placeholder="Message" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
-            </form>
+                <form class="contact-form">
+                    <div class="form-group reveal">
+                        <input type="text" class="form-input" placeholder="Name" required>
+                    </div>
+                    <div class="form-group reveal delay-1">
+                        <input type="email" class="form-input" placeholder="Email" required>
+                    </div>
+                    <div class="form-group reveal delay-2">
+                        <textarea class="form-input" placeholder="Message" required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit reveal delay-3">Send Message</button>
+                </form>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-nav">
-                <a href="https://robingautam.in">← Back to Main Site</a>
-            </div>
-            <div class="footer-email">
-                <a href="mailto:hello@robingautam.in"
-                    style="color: #a1a1aa; text-decoration: none;">hello@robingautam.in</a>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#" class="footer-link">← Back to Main Site</a>
             </div>
             <div class="footer-social">
-                <a href="https://www.linkedin.com/in/robin-gautam-066ba8233/" target="_blank" rel="noopener"
-                    aria-label="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
+                <a href="https://linkedin.com" target="_blank" title="LinkedIn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
                 </a>
-                <a href="https://github.com/Robingautam1" target="_blank" rel="noopener" aria-label="GitHub">
-                    <i class="fab fa-github"></i>
+                <a href="https://github.com/rbngtm1" target="_blank" title="GitHub">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
                 </a>
             </div>
-            <p>&copy; 2026 Robin Gautam</p>
+            <p class="footer-copyright">hello@robingautam.in<br>© 2026 Robin Gautam</p>
         </div>
     </footer>
 
-    <!-- Scroll to Top -->
-    <a href="#" class="scroll-top"><i class="fas fa-arrow-up"></i></a>
+    <!-- JavaScript for Interactions -->
+    <script>
+        // ============================================
+        // SCROLL REVEAL ANIMATION
+        // ============================================
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
 
-    <script src="js/script.js"></script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ============================================
+        // INTERACTIVE DOT GRID (Mouse Follow)
+        // ============================================
+        const gridGlow = document.getElementById('gridGlow');
+        const hero = document.querySelector('.hero');
+
+        hero.addEventListener('mousemove', (e) => {
+            const rect = hero.getBoundingClientRect();
+            const x = e.clientX - rect.left - 300;
+            const y = e.clientY - rect.top - 300;
+
+            gridGlow.style.transform = `translate(${x}px, ${y}px)`;
+        });
+
+        // ============================================
+        // MAGNETIC BUTTON EFFECT
+        // ============================================
+        document.querySelectorAll('.magnetic').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0)';
+            });
+        });
+
+        // ============================================
+        // NAVBAR SCROLL EFFECT
+        // ============================================
+        const navbar = document.querySelector('.navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                navbar.style.padding = '12px 0';
+                navbar.style.background = 'rgba(5, 5, 5, 0.95)';
+            } else {
+                navbar.style.padding = '20px 0';
+                navbar.style.background = 'rgba(5, 5, 5, 0.8)';
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // ============================================
+        // SMOOTH SCROLL FOR NAV LINKS
+        // ============================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ============================================
+        // FORM HANDLING
+        // ============================================
+        const form = document.querySelector('.contact-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Add your form submission logic here
+            alert('Thanks for reaching out! I\'ll get back to you soon.');
+            form.reset();
+        });
+    </script>
 </body>
 
 </html>
