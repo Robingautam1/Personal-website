@@ -241,8 +241,12 @@
                 </div>
 
                 <button onclick="document.getElementById('bookingModal').style.display='flex'"
-                    class="px-6 py-3 bg-white text-midnight-950 text-sm font-semibold rounded-xl hover:bg-zinc-200 transition-all hover:scale-105">
-                    Let's Talk
+                    class="cta-premium px-6 py-3 bg-accent text-white text-sm font-semibold rounded-xl transition-all hover:scale-105 inline-flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z" />
+                    </svg>
+                    Book Strategy Session
                 </button>
             </div>
         </div>
@@ -1274,7 +1278,7 @@
         onclick="if(event.target === this) this.style.display='none'">
         <div class="bg-midnight-800 border border-white/10 rounded-3xl p-8 max-w-lg w-full">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold">Book a Call</h2>
+                <h2 class="text-2xl font-bold">Book Your Strategy Session</h2>
                 <button onclick="document.getElementById('bookingModal').style.display='none'"
                     class="text-zinc-400 hover:text-white text-2xl">&times;</button>
             </div>
