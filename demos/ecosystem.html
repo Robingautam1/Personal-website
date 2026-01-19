@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Ecosystem - Tier 6 Demo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    .playfair { font-family: 'Playfair Display', Georgia, serif; }
+
+    /* Custom animations */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes fadeInRight { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    @keyframes ping { 75%, 100% { transform: scale(2); opacity: 0; } }
+    @keyframes countUp { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes drawLine { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
+    @keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); } 50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.5); } }
+
+    .animate-fade-in-up { animation: fadeInUp 0.5s ease-out forwards; }
+    .animate-fade-in-left { animation: fadeInLeft 0.5s ease-out forwards; }
+    .animate-fade-in-right { animation: fadeInRight 0.5s ease-out forwards; }
+    .animate-pulse-slow { animation: pulse 2s ease-in-out infinite; }
+    .animate-glow { animation: glow 2s ease-in-out infinite; }
+
+    /* Glassmorphism */
+    .glass {
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
+      backdrop-filter: blur(20px);
+    }
+
+    /* Custom scrollbar */
+    .custom-scroll::-webkit-scrollbar { width: 6px; }
+    .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    .custom-scroll::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(90deg, #818cf8 0%, #a78bfa 50%, #f472b6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Button glow effect */
+    .btn-glow:hover {
+      box-shadow: 0 0 30px rgba(99, 102, 241, 0.4);
+    }
+
+    /* View transitions */
+    .view-container { transition: opacity 0.3s ease, transform 0.3s ease; }
+    .view-hidden { opacity: 0; transform: translateX(20px); pointer-events: none; position: absolute; }
+    .view-visible { opacity: 1; transform: translateX(0); }
+  </style>
+</head>
+<body class="bg-[#030712] min-h-screen">
+  <!-- Ambient Glow Effects -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <div id="app" class="flex flex-col items-center justify-center min-h-screen p-8 relative z-10">
+
+    <!-- Header -->
+    <div class="text-center mb-8 animate-fade-in-up">
+      <div class="flex items-center justify-center gap-2 mb-4">
+        <span class="px-3 py-1 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 border border-indigo-500/30 rounded-full text-indigo-400 text-xs font-medium">
+          Tier 6 Package
+        </span>
+        <span class="px-3 py-1 bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/30 rounded-full text-amber-400 text-xs font-medium flex items-center gap-1">
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          Premium
+        </span>
+      </div>
+      <h2 class="text-4xl font-bold text-white mb-2">The Ecosystem</h2>
+      <p class="text-slate-400">
+        Complete Digital Command Center for
+        <span class="gradient-text font-semibold">₹9,999</span>
+      </p>
+    </div>
+
+    <!-- Main Container -->
+    <div class="relative w-full max-w-6xl animate-fade-in-up" style="animation-delay: 0.2s;">
+      <!-- MacOS Window -->
+      <div class="rounded-2xl overflow-hidden border border-slate-800/50" style="background: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%); box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255,255,255,0.05);">
+
+        <!-- Window Header -->
+        <div class="flex items-center justify-between px-4 py-3 bg-slate-900/80 border-b border-slate-800/50">
+          <div class="flex items-center gap-2">
+            <div class="w-3 h-3 rounded-full bg-red-500 hover:bg-red-400 cursor-pointer transition-colors"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-400 cursor-pointer transition-colors"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500 hover:bg-green-400 cursor-pointer transition-colors"></div>
+          </div>
+          <div class="flex items-center gap-2 px-4 py-1.5 bg-slate-800/50 rounded-lg border border-slate-700/50">
+            <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+            <span class="text-slate-400 text-xs font-mono">app.nexus-corp.com</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <button class="p-1.5 hover:bg-slate-800 rounded-lg transition-colors">
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+            </button>
+            <button class="p-1.5 hover:bg-slate-800 rounded-lg transition-colors">
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="flex" style="height: 600px;">
+
+          <!-- Glassmorphism Sidebar -->
+          <aside class="w-64 flex flex-col border-r border-slate-800/50 flex-shrink-0 glass">
+            <!-- Brand -->
+            <div class="p-5 border-b border-slate-800/50">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                  <span class="text-white font-bold text-lg">N</span>
+                </div>
+                <div>
+                  <h3 class="text-white font-semibold">Nexus Corp</h3>
+                  <p class="text-slate-500 text-xs">Enterprise Plan</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="flex-1 p-3">
+              <ul class="space-y-1">
+                <li>
+                  <button onclick="switchView('dashboard')" id="nav-dashboard" class="nav-btn active w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all bg-gradient-to-r from-indigo-500/20 to-purple-500/20 text-white border border-indigo-500/30">
+                    <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+                    Live Dashboard
+                    <svg class="w-4 h-4 ml-auto text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                  </button>
+                </li>
+                <li>
+                  <button onclick="switchView('infrastructure')" id="nav-infrastructure" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all text-slate-400 hover:text-white hover:bg-slate-800/50">
+                    <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+                    Infrastructure
+                  </button>
+                </li>
+                <li>
+                  <button onclick="switchView('brandkit')" id="nav-brandkit" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all text-slate-400 hover:text-white hover:bg-slate-800/50">
+                    <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+                    Brand Kit
+                  </button>
+                </li>
+                <li>
+                  <button onclick="switchView('concierge')" id="nav-concierge" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all text-slate-400 hover:text-white hover:bg-slate-800/50">
+                    <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    VIP Concierge
+                  </button>
+                </li>
+              </ul>
+            </nav>
+
+            <!-- User Profile -->
+            <div class="p-4 border-t border-slate-800/50">
+              <div class="flex items-center gap-3 p-3 bg-slate-800/30 rounded-xl">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
+                  <span class="text-white font-semibold">JD</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-white text-sm font-medium truncate">John Doe</p>
+                  <div class="flex items-center gap-1">
+                    <svg class="w-3 h-3 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                    <span class="text-amber-400 text-xs font-medium">Pro Plan</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Main View Area -->
+          <main class="flex-1 overflow-hidden bg-slate-950/50 relative">
+
+            <!-- DASHBOARD VIEW -->
+            <div id="view-dashboard" class="view-container view-visible absolute inset-0 overflow-y-auto custom-scroll p-6">
+              <!-- Stats Grid -->
+              <div class="grid grid-cols-4 gap-4 mb-6">
+                <!-- Total Revenue -->
+                <div class="col-span-2 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-2xl p-6 animate-fade-in-up">
+                  <div class="flex items-center justify-between mb-4">
+                    <span class="text-slate-400 text-sm font-medium">Total Revenue</span>
+                    <div class="flex items-center gap-1 px-2 py-1 bg-emerald-500/20 rounded-lg">
+                      <svg class="w-3 h-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                      <span class="text-emerald-400 text-xs font-medium">+24%</span>
+                    </div>
+                  </div>
+                  <div class="text-4xl font-bold text-white mb-2">
+                    ₹<span id="revenue-counter">0</span>L
+                  </div>
+                  <p class="text-slate-500 text-sm">This month's earnings</p>
+                </div>
+
+                <!-- Active Users -->
+                <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6 animate-fade-in-up" style="animation-delay: 0.1s;">
+                  <div class="flex items-center justify-between mb-4">
+                    <span class="text-slate-400 text-sm font-medium">Active Users</span>
+                    <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                  </div>
+                  <div class="text-3xl font-bold text-white mb-2">
+                    <span id="users-counter">0</span>
+                  </div>
+                  <div class="flex items-center gap-1 text-emerald-400 text-xs">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"/></svg>
+                    <span>+12% from last week</span>
+                  </div>
+                </div>
+
+                <!-- Conversion Rate -->
+                <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6 animate-fade-in-up" style="animation-delay: 0.2s;">
+                  <div class="flex items-center justify-between mb-4">
+                    <span class="text-slate-400 text-sm font-medium">Conversion</span>
+                    <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                  </div>
+                  <div class="text-3xl font-bold text-white mb-2">
+                    <span id="conversion-counter">0</span>%
+                  </div>
+                  <div class="flex items-center gap-1 text-emerald-400 text-xs">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"/></svg>
+                    <span>+0.3% this month</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chart and Activity -->
+              <div class="grid grid-cols-3 gap-4">
+                <!-- Revenue Chart -->
+                <div class="col-span-2 bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6 animate-fade-in-up" style="animation-delay: 0.3s;">
+                  <div class="flex items-center justify-between mb-6">
+                    <div>
+                      <h3 class="text-white font-semibold">Revenue Growth</h3>
+                      <p class="text-slate-500 text-sm">Monthly performance overview</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <button class="px-3 py-1.5 bg-indigo-500/20 text-indigo-400 text-xs font-medium rounded-lg">12M</button>
+                      <button class="px-3 py-1.5 text-slate-400 text-xs font-medium rounded-lg hover:bg-slate-700/50">6M</button>
+                      <button class="px-3 py-1.5 text-slate-400 text-xs font-medium rounded-lg hover:bg-slate-700/50">30D</button>
+                    </div>
+                  </div>
+                  <!-- SVG Chart -->
+                  <svg viewBox="0 0 600 200" class="w-full h-48">
+                    <defs>
+                      <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#6366F1" stop-opacity="0.4"/>
+                        <stop offset="50%" stop-color="#8B5CF6" stop-opacity="0.2"/>
+                        <stop offset="100%" stop-color="#6366F1" stop-opacity="0"/>
+                      </linearGradient>
+                      <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#6366F1"/>
+                        <stop offset="50%" stop-color="#8B5CF6"/>
+                        <stop offset="100%" stop-color="#EC4899"/>
+                      </linearGradient>
+                    </defs>
+                    <!-- Grid lines -->
+                    <line x1="40" y1="40" x2="560" y2="40" stroke="#334155" stroke-width="1" stroke-dasharray="4"/>
+                    <line x1="40" y1="80" x2="560" y2="80" stroke="#334155" stroke-width="1" stroke-dasharray="4"/>
+                    <line x1="40" y1="120" x2="560" y2="120" stroke="#334155" stroke-width="1" stroke-dasharray="4"/>
+                    <line x1="40" y1="160" x2="560" y2="160" stroke="#334155" stroke-width="1" stroke-dasharray="4"/>
+                    <!-- Area -->
+                    <polygon fill="url(#areaGradient)" points="40,160 40,140 87,120 134,130 181,100 228,80 275,90 322,60 369,70 416,50 463,55 510,40 557,45 560,160"/>
+                    <!-- Line -->
+                    <polyline fill="none" stroke="url(#lineGradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="40,140 87,120 134,130 181,100 228,80 275,90 322,60 369,70 416,50 463,55 510,40 557,45"/>
+                    <!-- Data points -->
+                    <circle cx="40" cy="140" r="4" fill="#030712" stroke="#6366F1" stroke-width="2"/>
+                    <circle cx="87" cy="120" r="4" fill="#030712" stroke="#6366F1" stroke-width="2"/>
+                    <circle cx="134" cy="130" r="4" fill="#030712" stroke="#6366F1" stroke-width="2"/>
+                    <circle cx="181" cy="100" r="4" fill="#030712" stroke="#6366F1" stroke-width="2"/>
+                    <circle cx="228" cy="80" r="4" fill="#030712" stroke="#6366F1" stroke-width="2"/>
+                    <circle cx="275" cy="90" r="4" fill="#030712" stroke="#6366F1" stroke-width="2"/>
+                    <circle cx="322" cy="60" r="4" fill="#030712" stroke="#6366F1" stroke-width="2"/>
+                    <circle cx="369" cy="70" r="4" fill="#030712" stroke="#6366F1" stroke-width="2"/>
+                    <circle cx="416" cy="50" r="4" fill="#030712" stroke="#6366F1" stroke-width="2"/>
+                    <circle cx="463" cy="55" r="4" fill="#030712" stroke="#6366F1" stroke-width="2"/>
+                    <circle cx="510" cy="40" r="4" fill="#030712" stroke="#6366F1" stroke-width="2"/>
+                    <circle cx="557" cy="45" r="4" fill="#030712" stroke="#6366F1" stroke-width="2"/>
+                    <!-- Labels -->
+                    <text x="40" y="190" text-anchor="middle" fill="#64748B" font-size="10">Jan</text>
+                    <text x="134" y="190" text-anchor="middle" fill="#64748B" font-size="10">Mar</text>
+                    <text x="228" y="190" text-anchor="middle" fill="#64748B" font-size="10">May</text>
+                    <text x="322" y="190" text-anchor="middle" fill="#64748B" font-size="10">Jul</text>
+                    <text x="416" y="190" text-anchor="middle" fill="#64748B" font-size="10">Sep</text>
+                    <text x="510" y="190" text-anchor="middle" fill="#64748B" font-size="10">Nov</text>
+                  </svg>
+                </div>
+
+                <!-- Live Activity Feed -->
+                <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6 animate-fade-in-up" style="animation-delay: 0.4s;">
+                  <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-white font-semibold">Live Activity</h3>
+                    <div class="flex items-center gap-2">
+                      <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                      </span>
+                      <span class="text-emerald-400 text-xs">Live</span>
+                    </div>
+                  </div>
+                  <div id="activity-feed" class="space-y-3 max-h-64 overflow-y-auto custom-scroll pr-2">
+                    <!-- Activity items will be rendered here -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- INFRASTRUCTURE VIEW -->
+            <div id="view-infrastructure" class="view-container view-hidden absolute inset-0 overflow-y-auto custom-scroll p-6">
+              <!-- Header -->
+              <div class="flex items-center justify-between mb-6">
+                <div>
+                  <h2 class="text-xl font-bold text-white">Infrastructure Status</h2>
+                  <p class="text-slate-400 text-sm">All systems operational</p>
+                </div>
+                <div class="flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
+                  <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  <span class="text-emerald-400 text-sm font-medium">All Systems Operational</span>
+                </div>
+              </div>
+
+              <!-- Infrastructure Grid -->
+              <div class="grid grid-cols-3 gap-4 mb-6">
+                <!-- Domain Card -->
+                <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6">
+                  <div class="flex items-center justify-between mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center">
+                      <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                      </span>
+                      <span class="text-emerald-400 text-xs font-medium">Active</span>
+                    </div>
+                  </div>
+                  <h3 class="text-white font-semibold mb-1">Domain</h3>
+                  <p class="text-indigo-400 font-mono text-sm mb-4">nexus-corp.com</p>
+                  <div class="flex items-center gap-2 p-3 bg-slate-900/50 rounded-xl">
+                    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    <span class="text-slate-300 text-sm">SSL Certificate Active</span>
+                  </div>
+                  <div class="mt-4 flex items-center justify-between text-xs">
+                    <span class="text-slate-500">Expires</span>
+                    <span class="text-slate-300">Dec 15, 2025</span>
+                  </div>
+                </div>
+
+                <!-- Server Card -->
+                <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6">
+                  <div class="flex items-center justify-between mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center">
+                      <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+                    </div>
+                    <div class="flex items-center gap-2 px-2 py-1 bg-emerald-500/20 rounded-lg">
+                      <span class="text-emerald-400 text-xs font-bold">99.99%</span>
+                      <span class="text-emerald-400 text-xs">uptime</span>
+                    </div>
+                  </div>
+                  <h3 class="text-white font-semibold mb-1">Edge Server</h3>
+                  <p class="text-purple-400 font-mono text-sm mb-4">Vercel Edge • Mumbai</p>
+                  <div class="space-y-3">
+                    <div>
+                      <div class="flex items-center justify-between text-xs mb-1">
+                        <span class="text-slate-500">CPU Usage</span>
+                        <span class="text-slate-300">72%</span>
+                      </div>
+                      <div class="h-2 bg-slate-900 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full" style="width: 72%;"></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="flex items-center justify-between text-xs mb-1">
+                        <span class="text-slate-500">Memory</span>
+                        <span class="text-slate-300">68%</span>
+                      </div>
+                      <div class="h-2 bg-slate-900 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full" style="width: 68%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Database Card -->
+                <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6">
+                  <div class="flex items-center justify-between mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center">
+                      <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                      <span class="text-emerald-400 text-xs font-medium">Healthy</span>
+                    </div>
+                  </div>
+                  <h3 class="text-white font-semibold mb-1">Database</h3>
+                  <p class="text-emerald-400 font-mono text-sm mb-4">PostgreSQL 15</p>
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between p-3 bg-slate-900/50 rounded-xl">
+                      <span class="text-slate-400 text-sm">Connections</span>
+                      <span class="text-white font-medium">24 / 100</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-slate-900/50 rounded-xl">
+                      <span class="text-slate-400 text-sm">Storage</span>
+                      <span class="text-white font-medium">2.4 GB</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-slate-900/50 rounded-xl">
+                      <span class="text-slate-400 text-sm">Latency</span>
+                      <span class="text-emerald-400 font-medium">12ms</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Deployment History -->
+              <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6">
+                <h3 class="text-white font-semibold mb-4">Recent Deployments</h3>
+                <div class="space-y-3">
+                  <div class="flex items-center justify-between p-4 bg-slate-900/50 rounded-xl border border-slate-700/30">
+                    <div class="flex items-center gap-4">
+                      <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                      <div>
+                        <p class="text-white font-mono text-sm">dep_abc123</p>
+                        <p class="text-slate-500 text-xs">main</p>
+                      </div>
+                    </div>
+                    <span class="text-slate-400 text-sm">2 hours ago</span>
+                  </div>
+                  <div class="flex items-center justify-between p-4 bg-slate-900/50 rounded-xl border border-slate-700/30">
+                    <div class="flex items-center gap-4">
+                      <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                      <div>
+                        <p class="text-white font-mono text-sm">dep_def456</p>
+                        <p class="text-slate-500 text-xs">main</p>
+                      </div>
+                    </div>
+                    <span class="text-slate-400 text-sm">1 day ago</span>
+                  </div>
+                  <div class="flex items-center justify-between p-4 bg-slate-900/50 rounded-xl border border-slate-700/30">
+                    <div class="flex items-center gap-4">
+                      <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                      <div>
+                        <p class="text-white font-mono text-sm">dep_ghi789</p>
+                        <p class="text-slate-500 text-xs">feature/payments</p>
+                      </div>
+                    </div>
+                    <span class="text-slate-400 text-sm">3 days ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- BRAND KIT VIEW -->
+            <div id="view-brandkit" class="view-container view-hidden absolute inset-0 overflow-y-auto custom-scroll p-6">
+              <div class="mb-6">
+                <h2 class="text-xl font-bold text-white">Brand Kit</h2>
+                <p class="text-slate-400 text-sm">Your complete design system</p>
+              </div>
+
+              <!-- Logo Variations -->
+              <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6 mb-6">
+                <h3 class="text-white font-semibold mb-6">Logo Variations</h3>
+                <div class="grid grid-cols-3 gap-4">
+                  <div class="bg-slate-900 rounded-xl p-8 flex flex-col items-center justify-center">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center mb-4">
+                      <span class="text-white text-2xl font-bold">N</span>
+                    </div>
+                    <span class="text-white font-semibold">Nexus Corp</span>
+                    <span class="text-slate-500 text-xs mt-2">Dark Version</span>
+                  </div>
+                  <div class="bg-white rounded-xl p-8 flex flex-col items-center justify-center">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center mb-4">
+                      <span class="text-white text-2xl font-bold">N</span>
+                    </div>
+                    <span class="text-slate-900 font-semibold">Nexus Corp</span>
+                    <span class="text-slate-400 text-xs mt-2">Light Version</span>
+                  </div>
+                  <div class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl p-8 flex flex-col items-center justify-center">
+                    <div class="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center mb-4">
+                      <span class="text-white text-3xl font-bold">N</span>
+                    </div>
+                    <span class="text-white font-semibold">Monogram</span>
+                    <span class="text-white/60 text-xs mt-2">Icon Only</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Typography -->
+              <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6 mb-6">
+                <h3 class="text-white font-semibold mb-6">Typography</h3>
+                <div class="grid grid-cols-2 gap-6">
+                  <div class="p-6 bg-slate-900/50 rounded-xl">
+                    <span class="text-indigo-400 text-xs font-medium mb-4 block">PRIMARY FONT</span>
+                    <p class="text-4xl font-bold text-white mb-2">Inter</p>
+                    <p class="text-slate-400">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>1234567890</p>
+                  </div>
+                  <div class="p-6 bg-slate-900/50 rounded-xl">
+                    <span class="text-purple-400 text-xs font-medium mb-4 block">DISPLAY FONT</span>
+                    <p class="text-4xl font-bold text-white mb-2 playfair">Playfair</p>
+                    <p class="text-slate-400 playfair">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>1234567890</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Color Palette -->
+              <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6">
+                <h3 class="text-white font-semibold mb-6">Color Palette</h3>
+                <div class="grid grid-cols-4 gap-4">
+                  <button onclick="copyColor('#6366F1')" class="group relative">
+                    <div class="h-24 rounded-xl mb-3 transition-all group-hover:shadow-lg" style="background-color: #6366F1;"></div>
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <p class="text-white font-medium text-sm">Primary</p>
+                        <p class="text-slate-500 font-mono text-xs">#6366F1</p>
+                      </div>
+                      <div class="w-8 h-8 rounded-lg bg-slate-700/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                      </div>
+                    </div>
+                  </button>
+                  <button onclick="copyColor('#10B981')" class="group relative">
+                    <div class="h-24 rounded-xl mb-3 transition-all group-hover:shadow-lg" style="background-color: #10B981;"></div>
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <p class="text-white font-medium text-sm">Secondary</p>
+                        <p class="text-slate-500 font-mono text-xs">#10B981</p>
+                      </div>
+                      <div class="w-8 h-8 rounded-lg bg-slate-700/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                      </div>
+                    </div>
+                  </button>
+                  <button onclick="copyColor('#F59E0B')" class="group relative">
+                    <div class="h-24 rounded-xl mb-3 transition-all group-hover:shadow-lg" style="background-color: #F59E0B;"></div>
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <p class="text-white font-medium text-sm">Accent</p>
+                        <p class="text-slate-500 font-mono text-xs">#F59E0B</p>
+                      </div>
+                      <div class="w-8 h-8 rounded-lg bg-slate-700/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                      </div>
+                    </div>
+                  </button>
+                  <button onclick="copyColor('#0F172A')" class="group relative">
+                    <div class="h-24 rounded-xl mb-3 transition-all group-hover:shadow-lg border border-slate-700" style="background-color: #0F172A;"></div>
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <p class="text-white font-medium text-sm">Dark</p>
+                        <p class="text-slate-500 font-mono text-xs">#0F172A</p>
+                      </div>
+                      <div class="w-8 h-8 rounded-lg bg-slate-700/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- VIP CONCIERGE VIEW -->
+            <div id="view-concierge" class="view-container view-hidden absolute inset-0 flex flex-col p-6">
+              <!-- Header -->
+              <div class="flex items-center justify-between p-4 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-2xl mb-6">
+                <div class="flex items-center gap-4">
+                  <div class="relative">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    </div>
+                    <span class="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-2 border-slate-900"></span>
+                  </div>
+                  <div>
+                    <h2 class="text-white font-semibold">Priority Support Channel</h2>
+                    <p class="text-slate-400 text-sm">Dedicated Agent • Robin</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 px-3 py-1.5 bg-emerald-500/20 rounded-lg">
+                  <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  <span class="text-emerald-400 text-sm font-medium">Online</span>
+                </div>
+              </div>
+
+              <!-- Chat Messages -->
+              <div class="flex-1 overflow-y-auto space-y-4 mb-4 pr-2 custom-scroll" id="chat-messages">
+                <!-- Client Message -->
+                <div class="flex justify-end">
+                  <div class="max-w-[70%] bg-indigo-500 text-white rounded-2xl rounded-br-md p-4">
+                    <p class="text-sm leading-relaxed">Hi, I need to add a new payment method to my store. Can you help?</p>
+                    <div class="flex items-center gap-1 mt-2 justify-end">
+                      <svg class="w-3 h-3 text-indigo-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                      <span class="text-xs text-indigo-200">10:32 AM</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Agent Message -->
+                <div class="flex justify-start">
+                  <div class="max-w-[70%] bg-slate-800 text-white rounded-2xl rounded-bl-md p-4 border border-slate-700/50">
+                    <div class="flex items-center gap-2 mb-2">
+                      <div class="w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center">
+                        <span class="text-white text-xs font-bold">R</span>
+                      </div>
+                      <span class="text-indigo-400 text-sm font-medium">Robin</span>
+                    </div>
+                    <p class="text-sm leading-relaxed">Absolutely! I'm on it right now. Give me just a moment to configure Stripe for your account.</p>
+                    <div class="flex items-center gap-1 mt-2">
+                      <svg class="w-3 h-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                      <span class="text-xs text-slate-500">10:33 AM</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Agent Message -->
+                <div class="flex justify-start">
+                  <div class="max-w-[70%] bg-slate-800 text-white rounded-2xl rounded-bl-md p-4 border border-slate-700/50">
+                    <div class="flex items-center gap-2 mb-2">
+                      <div class="w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center">
+                        <span class="text-white text-xs font-bold">R</span>
+                      </div>
+                      <span class="text-indigo-400 text-sm font-medium">Robin</span>
+                    </div>
+                    <p class="text-sm leading-relaxed">Done! ✅ I've enabled Stripe payments for you. You can now accept cards, UPI, and wallets. Check your Settings → Payments to customize.</p>
+                    <div class="flex items-center gap-1 mt-2">
+                      <svg class="w-3 h-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                      <span class="text-xs text-slate-500">10:35 AM</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Client Message -->
+                <div class="flex justify-end">
+                  <div class="max-w-[70%] bg-indigo-500 text-white rounded-2xl rounded-br-md p-4">
+                    <p class="text-sm leading-relaxed">Wow, that was fast! Thank you so much!</p>
+                    <div class="flex items-center gap-1 mt-2 justify-end">
+                      <svg class="w-3 h-3 text-indigo-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                      <span class="text-xs text-indigo-200">10:36 AM</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Agent Message -->
+                <div class="flex justify-start">
+                  <div class="max-w-[70%] bg-slate-800 text-white rounded-2xl rounded-bl-md p-4 border border-slate-700/50">
+                    <div class="flex items-center gap-2 mb-2">
+                      <div class="w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center">
+                        <span class="text-white text-xs font-bold">R</span>
+                      </div>
+                      <span class="text-indigo-400 text-sm font-medium">Robin</span>
+                    </div>
+                    <p class="text-sm leading-relaxed">You're welcome! That's what VIP support is for. 🚀 Anything else you need?</p>
+                    <div class="flex items-center gap-1 mt-2">
+                      <svg class="w-3 h-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                      <span class="text-xs text-slate-500">10:36 AM</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Message Input -->
+              <div class="flex items-center gap-3 p-4 bg-slate-800/50 border border-slate-700/50 rounded-2xl">
+                <input type="text" placeholder="Type your message..." class="flex-1 bg-transparent text-white placeholder-slate-500 outline-none">
+                <button class="p-3 bg-indigo-500 hover:bg-indigo-600 rounded-xl transition-colors btn-glow group">
+                  <svg class="w-5 h-5 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                </button>
+              </div>
+
+              <!-- Response Time -->
+              <div class="flex items-center justify-center gap-2 mt-4 text-slate-500 text-xs">
+                <svg class="w-3 h-3 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                <span>Average response time: <span class="text-amber-400 font-medium">2 minutes</span></span>
+              </div>
+            </div>
+
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features List -->
+    <div class="mt-10 flex flex-wrap justify-center gap-6 text-sm text-slate-500">
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+        <span>Custom Web App</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+        <span>Free Domain & Hosting</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+        <span>Premium Brand Kit</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        <span>1 Month Priority Support</span>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden">
+      <div class="flex items-center gap-2 px-4 py-3 bg-emerald-500 text-white rounded-xl shadow-lg">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span id="toast-message">Copied!</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ============================================
+    // VIEW SWITCHING
+    // ============================================
+    function switchView(view) {
+      // Hide all views
+      document.querySelectorAll('.view-container').forEach(v => {
+        v.classList.add('view-hidden');
+        v.classList.remove('view-visible');
+      });
+
+      // Show selected view
+      const selectedView = document.getElementById(`view-${view}`);
+      selectedView.classList.remove('view-hidden');
+      selectedView.classList.add('view-visible');
+
+      // Update nav buttons
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('bg-gradient-to-r', 'from-indigo-500/20', 'to-purple-500/20', 'text-white', 'border', 'border-indigo-500/30');
+        btn.classList.add('text-slate-400', 'hover:text-white', 'hover:bg-slate-800/50');
+        btn.querySelector('svg:first-child')?.classList.remove('text-indigo-400');
+        btn.querySelector('svg:first-child')?.classList.add('text-slate-500');
+        // Remove chevron if exists
+        const chevron = btn.querySelector('svg:last-child');
+        if (chevron && chevron.classList.contains('ml-auto')) {
+          chevron.remove();
+        }
+      });
+
+      // Highlight active button
+      const activeBtn = document.getElementById(`nav-${view}`);
+      activeBtn.classList.add('bg-gradient-to-r', 'from-indigo-500/20', 'to-purple-500/20', 'text-white', 'border', 'border-indigo-500/30');
+      activeBtn.classList.remove('text-slate-400');
+      activeBtn.querySelector('svg:first-child')?.classList.add('text-indigo-400');
+      activeBtn.querySelector('svg:first-child')?.classList.remove('text-slate-500');
+      // Add chevron
+      const chevronSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      chevronSvg.setAttribute('class', 'w-4 h-4 ml-auto text-indigo-400');
+      chevronSvg.setAttribute('fill', 'none');
+      chevronSvg.setAttribute('stroke', 'currentColor');
+      chevronSvg.setAttribute('viewBox', '0 0 24 24');
+      chevronSvg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>';
+      activeBtn.appendChild(chevronSvg);
+
+      // Run view-specific animations
+      if (view === 'dashboard') {
+        animateCounters();
+        renderActivityFeed();
+      }
+    }
+
+    // ============================================
+    // ANIMATED COUNTERS
+    // ============================================
+    function animateCounters() {
+      animateCounter('revenue-counter', 12.5, 1);
+      animateCounter('users-counter', 1247, 0);
+      animateCounter('conversion-counter', 4.8, 1);
+    }
+
+    function animateCounter(id, target, decimals) {
+      const el = document.getElementById(id);
+      const duration = 2000;
+      const steps = 60;
+      const increment = target / steps;
+      let current = 0;
+      let step = 0;
+
+      const timer = setInterval(() => {
+        step++;
+        current += increment;
+        if (step >= steps) {
+          el.textContent = decimals > 0 ? target.toFixed(decimals) : Math.floor(target).toLocaleString('en-IN');
+          clearInterval(timer);
+        } else {
+          el.textContent = decimals > 0 ? current.toFixed(decimals) : Math.floor(current).toLocaleString('en-IN');
+        }
+      }, duration / steps);
+    }
+
+    // ============================================
+    // ACTIVITY FEED
+    // ============================================
+    const activityData = [
+      { type: 'purchase', message: 'New Purchase', amount: 4999, time: 'Just now' },
+      { type: 'signup', message: 'New User Signed Up', time: '2 min ago' },
+      { type: 'upgrade', message: 'Plan Upgraded to Pro', time: '5 min ago' },
+      { type: 'view', message: 'Product Page View', time: '8 min ago' },
+      { type: 'purchase', message: 'New Purchase', amount: 2999, time: '12 min ago' },
+    ];
+
+    const activityIcons = {
+      purchase: `<svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>`,
+      signup: `<svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>`,
+      upgrade: `<svg class="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>`,
+      view: `<svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>`,
+    };
+
+    function renderActivityFeed() {
+      const feed = document.getElementById('activity-feed');
+      feed.innerHTML = activityData.map((item, index) => `
+        <div class="flex items-center gap-3 p-3 bg-slate-900/50 rounded-xl border border-slate-700/30 animate-fade-in-left" style="animation-delay: ${index * 0.1}s;">
+          <div class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center">
+            ${activityIcons[item.type]}
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-white text-sm font-medium truncate">${item.message}</p>
+            ${item.amount ? `<p class="text-indigo-400 text-xs">₹${item.amount.toLocaleString()}</p>` : ''}
+          </div>
+          <span class="text-slate-500 text-xs whitespace-nowrap">${item.time}</span>
+        </div>
+      `).join('');
+    }
+
+    // ============================================
+    // COPY COLOR
+    // ============================================
+    function copyColor(hex) {
+      navigator.clipboard.writeText(hex);
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = `${hex} copied!`;
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 2000);
+    }
+
+    // ============================================
+    // INITIALIZE
+    // ============================================
+    document.addEventListener('DOMContentLoaded', () => {
+      animateCounters();
+      renderActivityFeed();
+    });
+  </script>
+</body>
+</html>

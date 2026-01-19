@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Publisher - Tier 4 Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .serif {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        /* Custom animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes toastOut {
+            from {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateY(20px) scale(0.9);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .animate-slide-in {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+
+        .toast-in {
+            animation: toastIn 0.3s ease-out forwards;
+        }
+
+        .toast-out {
+            animation: toastOut 0.3s ease-out forwards;
+        }
+
+        /* View transitions */
+        .view-container {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .view-hidden {
+            opacity: 0;
+            transform: perspective(1000px) rotateY(15deg);
+            pointer-events: none;
+            position: absolute;
+        }
+
+        .view-visible {
+            opacity: 1;
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        /* Scrollbar styling */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Line clamp */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-b from-slate-950 to-slate-900 min-h-screen">
+    <div id="app" class="flex flex-col items-center justify-center min-h-screen p-8">
+
+        <!-- Toast Notification -->
+        <div id="toast" class="fixed bottom-6 right-6 z-50 hidden">
+            <div class="flex items-center gap-3 px-5 py-4 rounded-xl shadow-2xl bg-emerald-500 text-white">
+                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <span id="toast-message" class="font-medium">Success!</span>
+                <button onclick="hideToast()" class="ml-2 p-1 hover:bg-white/20 rounded-lg transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <span
+                class="inline-block px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-medium mb-4">
+                Tier 4 Package
+            </span>
+            <h2 class="text-3xl font-bold text-white mb-2">The Publisher</h2>
+            <p class="text-slate-400">
+                CMS + Newsletter Engine for
+                <span class="text-emerald-400 font-semibold">₹2,499</span>
+            </p>
+        </div>
+
+        <!-- Browser Mockup -->
+        <div class="relative w-full max-w-5xl">
+            <!-- Decorative Glows -->
+            <div class="absolute -top-8 -right-8 w-40 h-40 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none">
+            </div>
+            <div
+                class="absolute -bottom-8 -left-8 w-40 h-40 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none">
+            </div>
+
+            <!-- Browser Frame -->
+            <div class="relative rounded-2xl overflow-hidden border border-slate-700"
+                style="box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.5), 0 30px 60px -30px rgba(0, 0, 0, 0.4);">
+
+                <!-- Browser Header -->
+                <div class="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-slate-700">
+                    <!-- Traffic Lights -->
+                    <div class="flex items-center gap-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+
+                    <!-- View Toggle - Centered -->
+                    <div class="absolute left-1/2 -translate-x-1/2 flex items-center bg-slate-800 rounded-xl p-1">
+                        <button id="btn-public" onclick="switchView('public')"
+                            class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all bg-white text-slate-900 shadow-lg">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                </path>
+                            </svg>
+                            Public Site
+                        </button>
+                        <button id="btn-admin" onclick="switchView('admin')"
+                            class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all text-slate-400 hover:text-white">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z">
+                                </path>
+                            </svg>
+                            Admin Panel
+                        </button>
+                    </div>
+
+                    <!-- URL Indicator -->
+                    <div id="url-bar" class="flex items-center gap-2 px-3 py-1.5 bg-slate-800 rounded-lg">
+                        <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                        <span class="text-xs text-slate-400">thepublisher.com</span>
+                    </div>
+                </div>
+
+                <!-- Content Area -->
+                <div class="relative overflow-hidden" style="height: 580px;">
+
+                    <!-- PUBLIC SITE VIEW -->
+                    <div id="view-public"
+                        class="view-container view-visible absolute inset-0 overflow-y-auto custom-scrollbar bg-white">
+
+                        <!-- Navigation -->
+                        <nav class="px-8 py-5 border-b border-gray-100">
+                            <div class="max-w-4xl mx-auto flex items-center justify-between">
+                                <h1 class="serif text-2xl font-bold text-gray-900">The Publisher</h1>
+                                <div class="flex items-center gap-6">
+                                    <a href="#"
+                                        class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Stories</a>
+                                    <a href="#"
+                                        class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Topics</a>
+                                    <a href="#"
+                                        class="text-sm text-gray-600 hover:text-gray-900 transition-colors">About</a>
+                                    <button
+                                        class="px-4 py-2 bg-gray-900 text-white text-sm rounded-full hover:bg-gray-800 transition-colors">
+                                        Subscribe
+                                    </button>
+                                </div>
+                            </div>
+                        </nav>
+
+                        <!-- Featured Article -->
+                        <section class="px-8 py-12">
+                            <div class="max-w-4xl mx-auto">
+                                <div class="grid md:grid-cols-2 gap-10 items-center animate-fade-in-up">
+                                    <!-- Featured Image Placeholder -->
+                                    <div
+                                        class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center">
+                                        <svg class="w-16 h-16 text-indigo-300" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                            </path>
+                                        </svg>
+                                    </div>
+
+                                    <!-- Featured Content -->
+                                    <div>
+                                        <span
+                                            class="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full mb-4">
+                                            Featured
+                                        </span>
+                                        <h2 class="serif text-3xl font-bold text-gray-900 mb-4 leading-tight">
+                                            The Future of Digital Publishing in 2025
+                                        </h2>
+                                        <p class="text-gray-600 mb-6 leading-relaxed">
+                                            How AI and personalization are reshaping the way we consume content online.
+                                        </p>
+                                        <div class="flex items-center gap-4 mb-6">
+                                            <div class="w-10 h-10 rounded-full bg-gray-200"></div>
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-900">Sarah Mitchell</p>
+                                                <p class="text-xs text-gray-500">Jan 15, 2025 · 8 min read</p>
+                                            </div>
+                                        </div>
+                                        <button
+                                            class="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 transition-colors">
+                                            Read Article
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Recent Stories -->
+                        <section class="px-8 py-12 bg-gray-50">
+                            <div class="max-w-4xl mx-auto">
+                                <h3 class="serif text-2xl font-bold text-gray-900 mb-8">Recent Stories</h3>
+                                <div class="grid md:grid-cols-3 gap-6">
+
+                                    <!-- Article 1 -->
+                                    <article
+                                        class="bg-white rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow cursor-pointer group animate-fade-in-up"
+                                        style="animation-delay: 0.1s;">
+                                        <div class="h-36 flex items-center justify-center"
+                                            style="background-color: rgba(99, 102, 241, 0.1);">
+                                            <svg class="w-8 h-8 text-indigo-500" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="p-5">
+                                            <span class="text-xs font-medium px-2 py-1 rounded"
+                                                style="background-color: rgba(99, 102, 241, 0.1); color: #6366f1;">Strategy</span>
+                                            <h4
+                                                class="serif font-semibold text-gray-900 mt-3 mb-2 group-hover:text-indigo-600 transition-colors">
+                                                Building a Sustainable Content Strategy
+                                            </h4>
+                                            <p class="text-sm text-gray-500 line-clamp-2">
+                                                Learn how to create content that drives long-term growth.
+                                            </p>
+                                            <div class="flex items-center gap-2 mt-4 text-xs text-gray-400">
+                                                <span>Jan 12, 2025</span>
+                                                <span>·</span>
+                                                <span>5 min</span>
+                                            </div>
+                                        </div>
+                                    </article>
+
+                                    <!-- Article 2 -->
+                                    <article
+                                        class="bg-white rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow cursor-pointer group animate-fade-in-up"
+                                        style="animation-delay: 0.2s;">
+                                        <div class="h-36 flex items-center justify-center"
+                                            style="background-color: rgba(16, 185, 129, 0.1);">
+                                            <svg class="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="p-5">
+                                            <span class="text-xs font-medium px-2 py-1 rounded"
+                                                style="background-color: rgba(16, 185, 129, 0.1); color: #10b981;">Growth</span>
+                                            <h4
+                                                class="serif font-semibold text-gray-900 mt-3 mb-2 group-hover:text-indigo-600 transition-colors">
+                                                Newsletter Growth Tactics That Work
+                                            </h4>
+                                            <p class="text-sm text-gray-500 line-clamp-2">
+                                                Proven methods to grow your subscriber base organically.
+                                            </p>
+                                            <div class="flex items-center gap-2 mt-4 text-xs text-gray-400">
+                                                <span>Jan 10, 2025</span>
+                                                <span>·</span>
+                                                <span>6 min</span>
+                                            </div>
+                                        </div>
+                                    </article>
+
+                                    <!-- Article 3 -->
+                                    <article
+                                        class="bg-white rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow cursor-pointer group animate-fade-in-up"
+                                        style="animation-delay: 0.3s;">
+                                        <div class="h-36 flex items-center justify-center"
+                                            style="background-color: rgba(245, 158, 11, 0.1);">
+                                            <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="p-5">
+                                            <span class="text-xs font-medium px-2 py-1 rounded"
+                                                style="background-color: rgba(245, 158, 11, 0.1); color: #f59e0b;">Branding</span>
+                                            <h4
+                                                class="serif font-semibold text-gray-900 mt-3 mb-2 group-hover:text-indigo-600 transition-colors">
+                                                The Art of Storytelling in Business
+                                            </h4>
+                                            <p class="text-sm text-gray-500 line-clamp-2">
+                                                How narratives can transform your brand communication.
+                                            </p>
+                                            <div class="flex items-center gap-2 mt-4 text-xs text-gray-400">
+                                                <span>Jan 8, 2025</span>
+                                                <span>·</span>
+                                                <span>7 min</span>
+                                            </div>
+                                        </div>
+                                    </article>
+
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Newsletter Section -->
+                        <section class="px-8 py-16 bg-gray-900">
+                            <div class="max-w-2xl mx-auto text-center">
+                                <div
+                                    class="w-16 h-16 rounded-2xl bg-indigo-500/20 flex items-center justify-center mx-auto mb-6">
+                                    <svg class="w-7 h-7 text-indigo-400" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <h3 class="serif text-3xl font-bold text-white mb-3">Join 5,000+ Readers</h3>
+                                <p class="text-gray-400 mb-8">
+                                    Get the best stories delivered to your inbox every week. No spam, unsubscribe
+                                    anytime.
+                                </p>
+                                <form onsubmit="handleSubscribe(event)" class="flex gap-3 max-w-md mx-auto">
+                                    <input type="email" id="subscribe-email" placeholder="Enter your email"
+                                        class="flex-1 px-5 py-4 rounded-xl bg-white/10 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors"
+                                        required />
+                                    <button type="submit"
+                                        class="px-8 py-4 bg-indigo-500 text-white rounded-xl font-semibold hover:bg-indigo-600 transition-colors">
+                                        Subscribe
+                                    </button>
+                                </form>
+                                <p class="text-xs text-gray-500 mt-4">
+                                    By subscribing, you agree to our Privacy Policy.
+                                </p>
+                            </div>
+                        </section>
+
+                    </div>
+
+                    <!-- ADMIN DASHBOARD VIEW -->
+                    <div id="view-admin"
+                        class="view-container view-hidden absolute inset-0 overflow-y-auto custom-scrollbar">
+                        <div class="min-h-full flex bg-gray-100">
+
+                            <!-- Sidebar -->
+                            <aside class="w-56 bg-slate-900 flex flex-col flex-shrink-0">
+                                <!-- Logo -->
+                                <div class="px-5 py-5 border-b border-slate-800">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-9 h-9 rounded-xl bg-indigo-500 flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <span class="font-bold text-white">Publisher</span>
+                                    </div>
+                                </div>
+
+                                <!-- Navigation -->
+                                <nav class="flex-1 p-3">
+                                    <ul class="space-y-1">
+                                        <li>
+                                            <button onclick="setActiveNav(this)"
+                                                class="nav-item w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z">
+                                                    </path>
+                                                </svg>
+                                                Dashboard
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button onclick="setActiveNav(this)"
+                                                class="nav-item w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                                    </path>
+                                                </svg>
+                                                All Posts
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button onclick="setActiveNav(this)"
+                                                class="nav-item nav-active w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium bg-indigo-500/20 text-indigo-400 transition-all">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                    </path>
+                                                </svg>
+                                                Create New
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button onclick="setActiveNav(this)"
+                                                class="nav-item w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                                                    </path>
+                                                </svg>
+                                                Subscribers
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button onclick="setActiveNav(this)"
+                                                class="nav-item w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                                                    </path>
+                                                </svg>
+                                                Analytics
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                                <!-- Settings -->
+                                <div class="p-3 border-t border-slate-800">
+                                    <button
+                                        class="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                                            </path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        </svg>
+                                        Settings
+                                    </button>
+                                </div>
+                            </aside>
+
+                            <!-- Main Content -->
+                            <main class="flex-1 flex flex-col min-w-0">
+                                <!-- Top Bar -->
+                                <header
+                                    class="px-6 py-4 bg-white border-b border-gray-200 flex items-center justify-between">
+                                    <div class="flex items-center gap-4">
+                                        <div class="relative">
+                                            <svg class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                            </svg>
+                                            <input type="text" placeholder="Search..."
+                                                class="pl-10 pr-4 py-2 bg-gray-100 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 w-64" />
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <button class="relative p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                                            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                                                </path>
+                                            </svg>
+                                            <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                                        </button>
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="w-9 h-9 rounded-full bg-indigo-100 flex items-center justify-center">
+                                                <span class="text-sm font-medium text-indigo-600">AD</span>
+                                            </div>
+                                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 9l-7 7-7-7"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </header>
+
+                                <!-- Content Area -->
+                                <div class="flex-1 p-6 overflow-y-auto">
+                                    <!-- Stats Cards -->
+                                    <div class="grid grid-cols-3 gap-5 mb-6">
+                                        <div class="bg-white rounded-xl p-5 border border-gray-200 animate-fade-in-up">
+                                            <div class="flex items-center justify-between mb-3">
+                                                <span class="text-sm text-gray-500">Total Subscribers</span>
+                                                <div
+                                                    class="w-9 h-9 rounded-lg bg-indigo-100 flex items-center justify-center">
+                                                    <svg class="w-5 h-5 text-indigo-600" fill="none"
+                                                        stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <p class="text-2xl font-bold text-gray-900">1,240</p>
+                                            <p class="text-xs text-green-600 flex items-center gap-1 mt-1">
+                                                <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                                </svg>
+                                                +12% this month
+                                            </p>
+                                        </div>
+
+                                        <div class="bg-white rounded-xl p-5 border border-gray-200 animate-fade-in-up"
+                                            style="animation-delay: 0.1s;">
+                                            <div class="flex items-center justify-between mb-3">
+                                                <span class="text-sm text-gray-500">Monthly Views</span>
+                                                <div
+                                                    class="w-9 h-9 rounded-lg bg-green-100 flex items-center justify-center">
+                                                    <svg class="w-5 h-5 text-green-600" fill="none"
+                                                        stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+                                                        </path>
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <p class="text-2xl font-bold text-gray-900">15.2k</p>
+                                            <p class="text-xs text-green-600 flex items-center gap-1 mt-1">
+                                                <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                                </svg>
+                                                +8% this month
+                                            </p>
+                                        </div>
+
+                                        <div class="bg-white rounded-xl p-5 border border-gray-200 animate-fade-in-up"
+                                            style="animation-delay: 0.2s;">
+                                            <div class="flex items-center justify-between mb-3">
+                                                <span class="text-sm text-gray-500">Published Posts</span>
+                                                <div
+                                                    class="w-9 h-9 rounded-lg bg-amber-100 flex items-center justify-center">
+                                                    <svg class="w-5 h-5 text-amber-600" fill="none"
+                                                        stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <p class="text-2xl font-bold text-gray-900">48</p>
+                                            <p class="text-xs text-gray-500 flex items-center gap-1 mt-1">
+                                                <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                </svg>
+                                                3 scheduled
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Create Post Form -->
+                                    <div class="bg-white rounded-xl border border-gray-200 p-6 animate-fade-in-up"
+                                        style="animation-delay: 0.3s;">
+                                        <h2 class="text-lg font-semibold text-gray-900 mb-5">Create New Post</h2>
+
+                                        <div class="space-y-5">
+                                            <!-- Post Title -->
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-2">Post
+                                                    Title</label>
+                                                <input type="text" id="post-title"
+                                                    placeholder="Enter your post title..."
+                                                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all" />
+                                            </div>
+
+                                            <!-- Category & Date Row -->
+                                            <div class="grid grid-cols-2 gap-5">
+                                                <!-- Category Dropdown -->
+                                                <div>
+                                                    <label
+                                                        class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                                                    <div class="relative">
+                                                        <select id="post-category"
+                                                            class="w-full px-4 py-3 border border-gray-200 rounded-xl appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all bg-white">
+                                                            <option value="">Select category...</option>
+                                                            <option value="technology">Technology</option>
+                                                            <option value="strategy">Strategy</option>
+                                                            <option value="growth">Growth</option>
+                                                            <option value="branding">Branding</option>
+                                                            <option value="marketing">Marketing</option>
+                                                            <option value="design">Design</option>
+                                                        </select>
+                                                        <svg class="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+                                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Publish Date -->
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                                                        <span class="flex items-center gap-2">
+                                                            <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                                viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    stroke-width="2"
+                                                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                                                </path>
+                                                            </svg>
+                                                            Publish Date
+                                                        </span>
+                                                    </label>
+                                                    <input type="datetime-local" id="publish-date"
+                                                        class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all" />
+                                                </div>
+                                            </div>
+
+                                            <!-- Content Area -->
+                                            <div>
+                                                <label
+                                                    class="block text-sm font-medium text-gray-700 mb-2">Content</label>
+                                                <textarea id="post-content"
+                                                    placeholder="Write your post content here..." rows="5"
+                                                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none"></textarea>
+                                            </div>
+
+                                            <!-- Actions -->
+                                            <div
+                                                class="flex items-center justify-between pt-4 border-t border-gray-100">
+                                                <button
+                                                    class="px-5 py-2.5 text-gray-600 hover:text-gray-900 text-sm font-medium transition-colors">
+                                                    Save as Draft
+                                                </button>
+                                                <button id="publish-btn" onclick="handlePublish()"
+                                                    class="px-8 py-3 bg-indigo-500 text-white rounded-xl font-semibold hover:bg-indigo-600 transition-all flex items-center gap-2">
+                                                    <svg class="w-5 h-5 publish-icon" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                    </svg>
+                                                    <span class="publish-text">Publish Post</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </main>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Features List -->
+        <div class="mt-10 flex flex-wrap justify-center gap-6 text-sm text-slate-400">
+            <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                Full CMS Dashboard
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                Newsletter Integration
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                Content Scheduling
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                Analytics Dashboard
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // View switching
+        function switchView(view) {
+            const publicView = document.getElementById('view-public');
+            const adminView = document.getElementById('view-admin');
+            const btnPublic = document.getElementById('btn-public');
+            const btnAdmin = document.getElementById('btn-admin');
+            const urlBar = document.getElementById('url-bar');
+
+            if (view === 'public') {
+                publicView.classList.remove('view-hidden');
+                publicView.classList.add('view-visible');
+                adminView.classList.remove('view-visible');
+                adminView.classList.add('view-hidden');
+
+                btnPublic.classList.add('bg-white', 'text-slate-900', 'shadow-lg');
+                btnPublic.classList.remove('text-slate-400');
+                btnAdmin.classList.remove('bg-white', 'text-slate-900', 'shadow-lg');
+                btnAdmin.classList.add('text-slate-400');
+
+                urlBar.innerHTML = '<div class="w-2 h-2 rounded-full bg-emerald-500"></div><span class="text-xs text-slate-400">thepublisher.com</span>';
+            } else {
+                adminView.classList.remove('view-hidden');
+                adminView.classList.add('view-visible');
+                publicView.classList.remove('view-visible');
+                publicView.classList.add('view-hidden');
+
+                btnAdmin.classList.add('bg-white', 'text-slate-900', 'shadow-lg');
+                btnAdmin.classList.remove('text-slate-400');
+                btnPublic.classList.remove('bg-white', 'text-slate-900', 'shadow-lg');
+                btnPublic.classList.add('text-slate-400');
+
+                urlBar.innerHTML = '<div class="w-2 h-2 rounded-full bg-emerald-500"></div><span class="text-xs text-slate-400">thepublisher.com/admin</span>';
+            }
+        }
+
+        // Navigation active state
+        function setActiveNav(btn) {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('bg-indigo-500/20', 'text-indigo-400', 'nav-active');
+                item.classList.add('text-slate-400');
+            });
+            btn.classList.add('bg-indigo-500/20', 'text-indigo-400', 'nav-active');
+            btn.classList.remove('text-slate-400');
+        }
+
+        // Toast functions
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            toastMessage.textContent = message;
+            toast.classList.remove('hidden');
+            toast.querySelector('div').classList.add('toast-in');
+            toast.querySelector('div').classList.remove('toast-out');
+
+            setTimeout(() => {
+                hideToast();
+            }, 3000);
+        }
+
+        function hideToast() {
+            const toast = document.getElementById('toast');
+            toast.querySelector('div').classList.remove('toast-in');
+            toast.querySelector('div').classList.add('toast-out');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 300);
+        }
+
+        // Subscribe handler
+        function handleSubscribe(e) {
+            e.preventDefault();
+            const email = document.getElementById('subscribe-email').value;
+            if (email) {
+                showToast('Success! Check your inbox for confirmation.');
+                document.getElementById('subscribe-email').value = '';
+            }
+        }
+
+        // Publish handler
+        function handlePublish() {
+            const btn = document.getElementById('publish-btn');
+            const icon = btn.querySelector('.publish-icon');
+            const text = btn.querySelector('.publish-text');
+
+            // Show loading state
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+            icon.innerHTML = '<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="32" stroke-dashoffset="32"><animate attributeName="stroke-dashoffset" dur="1s" repeatCount="indefinite" values="32;0"/></circle>';
+            icon.classList.add('animate-spin');
+            text.textContent = 'Publishing...';
+
+            // Simulate API call
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                icon.classList.remove('animate-spin');
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>';
+                text.textContent = 'Publish Post';
+
+                showToast('Post Published Successfully!');
+
+                // Clear form
+                document.getElementById('post-title').value = '';
+                document.getElementById('post-category').value = '';
+                document.getElementById('post-content').value = '';
+                document.getElementById('publish-date').value = '';
+            }, 1500);
+        }
+    </script>
+</body>
+
+</html>
