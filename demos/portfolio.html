@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Demo | ₹1,499 Package</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&family=Merriweather:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .browser-shadow {
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.5),
+                0 30px 60px -30px rgba(0, 0, 0, 0.4);
+        }
+
+        .preview-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .preview-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .preview-scroll::-webkit-scrollbar-thumb {
+            background: rgba(100, 100, 100, 0.3);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-950 min-h-screen">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+        const { motion, AnimatePresence } = window.Motion;
+
+        // ============================================
+        // ICON COMPONENTS (Simplified Lucide Icons)
+        // ============================================
+        const Icons = {
+            Home: ({ size = 16, color = 'currentColor' }) => (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+            ),
+            User: ({ size = 16, color = 'currentColor' }) => (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                </svg>
+            ),
+            Briefcase: ({ size = 16, color = 'currentColor' }) => (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                </svg>
+            ),
+            Mail: ({ size = 16, color = 'currentColor' }) => (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                </svg>
+            ),
+            MapPin: ({ size = 16, color = 'currentColor' }) => (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                </svg>
+            ),
+            Calendar: ({ size = 16, color = 'currentColor' }) => (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+            ),
+            ArrowRight: ({ size = 16, color = 'currentColor' }) => (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                </svg>
+            ),
+            ExternalLink: ({ size = 14, color = 'currentColor' }) => (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                    <polyline points="15 3 21 3 21 9" />
+                    <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+            ),
+            Sun: ({ size = 16, color = 'currentColor' }) => (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="5" />
+                    <line x1="12" y1="1" x2="12" y2="3" />
+                    <line x1="12" y1="21" x2="12" y2="23" />
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                    <line x1="1" y1="12" x2="3" y2="12" />
+                    <line x1="21" y1="12" x2="23" y2="12" />
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+            ),
+            Moon: ({ size = 16, color = 'currentColor' }) => (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+            ),
+        };
+
+        // ============================================
+        // THEME CONFIGURATIONS
+        // ============================================
+        const themes = {
+            modern: {
+                id: 'modern',
+                label: 'Modern',
+                colors: {
+                    bg: '#0f172a',
+                    bgSecondary: '#1e293b',
+                    bgCard: '#334155',
+                    text: '#f8fafc',
+                    textSecondary: '#cbd5e1',
+                    textMuted: '#64748b',
+                    accent: '#3b82f6',
+                    accentHover: '#2563eb',
+                    accentLight: 'rgba(59, 130, 246, 0.15)',
+                    border: 'rgba(255, 255, 255, 0.1)',
+                    navBg: 'rgba(15, 23, 42, 0.95)',
+                },
+                fonts: {
+                    heading: 'Inter, system-ui, sans-serif',
+                    body: 'Inter, system-ui, sans-serif',
+                },
+            },
+            classic: {
+                id: 'classic',
+                label: 'Classic',
+                colors: {
+                    bg: '#FDFBF7',
+                    bgSecondary: '#F5F0E8',
+                    bgCard: '#FFFFFF',
+                    text: '#1a1a1a',
+                    textSecondary: '#4a4a4a',
+                    textMuted: '#8a8a8a',
+                    accent: '#2d5a3d',
+                    accentHover: '#1e4029',
+                    accentLight: 'rgba(45, 90, 61, 0.1)',
+                    border: 'rgba(0, 0, 0, 0.1)',
+                    navBg: 'rgba(253, 251, 247, 0.95)',
+                },
+                fonts: {
+                    heading: '"Playfair Display", Georgia, serif',
+                    body: '"Merriweather", Georgia, serif',
+                },
+            },
+        };
+
+        // ============================================
+        // PAGE TRANSITION VARIANTS
+        // ============================================
+        const pageVariants = {
+            initial: { opacity: 0, y: 20 },
+            enter: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] } },
+            exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
+        };
+
+        // ============================================
+        // HOME VIEW
+        // ============================================
+        const HomeView = ({ theme }) => {
+            const { colors, fonts } = theme;
+            const expertise = [
+                { icon: '🎨', title: 'UI/UX Design', description: 'Creating intuitive interfaces that users love.' },
+                { icon: '💻', title: 'Development', description: 'Building fast, scalable web applications.' },
+                { icon: '📈', title: 'Strategy', description: 'Data-driven decisions for growth.' },
+            ];
+
+            return (
+                <div className="min-h-full" style={{ backgroundColor: colors.bg }}>
+                    <section className="px-8 py-16 text-center">
+                        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+                            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium mb-6" style={{ backgroundColor: colors.accentLight, color: colors.accent }}>
+                                Available for Projects
+                            </span>
+                            <h1 className="text-3xl font-bold mb-4" style={{ fontFamily: fonts.heading, color: colors.text }}>
+                                Creative Developer &<br />Problem Solver
+                            </h1>
+                            <p className="text-base mb-8 max-w-md mx-auto" style={{ color: colors.textSecondary }}>
+                                I build digital experiences that make an impact. Let's create something amazing together.
+                            </p>
+                            <div className="flex items-center justify-center gap-4">
+                                <button className="px-6 py-3 rounded-xl font-semibold text-white text-sm transition-all hover:scale-105" style={{ backgroundColor: colors.accent }}>Hire Me</button>
+                                <button className="px-6 py-3 rounded-xl font-medium text-sm transition-all hover:scale-105" style={{ backgroundColor: colors.accentLight, color: colors.accent }}>View Work</button>
+                            </div>
+                        </motion.div>
+                    </section>
+                    <section className="px-8 py-12" style={{ backgroundColor: colors.bgSecondary }}>
+                        <h2 className="text-xl font-bold text-center mb-8" style={{ fontFamily: fonts.heading, color: colors.text }}>My Expertise</h2>
+                        <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+                            {expertise.map((item, index) => (
+                                <motion.div key={item.title} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: index * 0.1 }} className="p-5 rounded-xl text-center" style={{ backgroundColor: colors.bgCard, border: `1px solid ${colors.border}` }}>
+                                    <div className="text-2xl mb-2">{item.icon}</div>
+                                    <h3 className="font-semibold mb-1 text-sm" style={{ fontFamily: fonts.heading, color: colors.text }}>{item.title}</h3>
+                                    <p className="text-xs" style={{ color: colors.textSecondary }}>{item.description}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </section>
+                </div>
+            );
+        };
+
+        // ============================================
+        // ABOUT VIEW
+        // ============================================
+        const AboutView = ({ theme }) => {
+            const { colors, fonts } = theme;
+            const timeline = [
+                { year: '2023 - Present', role: 'Senior Developer', company: 'Tech Startup Co.' },
+                { year: '2021 - 2023', role: 'Full Stack Developer', company: 'Digital Agency' },
+                { year: '2019 - 2021', role: 'Junior Developer', company: 'Web Studio' },
+            ];
+
+            return (
+                <div className="min-h-full px-8 py-10" style={{ backgroundColor: colors.bg }}>
+                    <div className="grid grid-cols-2 gap-10 max-w-3xl mx-auto items-center">
+                        <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
+                            <div className="aspect-[4/5] rounded-xl overflow-hidden flex items-center justify-center" style={{ backgroundColor: colors.bgSecondary, border: `1px solid ${colors.border}` }}>
+                                <div className="text-center">
+                                    <div className="w-20 h-20 rounded-full mx-auto mb-3 flex items-center justify-center" style={{ backgroundColor: colors.accentLight }}>
+                                        <Icons.User size={36} color={colors.accent} />
+                                    </div>
+                                    <p className="text-xs" style={{ color: colors.textMuted }}>Profile Photo</p>
+                                </div>
+                            </div>
+                        </motion.div>
+                        <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
+                            <h2 className="text-2xl font-bold mb-3" style={{ fontFamily: fonts.heading, color: colors.text }}>About Me</h2>
+                            <p className="mb-3 text-sm leading-relaxed" style={{ color: colors.textSecondary }}>I'm a passionate developer with over 5 years of experience building digital products.</p>
+                            <p className="mb-6 text-sm leading-relaxed" style={{ color: colors.textSecondary }}>When I'm not coding, you'll find me exploring new technologies or mentoring aspiring developers.</p>
+                            <h3 className="font-semibold mb-3 flex items-center gap-2 text-sm" style={{ color: colors.text }}>
+                                <Icons.Calendar size={16} color={colors.accent} /> Experience
+                            </h3>
+                            <div className="space-y-3">
+                                {timeline.map((item, index) => (
+                                    <div key={index} className="flex gap-3 items-start" style={{ borderLeft: `2px solid ${colors.accent}`, paddingLeft: '12px' }}>
+                                        <div>
+                                            <p className="text-xs font-medium mb-0.5" style={{ color: colors.accent }}>{item.year}</p>
+                                            <p className="font-medium text-sm" style={{ color: colors.text }}>{item.role}</p>
+                                            <p className="text-xs" style={{ color: colors.textMuted }}>{item.company}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+            );
+        };
+
+        // ============================================
+        // WORK VIEW
+        // ============================================
+        const WorkView = ({ theme }) => {
+            const { colors, fonts } = theme;
+            const projects = [
+                { title: 'E-Commerce Platform', category: 'Web Development', color: '#6366f1' },
+                { title: 'Mobile Banking App', category: 'UI/UX Design', color: '#ec4899' },
+                { title: 'SaaS Dashboard', category: 'Full Stack', color: '#10b981' },
+                { title: 'Brand Identity', category: 'Branding', color: '#f59e0b' },
+            ];
+
+            return (
+                <div className="min-h-full px-8 py-10" style={{ backgroundColor: colors.bg }}>
+                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-8">
+                        <h2 className="text-2xl font-bold mb-2" style={{ fontFamily: fonts.heading, color: colors.text }}>My Work</h2>
+                        <p className="text-sm" style={{ color: colors.textSecondary }}>Selected projects that showcase my expertise</p>
+                    </motion.div>
+                    <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto">
+                        {projects.map((project, index) => (
+                            <motion.div key={project.title} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: index * 0.1 }} whileHover={{ scale: 1.03, y: -5 }} className="rounded-xl overflow-hidden cursor-pointer group" style={{ backgroundColor: colors.bgCard, border: `1px solid ${colors.border}` }}>
+                                <div className="h-28 relative flex items-center justify-center" style={{ backgroundColor: project.color + '20' }}>
+                                    <Icons.Briefcase size={32} color={project.color} />
+                                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ backgroundColor: colors.bgCard }}>
+                                            <Icons.ArrowRight size={14} color={colors.accent} />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="p-4">
+                                    <p className="text-xs font-medium mb-1" style={{ color: colors.accent }}>{project.category}</p>
+                                    <h3 className="font-semibold text-sm" style={{ fontFamily: fonts.heading, color: colors.text }}>{project.title}</h3>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        // ============================================
+        // MAP MOCKUP
+        // ============================================
+        const MapMockup = ({ theme }) => {
+            const { colors } = theme;
+            const isModern = theme.id === 'modern';
+
+            return (
+                <div className="relative h-full rounded-xl overflow-hidden" style={{ backgroundColor: isModern ? '#1a2332' : '#e8e4dc', border: `1px solid ${colors.border}` }}>
+                    {/* Grid Lines */}
+                    <div className="absolute inset-0" style={{
+                        backgroundImage: `linear-gradient(${isModern ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.05)'} 1px, transparent 1px), linear-gradient(90deg, ${isModern ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.05)'} 1px, transparent 1px)`,
+                        backgroundSize: '25px 25px',
+                    }} />
+                    {/* Roads */}
+                    <div className="absolute top-1/3 left-0 right-0 h-2" style={{ backgroundColor: isModern ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+                    <div className="absolute top-0 bottom-0 right-1/3 w-2" style={{ backgroundColor: isModern ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+                    {/* Buildings */}
+                    <div className="absolute top-6 left-6 w-12 h-10 rounded" style={{ backgroundColor: isModern ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }} />
+                    <div className="absolute bottom-16 right-6 w-14 h-12 rounded" style={{ backgroundColor: isModern ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }} />
+                    {/* Pin */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full">
+                        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-5 h-1.5 rounded-full blur-sm" style={{ backgroundColor: 'rgba(0,0,0,0.3)' }} />
+                        <svg width="28" height="35" viewBox="0 0 32 40" fill="none">
+                            <path d="M16 0C7.164 0 0 7.164 0 16c0 12 16 24 16 24s16-12 16-24c0-8.836-7.164-16-16-16z" fill="#ef4444" />
+                            <circle cx="16" cy="16" r="5" fill="white" />
+                        </svg>
+                    </div>
+                    {/* Zoom Controls */}
+                    <div className="absolute top-3 right-3 rounded-lg overflow-hidden" style={{ backgroundColor: isModern ? 'rgba(30,41,59,0.9)' : 'rgba(255,255,255,0.9)', border: `1px solid ${colors.border}` }}>
+                        <button className="w-7 h-7 flex items-center justify-center text-sm font-medium" style={{ color: colors.textSecondary }}>+</button>
+                        <div style={{ height: '1px', backgroundColor: colors.border }} />
+                        <button className="w-7 h-7 flex items-center justify-center text-sm font-medium" style={{ color: colors.textSecondary }}>−</button>
+                    </div>
+                    {/* Link */}
+                    <div className="absolute bottom-3 left-3 right-3">
+                        <a href="#" className="flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-medium transition-all hover:scale-[1.02]" style={{ backgroundColor: isModern ? 'rgba(30,41,59,0.95)' : 'rgba(255,255,255,0.95)', color: colors.accent, border: `1px solid ${colors.border}` }}>
+                            <Icons.MapPin size={14} /> View on Google Maps <Icons.ExternalLink size={12} />
+                        </a>
+                    </div>
+                    {/* Label */}
+                    <div className="absolute top-3 left-3 px-2 py-1 rounded-lg text-xs font-medium" style={{ backgroundColor: isModern ? 'rgba(30,41,59,0.9)' : 'rgba(255,255,255,0.9)', color: colors.textSecondary, border: `1px solid ${colors.border}` }}>
+                        📍 San Francisco, CA
+                    </div>
+                </div>
+            );
+        };
+
+        // ============================================
+        // CONTACT VIEW
+        // ============================================
+        const ContactView = ({ theme }) => {
+            const { colors, fonts } = theme;
+
+            return (
+                <div className="min-h-full px-8 py-10" style={{ backgroundColor: colors.bg }}>
+                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-8">
+                        <h2 className="text-2xl font-bold mb-2" style={{ fontFamily: fonts.heading, color: colors.text }}>Get in Touch</h2>
+                        <p className="text-sm" style={{ color: colors.textSecondary }}>Let's discuss your next project</p>
+                    </motion.div>
+                    <div className="grid grid-cols-2 gap-6 max-w-3xl mx-auto">
+                        <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }}>
+                            <form className="space-y-3">
+                                <div>
+                                    <label className="block text-xs font-medium mb-1.5" style={{ color: colors.text }}>Name</label>
+                                    <input type="text" placeholder="Your name" className="w-full px-3 py-2.5 rounded-lg text-sm transition-all focus:outline-none focus:ring-2" style={{ backgroundColor: colors.bgSecondary, border: `1px solid ${colors.border}`, color: colors.text }} />
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-medium mb-1.5" style={{ color: colors.text }}>Email</label>
+                                    <input type="email" placeholder="your@email.com" className="w-full px-3 py-2.5 rounded-lg text-sm transition-all focus:outline-none focus:ring-2" style={{ backgroundColor: colors.bgSecondary, border: `1px solid ${colors.border}`, color: colors.text }} />
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-medium mb-1.5" style={{ color: colors.text }}>Message</label>
+                                    <textarea placeholder="Tell me about your project..." rows={3} className="w-full px-3 py-2.5 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 resize-none" style={{ backgroundColor: colors.bgSecondary, border: `1px solid ${colors.border}`, color: colors.text }} />
+                                </div>
+                                <button type="submit" className="w-full py-2.5 rounded-lg font-semibold text-white text-sm transition-all hover:scale-[1.02] flex items-center justify-center gap-2" style={{ backgroundColor: colors.accent }}>
+                                    <Icons.Mail size={16} /> Send Message
+                                </button>
+                            </form>
+                        </motion.div>
+                        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }} className="h-[280px]">
+                            <MapMockup theme={theme} />
+                        </motion.div>
+                    </div>
+                </div>
+            );
+        };
+
+        // ============================================
+        // MAIN COMPONENT
+        // ============================================
+        const PortfolioDemo = () => {
+            const [activePage, setActivePage] = useState('home');
+            const [themeId, setThemeId] = useState('modern');
+            const theme = themes[themeId];
+            const { colors, fonts } = theme;
+
+            const navItems = [
+                { id: 'home', label: 'Home', icon: Icons.Home },
+                { id: 'about', label: 'About', icon: Icons.User },
+                { id: 'work', label: 'Work', icon: Icons.Briefcase },
+                { id: 'contact', label: 'Contact', icon: Icons.Mail },
+            ];
+
+            const renderPage = () => {
+                switch (activePage) {
+                    case 'home': return <HomeView theme={theme} />;
+                    case 'about': return <AboutView theme={theme} />;
+                    case 'work': return <WorkView theme={theme} />;
+                    case 'contact': return <ContactView theme={theme} />;
+                    default: return <HomeView theme={theme} />;
+                }
+            };
+
+            return (
+                <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-slate-950 to-slate-900 p-8">
+                    {/* Header */}
+                    <div className="text-center mb-8">
+                        <span className="inline-block px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-medium mb-4">Tier 3 Package</span>
+                        <h2 className="text-3xl font-bold text-white mb-2">The Portfolio</h2>
+                        <p className="text-slate-400">Multi-page navigation + Map integration for <span className="text-emerald-400 font-semibold">₹1,499</span></p>
+                    </div>
+
+                    {/* Browser Mockup */}
+                    <div className="relative w-full max-w-5xl">
+                        <div className="absolute -top-8 -right-8 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
+                        <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
+
+                        <div className="relative rounded-2xl overflow-hidden border border-slate-700 browser-shadow">
+                            {/* Browser Header */}
+                            <div className="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-slate-700">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-3 h-3 rounded-full bg-red-500" />
+                                    <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                                    <div className="w-3 h-3 rounded-full bg-green-500" />
+                                </div>
+                                <div className="flex-1 mx-4">
+                                    <div className="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-lg max-w-md mx-auto">
+                                        <svg className="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                                        </svg>
+                                        <span className="text-sm text-slate-400">yourportfolio.com</span>
+                                    </div>
+                                </div>
+                                <div className="w-16" />
+                            </div>
+
+                            {/* Content */}
+                            <div className="relative" style={{ height: '520px' }}>
+                                {/* Navigation */}
+                                <nav className="sticky top-0 z-40 px-6 py-2.5 backdrop-blur-xl border-b" style={{ backgroundColor: colors.navBg, borderColor: colors.border }}>
+                                    <div className="flex items-center justify-between max-w-3xl mx-auto">
+                                        <div className="font-bold text-lg" style={{ fontFamily: fonts.heading, color: colors.text }}>JD.</div>
+                                        <div className="flex items-center gap-1">
+                                            {navItems.map((item) => (
+                                                <button key={item.id} onClick={() => setActivePage(item.id)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all" style={{ backgroundColor: activePage === item.id ? colors.accentLight : 'transparent', color: activePage === item.id ? colors.accent : colors.textSecondary }}>
+                                                    <item.icon size={14} /> {item.label}
+                                                </button>
+                                            ))}
+                                        </div>
+                                        <button className="px-3 py-1.5 rounded-lg text-xs font-medium text-white transition-all hover:scale-105" style={{ backgroundColor: colors.accent }}>Hire Me</button>
+                                    </div>
+                                </nav>
+
+                                {/* Page Content */}
+                                <div className="overflow-y-auto preview-scroll" style={{ height: 'calc(100% - 48px)', backgroundColor: colors.bg }}>
+                                    <AnimatePresence mode="wait">
+                                        <motion.div key={activePage} variants={pageVariants} initial="initial" animate="enter" exit="exit">
+                                            {renderPage()}
+                                        </motion.div>
+                                    </AnimatePresence>
+                                </div>
+
+                                {/* Theme Switcher */}
+                                <motion.button onClick={() => setThemeId(themeId === 'modern' ? 'classic' : 'modern')} className="absolute bottom-4 right-4 z-50 flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium shadow-lg transition-all" style={{ backgroundColor: themeId === 'modern' ? '#1e293b' : '#ffffff', color: themeId === 'modern' ? '#f8fafc' : '#1a1a1a', border: `1px solid ${colors.border}` }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                    {themeId === 'modern' ? <><Icons.Sun size={14} /> Switch Style</> : <><Icons.Moon size={14} /> Switch Style</>}
+                                </motion.button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Features */}
+                    <div className="mt-10 flex flex-wrap justify-center gap-6 text-sm text-slate-400">
+                        <div className="flex items-center gap-2"><div className="w-2 h-2 bg-emerald-500 rounded-full" /> Multi-Page Navigation</div>
+                        <div className="flex items-center gap-2"><div className="w-2 h-2 bg-emerald-500 rounded-full" /> Google Maps Integration</div>
+                        <div className="flex items-center gap-2"><div className="w-2 h-2 bg-emerald-500 rounded-full" /> 2 Visual Themes</div>
+                        <div className="flex items-center gap-2"><div className="w-2 h-2 bg-emerald-500 rounded-full" /> Contact Form</div>
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<PortfolioDemo />);
+    </script>
+</body>
+
+</html>
