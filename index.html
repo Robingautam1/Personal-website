@@ -266,6 +266,161 @@
                 transform: scale(1);
             }
         }
+
+        /* ========================================
+           MOBILE RESPONSIVE STYLES
+           ======================================== */
+
+        /* Small phones (320px - 480px) */
+        @media (max-width: 480px) {
+
+            /* Hero Section Fixes */
+            .float-3d {
+                transform: none !important;
+            }
+
+            /* Control Center Card - Make it fit mobile screens */
+            .glass-card.rounded-2xl.overflow-hidden.w-\[420px\] {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            /* Hero text sizing */
+            .text-fluid-hero {
+                font-size: clamp(1.75rem, 8vw, 2.5rem) !important;
+                line-height: 1.2 !important;
+            }
+
+            /* Navigation adjustments */
+            nav .cta-premium {
+                padding: 0.5rem 1rem;
+                font-size: 0.75rem;
+            }
+
+            /* Stats section */
+            .flex.gap-12 {
+                gap: 2rem;
+            }
+
+            /* Reduce padding on mobile */
+            .px-4 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            /* Pricing cards */
+            .text-4xl {
+                font-size: 2rem;
+            }
+
+            /* Work section cards */
+            .col-span-12 {
+                grid-column: span 12;
+            }
+        }
+
+        /* Tablets and larger phones (481px - 768px) */
+        @media (max-width: 768px) {
+
+            /* Hero card - responsive width */
+            .float-3d {
+                transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+            }
+
+            /* Disable float animation on mobile for performance */
+            .animate-float {
+                animation: none;
+            }
+
+            /* Hero grid - stack vertically */
+            .grid.lg\\:grid-cols-2 {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Center the hero card on mobile */
+            .relative.flex.justify-center.lg\\:justify-end {
+                justify-content: center !important;
+            }
+
+            /* Process section grid */
+            .grid.md\\:grid-cols-3 {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Trust factors grid */
+            .grid.md\\:grid-cols-3.gap-6 {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Pricing grid */
+            .grid.grid-cols-1.md\\:grid-cols-3 {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Work section bento grid */
+            .grid.grid-cols-12 {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .col-span-12.lg\\:col-span-7,
+            .col-span-12.lg\\:col-span-5 {
+                width: 100%;
+            }
+
+            /* About section grid */
+            .grid.lg\\:grid-cols-5 {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Footer grid */
+            .grid.md\\:grid-cols-4 {
+                grid-template-columns: 1fr 1fr !important;
+            }
+        }
+
+        /* Fix for the hero Control Center card specifically */
+        @media (max-width: 640px) {
+
+            /* Target the hero card wrapper */
+            .float-3d .glass-card {
+                width: 100% !important;
+                max-width: calc(100vw - 2rem) !important;
+            }
+
+            /* Reduce hero section padding top */
+            section.min-h-screen.pt-32 {
+                padding-top: 6rem;
+            }
+
+            /* Smaller metrics grid on mobile */
+            .grid.grid-cols-2.gap-3 {
+                gap: 0.5rem;
+            }
+
+            .grid.grid-cols-2.gap-3>div {
+                padding: 0.75rem;
+            }
+
+            .grid.grid-cols-2.gap-3 .text-2xl {
+                font-size: 1.25rem;
+            }
+
+            /* Navigation height */
+            nav .h-20 {
+                height: 4rem;
+            }
+
+            /* Smaller CTA buttons */
+            .px-8.py-4 {
+                padding: 0.75rem 1.25rem;
+            }
+
+            /* Browser preview cards */
+            .aspect-\[16\/10\] {
+                aspect-ratio: 4/3;
+            }
+        }
     </style>
 </head>
 
@@ -369,7 +524,8 @@
                 <div class="relative flex justify-center lg:justify-end">
                     <div class="float-3d animate-float">
                         <!-- Mac Window -->
-                        <div class="glass-card rounded-2xl overflow-hidden w-[420px] shadow-2xl shadow-accent/20">
+                        <div
+                            class="glass-card rounded-2xl overflow-hidden w-full max-w-[420px] shadow-2xl shadow-accent/20">
                             <!-- Window Header -->
                             <div class="flex items-center gap-2 px-4 py-3 bg-midnight-800/80 border-b border-white/5">
                                 <div class="w-3 h-3 rounded-full bg-red-500"></div>
